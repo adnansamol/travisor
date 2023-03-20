@@ -10,7 +10,7 @@ import Login from "./pages/Login";
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route path="*" element={<div>404</div>} />
         <Route exact path="/" element={<Home />} />

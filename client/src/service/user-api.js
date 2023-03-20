@@ -1,10 +1,12 @@
 import axios from "axios";
 
-const base_url = process.env.SERVER_URL;
+const base_url = "http://localhost:8000";
 
-export const userLogin = async (data) => {
+export const loginUser = async (data) => {
   try {
-    const response = await axios.post(`${base_url}/login`, data);
+    console.log(base_url);
+    const response = await axios.post(`${base_url}/user/login`, data);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);

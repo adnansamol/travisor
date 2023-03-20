@@ -10,6 +10,9 @@ import {
 
 const userRouter = express.Router();
 
+userRouter.use((req, res, next) => {
+  next();
+});
 userRouter.post("/register", registerUser);
 userRouter.post("/login", loginUser);
 
