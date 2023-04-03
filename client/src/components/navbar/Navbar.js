@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "../ui/Link";
 import styled from "styled-components";
 import { colors } from "../../constant/colors";
@@ -6,12 +6,33 @@ import { SiYourtraveldottv } from "react-icons/si";
 import { MdLocationCity, MdOutlineContactSupport } from "react-icons/md";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 const Navbar = () => {
+  const [navDisplay, setNavDisplay] = useState("flex");
+  const navRef = useRef();
+  navRef.current = navDisplay;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const show = window.scrollY > 20;
+      if (show) {
+        setNavDisplay("none");
+      } else {
+        setNavDisplay("flex");
+      }
+    };
+
+    document.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const Container = styled.div`
-    display: flex;
-    background-color: ${colors.purple};
+    position: absolute;
+    display: ${navRef.current};
+    top: 100px;
+    left: 150px;
+    background-color: white;
     width: 80%;
-    margin: auto;
-    margin-top: 20px;
     padding: 15px 15px;
     font-size: 24px;
     border-radius: 10px;
@@ -25,7 +46,7 @@ const Navbar = () => {
     font-size: 18px;
   `;
   const NavLink = styled(Link)`
-    color: white;
+    color: ${colors.black};
   `;
   const iconSize = 38;
   return (

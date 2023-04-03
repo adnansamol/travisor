@@ -1,5 +1,4 @@
 import bookingModel from "../models/booking.js";
-import open from "open";
 export const getBookingByUserId = async (req, res) => {
   try {
     const data = await bookingModel.find({ b_booked_user_id: req.params.id });

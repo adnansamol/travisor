@@ -1,7 +1,7 @@
 import userModel from "../models/user.js";
 import { alreadyRegistered } from "../util/validation.js";
 import jwt from "jsonwebtoken";
-import { generateJWTToken } from "../util/authentication.js";
+import { generateJWTToken, verifyJWTToken } from "../util/authentication.js";
 export const registerUser = async (req, res) => {
   try {
     const user = req.body;
@@ -20,6 +20,7 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   try {
+    console.log(req.body);
     if (alreadyRegistered(req.body.email)) {
       const token = generateJWTToken({
         email: req.body.email,
@@ -28,12 +29,14 @@ export const loginUser = async (req, res) => {
 
       await userModel.findOneAndUpdate(
         {
-          u_email: req.body.u_email,
-          u_password: req.body.u_password,
+          u_email: req.body.email,
+          u_password: req.body.password,
         },
         { u_token: token }
       );
       res.status(200).send(token);
+    } else {
+      res.status(401).send("The user does not exist.");
     }
   } catch (error) {
     res.status(500).send(error);
@@ -52,8 +55,10 @@ export const updateUser = async (req, res) => {
 export const getUserProfile = async (req, res) => {
   try {
     const token = req.headers["auth-token"];
-    const data = await userModel.findOne({ u_token: token });
-    delete data.u_token;
+    const email = verifyJWTToken(token);
+    const data = await userModel.findOne({ u_email: email });
+    data.u_token = undefined;
+    console.log(data);
     res.status(200).send(data);
   } catch (error) {
     res.status(500).send(error);

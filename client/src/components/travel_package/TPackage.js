@@ -41,7 +41,7 @@ const TPackage = () => {
     color: white;
     font-weight: 600;
     font-size: 20px;
-    background-color: ${colors.purple};
+    background-color: ${colors.teal500};
   `;
   const PriceContainer = styled.div`
     text-align: right;
@@ -50,7 +50,7 @@ const TPackage = () => {
   `;
   const Price = styled.div`
     font-size: 26px;
-    color: ${colors.indigo_blue};
+    color: ${colors.black};
     font-weight: 600;
   `;
 

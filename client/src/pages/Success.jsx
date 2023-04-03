@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { bookPackage } from "../service/booking-api";
 
 const Success = () => {
   // const params = useParams();
