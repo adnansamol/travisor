@@ -5,11 +5,24 @@ import { colors } from "../../constant/colors";
 import { SiYourtraveldottv } from "react-icons/si";
 import { MdLocationCity, MdOutlineContactSupport } from "react-icons/md";
 import { BsFillInfoCircleFill } from "react-icons/bs";
+
+
+  const NavContainer = styled.div`
+    text-align: center;
+  `;
+  const NavText = styled.div`
+    font-size: 18px;
+  `;
+  const NavLink = styled(Link)`
+    color: ${colors.black};
+  `;
+
 const Navbar = () => {
   const [navDisplay, setNavDisplay] = useState("flex");
   const navRef = useRef();
   navRef.current = navDisplay;
 
+  
   useEffect(() => {
     const handleScroll = () => {
       const show = window.scrollY > 20;
@@ -26,6 +39,9 @@ const Navbar = () => {
     };
   }, []);
 
+  
+  const iconSize = 38;
+
   const Container = styled.div`
     position: absolute;
     display: ${navRef.current};
@@ -39,16 +55,7 @@ const Navbar = () => {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
     justify-content: space-between;
   `;
-  const NavContainer = styled.div`
-    text-align: center;
-  `;
-  const NavText = styled.div`
-    font-size: 18px;
-  `;
-  const NavLink = styled(Link)`
-    color: ${colors.black};
-  `;
-  const iconSize = 38;
+  
   return (
     <Container>
       <NavLink to={`/packages`}>

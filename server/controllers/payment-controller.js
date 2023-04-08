@@ -8,6 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 export const makePayment = async (req, res) => {
   try {
     const session = await stripePaymentGateway(req.body);
+    console.log(session);
     res.status(200).send(session.url);
   } catch (error) {
     res.status(500).send(error);

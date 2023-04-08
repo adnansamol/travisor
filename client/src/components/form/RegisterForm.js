@@ -4,6 +4,53 @@ import { colors } from "../../constant/colors";
 import { country_list } from "../../constant/countries";
 import Button from "../ui/Button";
 
+
+const FormContainer = styled.form`
+width: 400px;
+`;
+const FormLabel = styled.label`
+color: rgba(0, 0, 0, 0.7);
+font-weight: 600;
+`;
+const FormInput = styled.input`
+box-sizing: border-box;
+width: 100%;
+font-size: 20px;
+padding: 12px 8px;
+border: 1px solid rgba(0, 0, 0, 0.2);
+border-radius: 5px;
+margin: 5px 0 10px;
+
+&:focus {
+  outline: none;
+  border: 1px solid ${colors.teal500};
+  box-shadow: 0px 0px 3px ${colors.teal500};
+}
+`;
+
+const FormSelect = styled.select`
+box-sizing: border-box;
+width: 100%;
+font-size: 20px;
+padding: 12px 8px;
+border: 1px solid rgba(0, 0, 0, 0.2);
+border-radius: 5px;
+margin: 5px 0 10px;
+background-color: rgba(255, 255, 255, 0.4);
+&:focus {
+  outline: none;
+  border: 1px solid ${colors.teal500};
+  box-shadow: 0px 0px 3px ${colors.teal500};
+}
+`;
+const SelectOption = styled.option`
+padding: 50px 0px;
+`;
+const ButtonComponent = styled(Button)`
+color: white;
+background-color: ${colors.teal500};
+`;
+
 const RegisterForm = ({ registerUserHandler }) => {
   const registerOnSubmit = (event) => {
     event.preventDefault();
@@ -18,51 +65,7 @@ const RegisterForm = ({ registerUserHandler }) => {
     registerUserHandler(data);
   };
 
-  const FormContainer = styled.form`
-    width: 400px;
-  `;
-  const FormLabel = styled.label`
-    color: rgba(0, 0, 0, 0.7);
-    font-weight: 600;
-  `;
-  const FormInput = styled.input`
-    box-sizing: border-box;
-    width: 100%;
-    font-size: 20px;
-    padding: 12px 8px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    margin: 5px 0 10px;
-
-    &:focus {
-      outline: none;
-      border: 1px solid ${colors.teal500};
-      box-shadow: 0px 0px 3px ${colors.teal500};
-    }
-  `;
-
-  const FormSelect = styled.select`
-    box-sizing: border-box;
-    width: 100%;
-    font-size: 20px;
-    padding: 12px 8px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    margin: 5px 0 10px;
-    background-color: rgba(255, 255, 255, 0.4);
-    &:focus {
-      outline: none;
-      border: 1px solid ${colors.teal500};
-      box-shadow: 0px 0px 3px ${colors.teal500};
-    }
-  `;
-  const SelectOption = styled.option`
-    padding: 50px 0px;
-  `;
-  const ButtonComponent = styled(Button)`
-    color: white;
-    background-color: ${colors.teal500};
-  `;
+ 
   return (
     <FormContainer onSubmit={registerOnSubmit}>
       <div className="row">

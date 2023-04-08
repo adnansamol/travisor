@@ -4,7 +4,7 @@ import { config } from "dotenv";
 import Connection from "./database/mongodb.js";
 import userRouter from "./routes/user-route.js";
 import packageRouter from "./routes/package-route.js";
-import exceljs from "exceljs";
+
 const app = express();
 app.use(cors());
 config();

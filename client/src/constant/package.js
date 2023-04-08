@@ -1,4 +1,5 @@
 export const travel_package = {
+  _id: "123abc",
   p_name: "Dreamy Mauritius!",
   p_start_location: "Ahmedabad",
   p_destination: "Mauritius",
@@ -54,6 +55,15 @@ export const travel_package = {
     departure: new Date(),
     arrival: new Date(),
     class: "Economy",
+  },
+  p_hotel: {
+    images: [],
+    name: "Royale Hotel",
+    address: "Address 1bc street 24d",
+    price: 2400,
+    type: "Luxury",
+    rooms: 2,
+    dineIncluded: true,
   },
 };
 

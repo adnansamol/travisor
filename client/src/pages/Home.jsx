@@ -10,7 +10,7 @@ import Header from "../components/header/Header";
 const Home = () => {
   return (
     <>
-      <Header />
+      <Header scrollValue={20} />
       <Body>
         <Navbar />
         <Jumbotron></Jumbotron>

@@ -6,14 +6,8 @@ import Link from "../components/ui/Link";
 import { colors } from "../constant/colors";
 import { MdKeyboardBackspace } from "react-icons/md";
 
-const Register = () => {
-  const navigate = useNavigate();
-  const registerUserHandler = async (data) => {
-    // const response = await loginUser(data);
-    navigate("/");
-  };
 
-  const Component = styled.div`
+const Component = styled.div`
     display: flex;
     width: 100%;
     background-image: url("images/background/register-bg.jpg");
@@ -66,6 +60,14 @@ const Register = () => {
   const LoginLink = styled(Link)`
     font-weight: 600;
   `;
+const Register = () => {
+  const navigate = useNavigate();
+  const registerUserHandler = async (data) => {
+    // const response = await loginUser(data);
+    navigate("/");
+  };
+
+  
   return (
     <Component>
       <RightContainer></RightContainer>

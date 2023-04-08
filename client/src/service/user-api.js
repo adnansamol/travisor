@@ -11,7 +11,15 @@ export const loginUserAPI = async (data) => {
     console.log(error);
   }
 };
+export const logoutUserAPI = async (data) => {
+  try {
+    const response = await axios.put(`${base_url}/user/logout`, data);
 
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const registerUserAPI = async (data) => {
   try {
     const response = await axios.post(`${base_url}/user/register`, data);
@@ -23,7 +31,7 @@ export const registerUserAPI = async (data) => {
 export const getUserProfileAPI = async (token) => {
   try {
     const response = await axios.get(`${base_url}/user/profile`, {
-      headers: { "auth-token": token },
+      headers: { Authorization: token },
     });
     return response.data;
   } catch (error) {

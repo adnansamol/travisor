@@ -3,18 +3,7 @@ import styled from "styled-components";
 import { colors } from "../../constant/colors";
 import Button from "../ui/Button";
 
-const LoginForm = ({ loginUserHandler }) => {
-  const loginOnSubmit = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const data = {
-      email: form.email.value,
-      password: form.pass.value,
-    };
-    loginUserHandler(data);
-  };
-
-  const FormContainer = styled.form`
+const FormContainer = styled.form`
     width: 400px;
   `;
   const FormLabel = styled.label`
@@ -40,6 +29,18 @@ const LoginForm = ({ loginUserHandler }) => {
     color: white;
     background-color: ${colors.teal500};
   `;
+const LoginForm = ({ loginUserHandler }) => {
+  const loginOnSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const data = {
+      email: form.email.value,
+      password: form.pass.value,
+    };
+    loginUserHandler(data);
+  };
+
+  
   return (
     <FormContainer onSubmit={loginOnSubmit}>
       <FormLabel htmlFor="email">Email</FormLabel>
