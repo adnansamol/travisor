@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../constant/colors";
 import { FaCar } from "react-icons/fa";
@@ -7,12 +7,25 @@ import { IoIosAirplane } from "react-icons/io";
 import { travel_package } from "../constant/package";
 import { getShortDate, getShortTime } from "../util/formatter";
 import { IoLocationSharp } from "react-icons/io5";
+import { PackageContext } from "../context/package-context";
+import Modal from "react-modal";
+import Button from "../components/ui/Button";
+import Hotels from "../components/hotels/Hotels";
+import Flights from "../components/flights/Flights";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
   width: 100%;
+`;
+const TitleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const Title = styled.div`
+  font-size: 24px;
 `;
 
 const FlightContainer = styled.div`
@@ -21,6 +34,7 @@ const FlightContainer = styled.div`
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   padding: 10px 15px;
 `;
+
 const Plane = styled.div`
   font-weight: 600;
   margin: 3px 2px;
@@ -90,6 +104,10 @@ const HotelContainer = styled.div`
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   padding: 10px 15px;
 `;
+const HotelDetails = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 const HotelName = styled.div`
   font-size: 20px;
   color: ${colors.black};
@@ -102,77 +120,226 @@ const HotelRooms = styled.div`
   color: ${colors.black};
   font-weight: 500;
 `;
+const HotelImage = styled.img`
+  width: 200px;
+  height: 180px;
+`;
+const RemoveButton = styled(Button)`
+  border: 1px solid ${colors.crimson};
+  color: ${colors.crimson};
+  font-size: 12px;
+  padding: 5px 8px;
+  background-color: white;
+  font-weight: 500;
+  margin: 0 5px;
+`;
+const AddButton = styled(Button)`
+  border: 1px solid ${colors.green};
+  color: ${colors.green};
+  font-size: 12px;
+  padding: 5px 8px;
+  background-color: white;
+  font-weight: 500;
+  margin: 0 5px;
+`;
+const ChangeButton = styled(Button)`
+  border: 1px solid ${colors.dodgerblue};
+  color: ${colors.dodgerblue};
+  font-size: 12px;
+  padding: 5px 8px;
+  background-color: white;
+  font-weight: 500;
+  margin: 0 5px;
+`;
+const customModalStyles = {
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.75)",
+  },
+  content: {
+    top: "19%",
+    width: "50%",
+    left: "50%",
+    height: "80%",
+  },
+};
 const Summary = () => {
+  const { travelPackage, setTravelPackage } = useContext(PackageContext);
+  const [isOpen, setIsOpen] = useState(false);
+  const [openFlightModal, setOpenFlightModal] = useState(false);
+  const [openTransportModal, setOpenTransportModal] = useState(false);
+  const [openHotelModal, setOpenHotelModal] = useState(false);
+  useState(() => {
+    setTravelPackage(travel_package);
+  }, []);
+
+  const removeFlight = () => {
+    const flightprice = travelPackage.p_flight.price;
+    const newPrice = {
+      ...travelPackage.p_price,
+      base_price: travelPackage.p_price.base_price - flightprice,
+    };
+    setTravelPackage({
+      ...travelPackage,
+      p_price: newPrice,
+      p_flight: undefined,
+    });
+  };
+
+  const removeTransport = () => {
+    const transportPrice = travelPackage.p_transport.price;
+    const newPrice = {
+      ...travelPackage.p_price,
+      base_price: travelPackage.p_price.base_price - transportPrice,
+    };
+    setTravelPackage({
+      ...travelPackage,
+      p_transport: undefined,
+      p_price: newPrice,
+    });
+  };
+  const closeHotelModal = () => {
+    setOpenHotelModal(false);
+  };
+  const closeFlightModal = () => {
+    setOpenFlightModal(false);
+  };
   return (
-    <Container>
-      <FlightContainer>
-        <h3>Flight</h3>
-        <Plane>{travel_package.p_flight.plane}</Plane>
-        <hr />
+    travelPackage && (
+      <Container>
+        <Modal
+          isOpen={openHotelModal}
+          style={customModalStyles}
+          onRequestClose={closeHotelModal}
+          shouldCloseOnOverlayClick={true}
+        >
+          <Hotels setIsOpen={setOpenHotelModal} />
+        </Modal>
+        <Modal
+          isOpen={openFlightModal}
+          style={customModalStyles}
+          onRequestClose={closeFlightModal}
+          shouldCloseOnOverlayClick={true}
+        >
+          <Flights setIsOpen={setOpenFlightModal} />
+        </Modal>
+        <FlightContainer>
+          <TitleContainer>
+            <Title>Flight</Title>
+            {travelPackage.p_flight ? (
+              <div>
+                <RemoveButton onClick={removeFlight}>REMOVE</RemoveButton>
+                <ChangeButton onClick={() => setOpenFlightModal(true)}>
+                  CHANGE
+                </ChangeButton>
+              </div>
+            ) : (
+              <AddButton>ADD</AddButton>
+            )}
+          </TitleContainer>
+          {travelPackage.p_flight && (
+            <>
+              <hr />
+              {travelPackage.p_flight.stops.map((stop) => (
+                <>
+                  <Plane>{stop.plane}</Plane>
+                  <FlightTimeContainer>
+                    <FlightDeparture>
+                      <FlightTime>{getShortTime(stop.departure)}</FlightTime>
+                      <FlightDate>{getShortDate(stop.departure)}</FlightDate>
+                      <FlightPlace>{stop.from}</FlightPlace>
+                    </FlightDeparture>
 
-        <FlightTimeContainer>
-          <FlightDeparture>
-            <FlightTime>
-              {getShortTime(travel_package.p_flight.departure)}
-            </FlightTime>
-            <FlightDate>
-              {getShortDate(travel_package.p_flight.departure)}
-            </FlightDate>
-            <FlightPlace>{travel_package.p_start_location}</FlightPlace>
-          </FlightDeparture>
+                    <HorizontalRule></HorizontalRule>
+                    <IoIosAirplane size={24} />
+                    <HorizontalRule></HorizontalRule>
+                    <FlightArrival>
+                      <FlightTime>{getShortTime(stop.departure)}</FlightTime>
+                      <FlightDate>{getShortDate(stop.departure)}</FlightDate>
+                      <FlightPlace>{stop.to}</FlightPlace>
+                    </FlightArrival>
+                  </FlightTimeContainer>
+                  <FlightTypeContainer>
+                    <FlightClass>
+                      <MdFlightClass size={24} title="Class" />: {stop.class}
+                    </FlightClass>
+                    <p>
+                      <MdFlightLand size={24} title="Flight Time" />:{" "}
+                      {stop.time}
+                    </p>
+                  </FlightTypeContainer>
+                </>
+              ))}
+            </>
+          )}
+        </FlightContainer>
+        <TransportContainer>
+          <TitleContainer>
+            <Title>Transport</Title>
+            {travelPackage.p_transport ? (
+              <div>
+                <RemoveButton onClick={removeTransport}>REMOVE</RemoveButton>
+                <ChangeButton>CHANGE</ChangeButton>
+              </div>
+            ) : (
+              <AddButton>ADD</AddButton>
+            )}
+          </TitleContainer>
+          {travelPackage.p_transport && (
+            <>
+              <hr />
+              <div style={{ display: "flex", gap: 50 }}>
+                <FaCar size={50} />{" "}
+                <div>
+                  <TransportVehicle>
+                    {travelPackage.p_transport.vehicle}
+                  </TransportVehicle>
+                  <TransportType>
+                    {travelPackage.p_transport.type}
+                  </TransportType>
+                </div>
+              </div>
+              Seats:{" "}
+              <VehicleSeats>{travelPackage.p_transport.seat}</VehicleSeats>
+              <p>{travelPackage.p_transport.description}</p>
+            </>
+          )}
+        </TransportContainer>
+        <HotelContainer>
+          <TitleContainer>
+            <Title>Check In</Title>
+            <ChangeButton onClick={() => setOpenHotelModal(true)}>
+              CHANGE
+            </ChangeButton>
+          </TitleContainer>
 
-          <HorizontalRule></HorizontalRule>
-          <IoIosAirplane size={24} />
-          <HorizontalRule></HorizontalRule>
-          <FlightArrival>
-            <FlightTime>
-              {getShortTime(travel_package.p_flight.departure)}
-            </FlightTime>
-            <FlightDate>
-              {getShortDate(travel_package.p_flight.departure)}
-            </FlightDate>
-            <FlightPlace>{travel_package.p_destination}</FlightPlace>
-          </FlightArrival>
-        </FlightTimeContainer>
-        <FlightTypeContainer>
-          <FlightClass>
-            <MdFlightClass size={24} title="Class" />:{" "}
-            {travel_package.p_flight.class}
-          </FlightClass>
-          <p>
-            <MdFlightLand size={24} title="Flight Time" />:{" "}
-            {travel_package.p_flight.time}
-          </p>
-        </FlightTypeContainer>
-      </FlightContainer>
-      <TransportContainer>
-        <h3>Transport</h3>
-        <hr />
-        <div style={{ display: "flex", gap: 50 }}>
-          <FaCar size={50} />{" "}
-          <div>
-            <TransportVehicle>
-              {travel_package.p_transport.vehicle}
-            </TransportVehicle>
-            <TransportType>{travel_package.p_transport.type}</TransportType>
-          </div>
-        </div>
-        Seats: <VehicleSeats>{travel_package.p_transport.seat}</VehicleSeats>
-        <p>{travel_package.p_transport.description}</p>
-      </TransportContainer>
-      <HotelContainer>
-        <h3>Check In</h3>
-        <hr />
-        <HotelName>{travel_package.p_hotel.name}</HotelName>
-        Type: {travel_package.p_hotel.type}
-        <HotelAddress>
-          <IoLocationSharp />
-          {travel_package.p_hotel.address}
-        </HotelAddress>
-        <HotelRooms>Total rooms: {travel_package.p_hotel.rooms}</HotelRooms>
-        {travel_package.p_hotel.dineIncluded}
-      </HotelContainer>
-    </Container>
+          {travelPackage.p_hotel && (
+            <>
+              <hr />
+              <HotelDetails>
+                <div>
+                  <HotelName>{travelPackage.p_hotel.name}</HotelName>
+                  Type: {travelPackage.p_hotel.type}
+                  <HotelAddress>
+                    <IoLocationSharp />
+                    {travelPackage.p_hotel.address}
+                  </HotelAddress>
+                  <HotelRooms>
+                    Total rooms: {travelPackage.p_hotel.rooms}
+                  </HotelRooms>
+                </div>
+
+                <HotelImage src={travelPackage.p_hotel.images[0]} />
+              </HotelDetails>
+            </>
+          )}
+        </HotelContainer>
+      </Container>
+    )
   );
 };
 

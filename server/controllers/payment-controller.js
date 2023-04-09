@@ -16,6 +16,7 @@ export const makePayment = async (req, res) => {
 };
 
 export const stripePaymentGateway = async (product) => {
+  const payment = stripe.pa;
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: [

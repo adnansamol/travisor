@@ -1,12 +1,12 @@
 export const travel_package = {
-  _id: "123abc",
+  _id: "1",
   p_name: "Dreamy Mauritius!",
   p_start_location: "Ahmedabad",
   p_destination: "Mauritius",
   p_days: 7,
   p_description:
     "Suitable for family & couple|Package Gives you the flexibility to Choose your own flights & Activities/ Best suited for Your Needs | Get Complimentary catamaran cruise while experiencing island tour",
-  p_price: 125140,
+  p_price: { base_price: 125140, discount: 25000 },
   p_start_date: new Date("03/04/2023"),
   p_end_date: new Date("03/10/2023"),
   p_imagePreview:
@@ -25,13 +25,16 @@ export const travel_package = {
   p_transport: {
     vehicle: "AC Sedan",
     type: "Private",
+    fuel_type: "EV",
     seat: 4,
     description: "Pickup from airport",
+    price: 2000,
   },
   p_days_plan: [
     {
       day: 1,
       location: "Mauritius",
+      duration: "2Hrs",
       activity:
         "3 Full Day Tours (City, Nature Island Tour) with Return Airport Transfers on Share In Coach",
       locImage:
@@ -39,15 +42,39 @@ export const travel_package = {
     },
   ],
   p_policies: {
-    cancellation: { from: new Date(), to: new Date() },
-    changeDate: { from: new Date(), to: new Date() },
+    cancellation: {
+      from: new Date(),
+      to: new Date(),
+      description: "about refund",
+    },
+    changeDate: {
+      from: new Date(),
+      to: new Date(),
+      description: "about changing date",
+    },
   },
   p_flight: {
-    plane: "MK-745",
-    time: "07h30m",
-    departure: new Date(),
-    arrival: new Date(),
-    class: "Economy",
+    stops: [
+      {
+        departure: new Date(),
+        arrival: new Date(),
+        class: "Economy",
+        from: "Ahmedabad",
+        to: "New Delhi",
+        plane: "MK-745",
+        time: "03h30m",
+      },
+      {
+        departure: new Date(),
+        arrival: new Date(),
+        class: "Economy",
+        from: "New Delhi",
+        to: "Mauritius",
+        plane: "MK-745",
+        time: "04h30m",
+      },
+    ],
+    price: 10000,
   },
   p_return_flight: {
     plane: "MK-745",
@@ -55,12 +82,17 @@ export const travel_package = {
     departure: new Date(),
     arrival: new Date(),
     class: "Economy",
+    from: "Mauritius",
+    to: "Ahmedabad",
+    price: 10000,
   },
   p_hotel: {
-    images: [],
+    images: [
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+    ],
     name: "Royale Hotel",
     address: "Address 1bc street 24d",
-    price: 2400,
+    price_per_room: 2400,
     type: "Luxury",
     rooms: 2,
     dineIncluded: true,
