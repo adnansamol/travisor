@@ -1,0 +1,79 @@
+import React, { useContext } from "react";
+import { transports } from "../../constant/transports";
+import { PackageContext } from "../../context/package-context";
+import styled from "styled-components";
+import { colors } from "../../constant/colors";
+import { FaCar } from "react-icons/fa";
+import Button from "../ui/Button";
+const TransportContainer = styled.div`
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  padding: 10px 15px;
+  margin-bottom: 10px;
+`;
+const TransportVehicle = styled.div`
+  font-weight: 600;
+  color: ${colors.black};
+  font-size: 18px;
+`;
+const TransportType = styled.div`
+  font-size: 16px;
+  font-weight: 500;
+  color: ${colors.gray};
+`;
+const VehicleSeats = styled.div`
+  font-weight: 500;
+  color: ${colors.gray};
+`;
+const CloseButton = styled.div`
+  cursor: pointer;
+  margin: 0 0 10px 5px;
+`;
+const SelectButton = styled(Button)`
+  background-color: ${colors.dodgerblue};
+  color: white;
+  padding: 5px 20px;
+`;
+const Transports = ({ setIsOpen }) => {
+  return transports.map((transport) => (
+    <Transport transport={transport} close={setIsOpen} />
+  ));
+};
+
+export default Transports;
+
+const Transport = ({ transport, close }) => {
+  const { travelPackage, setTravelPackage } = useContext(PackageContext);
+  const selectTransport = () => {
+    const newTransport = {
+      vehicle: transport.vehicle,
+      type: transport.type,
+      fuel_type: transport.fuel_type,
+      seat: transport.seat,
+      description: transport.description,
+      price: transport.price,
+    };
+
+    setTravelPackage({ ...travelPackage, p_transport: newTransport });
+    close(false);
+  };
+  return (
+    <TransportContainer>
+      <div style={{ display: "flex", gap: 50 }}>
+        <FaCar size={50} />{" "}
+        <div>
+          <TransportVehicle>{transport.vehicle}</TransportVehicle>
+          <TransportType>{transport.type}</TransportType>
+        </div>
+      </div>
+      Seats: <VehicleSeats>{transport.seat}</VehicleSeats>
+      <p>{transport.description}</p>
+      {travelPackage.p_transport.vehicle === transport.vehicle ? (
+        <b style={{ color: "orangered" }}>SELECTED</b>
+      ) : (
+        <SelectButton onClick={selectTransport}>Select</SelectButton>
+      )}
+    </TransportContainer>
+  );
+};

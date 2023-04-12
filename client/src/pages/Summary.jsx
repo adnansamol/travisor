@@ -12,6 +12,7 @@ import Modal from "react-modal";
 import Button from "../components/ui/Button";
 import Hotels from "../components/hotels/Hotels";
 import Flights from "../components/flights/Flights";
+import Transports from "../components/transport/Transports";
 
 const Container = styled.div`
   display: flex;
@@ -208,6 +209,9 @@ const Summary = () => {
   const closeFlightModal = () => {
     setOpenFlightModal(false);
   };
+  const closeTransportModal = () => {
+    setOpenTransportModal(false);
+  };
   return (
     travelPackage && (
       <Container>
@@ -226,6 +230,14 @@ const Summary = () => {
           shouldCloseOnOverlayClick={true}
         >
           <Flights setIsOpen={setOpenFlightModal} />
+        </Modal>
+        <Modal
+          isOpen={openTransportModal}
+          style={customModalStyles}
+          onRequestClose={closeTransportModal}
+          shouldCloseOnOverlayClick={true}
+        >
+          <Transports setIsOpen={setOpenTransportModal} />
         </Modal>
         <FlightContainer>
           <TitleContainer>
@@ -283,7 +295,9 @@ const Summary = () => {
             {travelPackage.p_transport ? (
               <div>
                 <RemoveButton onClick={removeTransport}>REMOVE</RemoveButton>
-                <ChangeButton>CHANGE</ChangeButton>
+                <ChangeButton onClick={() => setOpenTransportModal(true)}>
+                  CHANGE
+                </ChangeButton>
               </div>
             ) : (
               <AddButton>ADD</AddButton>

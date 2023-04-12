@@ -5,11 +5,12 @@ import { IoLocationSharp } from "react-icons/io5";
 import { travel_package } from "../constant/package";
 import { getShortDate, getShortTime, priceFormatter } from "../util/formatter";
 import { colors } from "../constant/colors";
-
+import Modal from "react-modal";
 import Button from "../components/ui/Button";
 import Sidebar from "../components/sidebar/Sidebar";
 import { Outlet } from "react-router";
 import { PackageContext } from "../context/package-context";
+import MembersForm from "../components/form/MembersForm";
 const Page = styled.div`
   background-color: whitesmoke;
   width: 100%;
@@ -83,6 +84,7 @@ const RightContainer = styled.div`
 const Price = styled.div`
   text-align: right;
   font-size: 28px;
+  font-weight: 500;
 `;
 const Discount = styled.div``;
 const BookingButton = styled(Button)`
@@ -90,7 +92,25 @@ const BookingButton = styled(Button)`
   color: ${colors.teal100};
 `;
 
+const customModalStyles = {
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.75)",
+  },
+  content: {
+    top: "19%",
+    width: "60%",
+    left: "20%",
+    height: "80%",
+  },
+};
+
 const PackageDetailView = () => {
+  const [openBookingModal, setOpenBookingModal] = useState(false);
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
 
   useEffect(() => {
@@ -109,10 +129,22 @@ const PackageDetailView = () => {
 
     setTravelPackage(newStartDate);
   };
+
+  const closeBookingModal = () => {
+    setOpenBookingModal(false);
+  };
   return (
     <>
       <Header scrollValue={-1} />
       <Page>
+        <Modal
+          isOpen={openBookingModal}
+          style={customModalStyles}
+          onRequestClose={closeBookingModal}
+          shouldCloseOnOverlayClick={true}
+        >
+          <MembersForm />
+        </Modal>
         {travelPackage && (
           <Container>
             <NameContainer>
@@ -168,22 +200,23 @@ const PackageDetailView = () => {
                   <strong
                     style={{ color: "orange", margin: "0 8px", fontSize: 14 }}
                   >
-                    -
                     {(
                       (25000 * 100) /
                       (travelPackage.p_price.base_price +
                         travelPackage.p_price.discount)
                     ).toFixed(0)}
-                    %
+                    % OFF
                   </strong>
-                  <strike style={{ fontSize: 18 }}>
+                  <strike style={{ fontSize: 18, color: colors.gray }}>
                     {priceFormatter.format(
                       travelPackage.p_price.base_price +
                         travelPackage.p_price.discount
                     )}
                   </strike>
                 </Discount>
-                <BookingButton>Proceed to Booking</BookingButton>
+                <BookingButton onClick={() => setOpenBookingModal(true)}>
+                  Proceed to Booking
+                </BookingButton>
               </RightContainer>
             </BottomContainer>
           </Container>
