@@ -5,16 +5,15 @@ import { PackageContext } from "../context/package-context";
 import { getUserProfileAPI } from "../service/user-api";
 
 const Success = () => {
-  const { travelPackage, setTravelPackage } = useContext(PackageContext);
   useEffect(() => {
     const book = async () => {
       try {
-        const booking = {};
         const id = localStorage.getItem("id");
-        const userId = await getUserProfileAPI(localStorage.getItem("token"));
+        const user = await getUserProfileAPI(localStorage.getItem("token"));
+        const travelPackage = JSON.parse(localStorage.getItem("travelPackage"));
         await axios.post(
           "http://localhost:8000/travelPackage/confirmBooking/" + id,
-          { userId: userId, travelPackage: travelPackage }
+          { userId: user._id, bookedPackage: travelPackage }
         );
       } catch (error) {
         console.log(error);

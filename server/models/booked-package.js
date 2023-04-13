@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const travel_package = mongoose.Schema({
+const booked_package = mongoose.Schema({
   p_guests: Array,
   p_name: String,
   p_start_location: String,
@@ -22,5 +22,5 @@ const travel_package = mongoose.Schema({
   p_return_flight: Schema.Types.Mixed,
 });
 
-const travelPackageModel = mongoose.model("travel_package", travel_package);
-export default travelPackageModel;
+const bookedPackageModel = mongoose.model("booked_package", booked_package);
+export default bookedPackageModel;

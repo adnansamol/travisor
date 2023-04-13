@@ -11,7 +11,7 @@ import { createBookingPackage } from "../controllers/travel-package-controller.j
 const packageRouter = express.Router();
 
 packageRouter.post("/payment", makePayment);
-packageRouter.get("/confirmBooking/:id", confirmBooking);
+packageRouter.post("/confirmBooking/:id", confirmBooking);
 
 packageRouter.post("/bookedPackage", createBookingPackage);
 packageRouter.post("/booking", bookTravelPackage);

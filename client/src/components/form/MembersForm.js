@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { makePaymentAPI } from "../../service/booking-api";
 import Button from "../ui/Button";
 import { PackageContext } from "../../context/package-context";
+import { getUserProfileAPI } from "../../service/user-api";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -34,6 +36,7 @@ const RemoveMember = styled(Button)`
 `;
 const PaymentButton = styled(Button)``;
 const MembersForm = () => {
+  const navigate = useNavigate();
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
   const [guestCount, setGuestCount] = useState(2);
   const [togglePayment, setTogglePayment] = useState(false);
@@ -54,9 +57,15 @@ const MembersForm = () => {
   };
 
   const onMakePaymentHandler = async () => {
-    const response = await makePaymentAPI(travelPackage);
-    window.open(response.url);
-    localStorage.setItem("id", response.id);
+    if (await getUserProfileAPI(localStorage.getItem("token"))) {
+      const response = await makePaymentAPI(travelPackage);
+      window.open(response.url);
+      localStorage.setItem("travelPackage", JSON.stringify(travelPackage));
+      localStorage.setItem("id", response.id);
+    } else {
+      alert("Please login to continue payment..");
+      navigate("/login");
+    }
   };
 
   return (
