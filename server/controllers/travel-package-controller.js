@@ -2,7 +2,7 @@ import bookedPackageModel from "../models/booked-package.js";
 
 export const createBookingPackage = async (req, res) => {
   try {
-    console.log(req.body);
+    console.log("body", req.body);
     const bookedPackage = await new bookedPackageModel(req.body);
     const bookedPackageId = await bookedPackage.save();
 

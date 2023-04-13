@@ -1,5 +1,4 @@
 export const travel_package = {
-  _id: "1",
   p_name: "Mauritius",
   p_start_location: "Ahmedabad",
   p_destination: "Mauritius",

@@ -32,12 +32,11 @@ export const confirmBooking = async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.retrieve(req.params.id);
     if (session.payment_status == "paid") {
-      console.log(req.body);
       const bookedPackageId = await axios.post(
         "http://localhost:8000/travelPackage/bookedPackage",
-        req.body.travelPackage
+        req.body.bookedPackage
       );
-      console.log(bookedPackageId);
+
       // const booking = new bookingModel(req.body.booking);
       // booking.save();
       res.status(200).send("booking done successfull");
