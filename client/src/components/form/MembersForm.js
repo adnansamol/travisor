@@ -36,7 +36,6 @@ const PaymentButton = styled(Button)``;
 const MembersForm = () => {
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
   const [guestCount, setGuestCount] = useState(2);
-  const [guests, setGuests] = useState([]);
   const [togglePayment, setTogglePayment] = useState(false);
   const removeGuestHandler = (id) => {
     const form = document.getElementById(id);
@@ -45,12 +44,10 @@ const MembersForm = () => {
     }
   };
   const onProceedHandler = () => {
-    const guests = document.getElementsByName("guest");
-    for (let guest of guests) {
-      setGuests((old) => [
-        ...old,
-        { name: guest.fullName.value, age: guest.age.value },
-      ]);
+    const guestList = document.getElementsByName("guest");
+    let guests = [];
+    for (let guest of guestList) {
+      guests.push({ name: guest.fullName.value, age: guest.age.value });
     }
     setTravelPackage({ ...travelPackage, p_guests: guests });
     setTogglePayment(true);
@@ -61,9 +58,7 @@ const MembersForm = () => {
     window.open(response.url);
     localStorage.setItem("id", response.id);
   };
-  useEffect(() => {
-    console.log(guests);
-  }, [guests]);
+
   return (
     <Container id="modal">
       {!togglePayment && (

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useContext } from "react";
 import { PackageContext } from "../context/package-context";
+import { getUserProfileAPI } from "../service/user-api";
 
 const Success = () => {
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
@@ -10,12 +11,10 @@ const Success = () => {
       try {
         const booking = {};
         const id = localStorage.getItem("id");
-        const bookedPackageId = await axios.post(
-          "http://localhost:8000/travelPackage/bookedPackage",
-          travelPackage
-        );
+        const userId = await getUserProfileAPI(localStorage.getItem("token"));
         await axios.post(
-          "http://localhost:8000/travelPackage/confirmBooking/" + id
+          "http://localhost:8000/travelPackage/confirmBooking/" + id,
+          { userId: userId, travelPackage: travelPackage }
         );
       } catch (error) {
         console.log(error);
