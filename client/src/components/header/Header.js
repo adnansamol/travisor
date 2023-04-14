@@ -23,7 +23,7 @@ const Logo = styled(Link)`
   margin-left: 50px;
   width: fit-content;
   color: white;
-  font-size: 50px;
+  font-size: 35px;
   font-weight: 600;
   font-family: "Alatsi", sans-serif;
 `;
@@ -49,7 +49,7 @@ const InlineNavLink = styled(Link)`
 `;
 
 const Header = ({ scrollValue }) => {
-  const [headerTransparency, setHeaderTransparency] = useState("00");
+  const [headerTransparency, setHeaderTransparency] = useState("FF");
   const [navDisplay, setNavDisplay] = useState("none");
 
   const [isAuth, setIsAuth] = useState(false);
@@ -62,8 +62,8 @@ const Header = ({ scrollValue }) => {
     display: ${navRef.current};
     gap: 40px;
     padding: 10px 20px;
-    font-size: 24px;
-
+    font-size: 16px;
+    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.3);
     background-color: white;
   `;
   const HeaderContainer = styled.div`
@@ -104,7 +104,7 @@ const Header = ({ scrollValue }) => {
       <HeaderContainer>
         <Logo to="/">
           travis
-          <ImEarth size={28} />r
+          <ImEarth size={20} />r
         </Logo>
         {isAuth ? (
           <ProfileButton to="/profile">

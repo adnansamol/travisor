@@ -1,6 +1,7 @@
 import express from "express";
 import {
   bookTravelPackage,
+  cancelBooking,
   confirmBooking,
   getBookingByPackageId,
   getBookingByUserId,
@@ -15,6 +16,8 @@ packageRouter.post("/confirmBooking/:id", confirmBooking);
 
 packageRouter.post("/bookedPackage", createBookingPackage);
 packageRouter.post("/booking", bookTravelPackage);
+
+packageRouter.post("/cancelBooking", cancelBooking);
 
 packageRouter.get("/getBookingByUser/:id", getBookingByUserId);
 packageRouter.get("/getBookingByPkg/:id", getBookingByPackageId);

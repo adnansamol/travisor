@@ -16,6 +16,7 @@ import Sidebar from "../components/sidebar/Sidebar";
 import { Outlet } from "react-router";
 import { PackageContext } from "../context/package-context";
 import MembersForm from "../components/form/MembersForm";
+import { addDays } from "../util/date-functions";
 const Page = styled.div`
   background-color: whitesmoke;
   width: 100%;
@@ -133,6 +134,7 @@ const PackageDetailView = () => {
     const newStartDate = {
       ...travelPackage,
       p_start_date: new Date(event.target.value),
+      p_end_date: addDays(event.target.value, travelPackage.p_days),
     };
 
     setTravelPackage(newStartDate);

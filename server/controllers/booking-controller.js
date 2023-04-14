@@ -6,9 +6,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const getBookingByUserId = async (req, res) => {
   try {
-    console.log(req.params.id);
     const data = await bookingModel.find({ b_booked_user_id: req.params.id });
-    console.log("in book by id", data);
+
     res.status(200).send(data);
   } catch (error) {
     res.status(500).send(error);
@@ -55,6 +54,17 @@ export const confirmBooking = async (req, res) => {
     } else {
       res.status(200);
     }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+export const cancelBooking = async (req, res) => {
+  try {
+    const booking = await bookingModel.findOneAndUpdate(
+      { b_travel_package_id: req.body.packageId },
+      { b_booking_status: req.body.status }
+    );
+    res.status(200).send(booking);
   } catch (error) {
     res.status(500).send(error);
   }

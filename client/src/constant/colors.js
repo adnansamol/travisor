@@ -5,6 +5,7 @@ export const colors = {
   teal100: "#E3FDFD",
   black: "#2e2e2e",
   gray: "#7a7a7a",
+  lightgray: "lightgray",
   crimson: "crimson",
   dodgerblue: "dodgerblue",
   green: "seagreen",

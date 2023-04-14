@@ -50,25 +50,33 @@ const Hotels = ({ setIsOpen }) => {
 
   useEffect(() => {
     if (appliedFilters) {
-      setFilteredHotels(applyFilters);
+      setFilteredHotels(applyFilters());
     } else {
       setFilteredHotels(hotelsAPI[0]);
     }
   }, [appliedFilters]);
 
   const applyFilters = () => {
-    return hotelsAPI[0].filter(
-      (hotel) =>
-        (appliedFilters.room_type &&
-          appliedFilters.room_type.every((room) =>
-            hotel.room_types.includes(room)
-          )) ||
-        hotel.rating == appliedFilters.rating ||
-        (appliedFilters.facilities &&
-          appliedFilters.facilities.every((facility) =>
-            hotel.facilities.includes(facility)
-          ))
-    );
+    let hotels = hotelsAPI[0];
+
+    if (appliedFilters.rating) {
+      hotels = hotels.filter((hotel) => hotel.rating == appliedFilters.rating);
+    }
+    if (appliedFilters.room_type && appliedFilters.room_type.length > 0) {
+      hotels = hotels.filter((hotel) =>
+        appliedFilters.room_type.every((room) =>
+          hotel.room_types.includes(room)
+        )
+      );
+    }
+    if (appliedFilters.facilities && appliedFilters.facilities.length > 0) {
+      hotels = hotels.filter((hotel) =>
+        appliedFilters.facilities.every((facility) =>
+          hotel.facilities.includes(facility)
+        )
+      );
+    }
+    return hotels;
   };
   return (
     <>

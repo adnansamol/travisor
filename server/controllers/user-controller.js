@@ -42,15 +42,15 @@ export const loginUser = async (req, res) => {
   }
 };
 
-export const logoutUser =async(req,res)=>{
+export const logoutUser = async (req, res) => {
   try {
     console.log(req.body);
-    await userModel.updateOne({u_email: req.body},{u_token: null});
-    res.status(200).send("Use logged out successfully");
+    await userModel.updateOne({ u_email: req.body }, { u_token: null });
+    res.status(200).send("User logged out successfully");
   } catch (error) {
-    res.status(500).send(error)
+    res.status(500).send(error);
   }
-}
+};
 export const updateUser = async (req, res) => {
   try {
     await userModel.findOneAndUpdate({ u_email: req.body.u_email }, req.body);
@@ -63,20 +63,18 @@ export const updateUser = async (req, res) => {
 export const getUserProfile = async (req, res) => {
   try {
     const token = req.headers["authorization"];
-    if(token){
+    if (token) {
       const email = verifyJWTToken(token);
-      if(email){
+      if (email) {
         const data = await userModel.findOne({ u_email: email });
         data.u_token = undefined;
         res.status(200).send(data);
-      }else{
+      } else {
         res.status(404).send(undefined);
       }
-      
-    }else{
-      res.status(404).send(undefined)
+    } else {
+      res.status(404).send(undefined);
     }
-    
   } catch (error) {
     res.status(500).send(error);
   }

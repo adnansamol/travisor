@@ -7,8 +7,8 @@ const mauritius_hotels = [
       "Free parking",
       "Free High Speed Internet (WiFi)",
       "Pool",
-      " Fitness Centre with Gym / Workout Room",
-      " Free breakfast",
+      "Fitness Centre with Gym / Workout Room",
+      "Free breakfast",
       "Beach",
     ],
     images: [
@@ -23,9 +23,8 @@ const mauritius_hotels = [
     facilities: [
       "Free parking",
       "Free High Speed Internet (WiFi)",
-      "Pool",
-      " Fitness Centre with Gym / Workout Room",
-      " Free breakfast",
+      "Fitness Centre with Gym / Workout Room",
+      "Free breakfast",
       "Beach",
     ],
     images: [
