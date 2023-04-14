@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { bookPackageAPI, makePaymentAPI } from "../../service/booking-api";
 import { getUserProfileAPI } from "../../service/user-api";
+import Link from "../ui/Link";
 import TPackage from "./TPackage";
 
 const Container = styled.div`
@@ -18,33 +19,16 @@ const Title = styled.div`
 
   margin-bottom: 25px;
 `;
+const PackageLink = styled(Link)``;
 
 const TPackages = () => {
-  const onBookPackage = async () => {
-    const user = await getUserProfileAPI(localStorage.getItem("token"));
-    console.log(user);
-    const data = {
-      b_travel_package_id: "640de11134f2230a7a14a2d6",
-      b_booked_user_id: user._id.toString(),
-      b_booking_status: "booked",
-      b_booking_date: Date.now,
-      b_booking_cost: 54000,
-    };
-    const paymentData = {
-      _id: "640de11134f2230a7a14a2d6",
-      p_name: "Dreamy Mauritius!",
-      p_price: 125140,
-    };
-    const response = await makePaymentAPI(paymentData);
-    window.open(response);
-  };
   return (
     <Container>
       <Title>Special Holiday Packages</Title>
       <FlexContainer>
-        <div onClick={onBookPackage}>
+        <PackageLink to="/package/1/summary">
           <TPackage />
-        </div>
+        </PackageLink>
         <TPackage />
         <TPackage />
         <TPackage />

@@ -26,7 +26,7 @@ export const stripePaymentGateway = async (product) => {
           },
           unit_amount: product.p_price.base_price * 100,
         },
-        quantity: 1,
+        quantity: product.p_guests.length,
       },
     ],
     mode: "payment",

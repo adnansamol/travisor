@@ -5,16 +5,17 @@ import Button from "../ui/Button";
 import { PackageContext } from "../../context/package-context";
 import { getUserProfileAPI } from "../../service/user-api";
 import { useNavigate } from "react-router-dom";
+import { colors } from "../../constant/colors";
 
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  border: 1px solid;
 `;
 const GuestContainer = styled.div`
   width: 100%;
   height: 100%;
-  border: 1px solid;
+  display: flex;
+  flex-direction: column;
 `;
 const PaymentContainer = styled.div`
   width: 100%;
@@ -22,11 +23,38 @@ const PaymentContainer = styled.div`
   border: 1px solid;
 `;
 
-const Form = styled.form``;
-const FormLabel = styled.label``;
-const FormInput = styled.input``;
-const AddMember = styled(Button)``;
-const ProceedButton = styled(Button)``;
+const Form = styled.form`
+  display: flex;
+  align-items: flex-end;
+`;
+const InputContainer = styled.div`
+  margin: 10px 10px 0 10px;
+`;
+const FormLabel = styled.label`
+  display: block;
+  margin-bottom: 5px;
+  color: ${colors.black};
+  font-weight: 500;
+`;
+const FormInput = styled.input`
+  padding: 5px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+
+  &:focus {
+    outline: none;
+    border: 1px solid orangered;
+  }
+`;
+const AddMember = styled(Button)`
+  background-color: ${colors.dodgerblue};
+  color: white;
+`;
+const ProceedButton = styled(Button)`
+  margin-left: calc(100% - 120px);
+  margin-top: 20%;
+  background-color: ${colors.teal500};
+`;
 
 const RemoveMember = styled(Button)`
   background-color: crimson;
@@ -80,10 +108,14 @@ const MembersForm = () => {
           {[...Array(guestCount)].map((_, i) => (
             <>
               <Form name="guest" id={i}>
-                <FormLabel>Full name</FormLabel>
-                <FormInput name="fullName" />
-                <FormLabel>Age</FormLabel>
-                <FormInput name="age" />
+                <InputContainer>
+                  <FormLabel>Full name</FormLabel>
+                  <FormInput name="fullName" />
+                </InputContainer>
+                <InputContainer>
+                  <FormLabel>Age</FormLabel>
+                  <FormInput type="number" name="age" />
+                </InputContainer>
                 <RemoveMember
                   type="button"
                   onClick={() => removeGuestHandler(i)}

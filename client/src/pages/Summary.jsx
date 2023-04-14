@@ -174,9 +174,6 @@ const Summary = () => {
   const [openFlightModal, setOpenFlightModal] = useState(false);
   const [openTransportModal, setOpenTransportModal] = useState(false);
   const [openHotelModal, setOpenHotelModal] = useState(false);
-  useState(() => {
-    setTravelPackage(travel_package);
-  }, []);
 
   const removeFlight = () => {
     const flightprice = travelPackage.p_flight.price;

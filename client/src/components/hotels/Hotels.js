@@ -1,10 +1,11 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { hotelsAPI } from "../../constant/hotels";
 import styled from "styled-components";
 import { colors } from "../../constant/colors";
 import { IoClose, IoLocationSharp } from "react-icons/io5";
 import { PackageContext } from "../../context/package-context";
 import Button from "../ui/Button";
+import HotelFilters from "./HotelFilters";
 
 const HotelContainer = styled.div`
   background-color: white;
@@ -40,14 +41,48 @@ const SelectButton = styled(Button)`
   padding: 5px 20px;
 `;
 const Hotels = ({ setIsOpen }) => {
+  const [appliedFilters, setAppliedFilters] = useState();
+  const [filteredHotels, setFilteredHotels] = useState([]);
+
+  useEffect(() => {
+    setFilteredHotels(hotelsAPI[0]);
+  }, []);
+
+  useEffect(() => {
+    if (appliedFilters) {
+      setFilteredHotels(applyFilters);
+    } else {
+      setFilteredHotels(hotelsAPI[0]);
+    }
+  }, [appliedFilters]);
+
+  const applyFilters = () => {
+    return hotelsAPI[0].filter(
+      (hotel) =>
+        (appliedFilters.room_type &&
+          appliedFilters.room_type.every((room) =>
+            hotel.room_types.includes(room)
+          )) ||
+        hotel.rating == appliedFilters.rating ||
+        (appliedFilters.facilities &&
+          appliedFilters.facilities.every((facility) =>
+            hotel.facilities.includes(facility)
+          ))
+    );
+  };
   return (
     <>
       <CloseButton onClick={() => setIsOpen(false)}>
         <IoClose size={24} />
       </CloseButton>
-      {hotelsAPI[0].map((hotel) => (
-        <Hotel hotel={hotel} close={setIsOpen} />
-      ))}
+      <HotelFilters
+        appliedFilters={appliedFilters}
+        setAppliedFilters={setAppliedFilters}
+      />
+      {filteredHotels &&
+        filteredHotels.map((hotel) => (
+          <Hotel hotel={hotel} close={setIsOpen} />
+        ))}
     </>
   );
 };

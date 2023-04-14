@@ -3,7 +3,12 @@ import styled from "styled-components";
 import Header from "../components/header/Header";
 import { IoLocationSharp } from "react-icons/io5";
 import { travel_package } from "../constant/package";
-import { getShortDate, getShortTime, priceFormatter } from "../util/formatter";
+import {
+  getHtmlDateFormat,
+  getShortDate,
+  getShortTime,
+  priceFormatter,
+} from "../util/formatter";
 import { colors } from "../constant/colors";
 import Modal from "react-modal";
 import Button from "../components/ui/Button";
@@ -102,23 +107,26 @@ const customModalStyles = {
     backgroundColor: "rgba(0, 0, 0, 0.75)",
   },
   content: {
-    top: "19%",
+    top: "9rem",
     width: "60%",
     left: "20%",
-    height: "80%",
+    height: "29rem",
   },
 };
 
 const PackageDetailView = () => {
   const [openBookingModal, setOpenBookingModal] = useState(false);
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
-
   useEffect(() => {
-    setTravelPackage(travel_package);
+    if (JSON.parse(localStorage.getItem("package-cache")) != null) {
+      setTravelPackage(JSON.parse(localStorage.getItem("package-cache")));
+    } else {
+      setTravelPackage(travel_package);
+    }
   }, []);
 
   useEffect(() => {
-    console.log(travelPackage);
+    localStorage.setItem("package-cache", JSON.stringify(travelPackage));
   }, [travelPackage]);
 
   const changeTripDate = (event) => {
@@ -171,7 +179,7 @@ const PackageDetailView = () => {
                 <p style={{ margin: 2, color: "white" }}>Start Date:</p>
                 <StartDateInput
                   type="date"
-                  defaultValue={travelPackage.p_start_date}
+                  value={getHtmlDateFormat(travelPackage.p_start_date)}
                   onChange={changeTripDate}
                 />
               </div>

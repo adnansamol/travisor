@@ -13,6 +13,15 @@ import { getUserProfileAPI } from "./service/user-api";
 import Summary from "./pages/Summary";
 import Policies from "./pages/Policies";
 function App() {
+  window.addEventListener("pa", () => {
+    if (
+      window.location.pathname != "/package/1/summary" ||
+      "/package/1/policies"
+    ) {
+      localStorage.removeItem("package-cache");
+    }
+  });
+
   return (
     <>
       <Routes>

@@ -40,3 +40,14 @@ export const getShortTime = (time) => {
     time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes();
   return (hours < 10 ? "0" + hours : hours) + ":" + minutes;
 };
+
+export const getHtmlDateFormat = (date) => {
+  if (typeof date == "string") date = new Date(date);
+
+  const year = date.getFullYear();
+  const month = date.getMonth() > 10 ? date.getMonth() : "0" + date.getMonth();
+  const day = date.getDate() > 10 ? date.getDate() : "0" + date.getDate();
+
+  console.log(year + "-" + month + "-" + day);
+  return year + "-" + month + "-" + day;
+};

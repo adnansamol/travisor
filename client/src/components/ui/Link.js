@@ -1,14 +1,14 @@
 import { Link as RouterLink } from "react-router-dom";
+import styled from "styled-components";
 
 const Link = ({ to, children, className }) => {
+  const Component = styled(RouterLink)`
+    text-decoration: none;
+  `;
   return (
-    <RouterLink
-      className={className}
-      to={to}
-      style={{ textDecoration: "none" }}
-    >
+    <Component className={className} to={to}>
       {children}
-    </RouterLink>
+    </Component>
   );
 };
 

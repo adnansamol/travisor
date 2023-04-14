@@ -48,7 +48,7 @@ const Login = () => {
     const response = await loginUserAPI(data);
     console.log(response);
     localStorage.setItem("token", response);
-    navigate("/");
+    navigate(-1);
   };
 
   const Cancel = styled(Link)``;

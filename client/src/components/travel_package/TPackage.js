@@ -11,6 +11,7 @@ const Container = styled(Card)`
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  color: ${colors.black};
 `;
 const Preview = styled.div`
   width: inherit;
