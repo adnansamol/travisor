@@ -4,6 +4,7 @@ import { bookPackageAPI, makePaymentAPI } from "../../service/booking-api";
 import { getUserProfileAPI } from "../../service/user-api";
 import Link from "../ui/Link";
 import TPackage from "./TPackage";
+import { travel_packages } from "../../constant/package";
 
 const Container = styled.div`
   margin: auto;
@@ -26,13 +27,11 @@ const TPackages = () => {
     <Container>
       <Title>Special Holiday Packages</Title>
       <FlexContainer>
-        <PackageLink to="/package/1/summary">
-          <TPackage />
-        </PackageLink>
-        <TPackage />
-        <TPackage />
-        <TPackage />
-        <TPackage />
+        {travel_packages.map((travel_package) => (
+          <PackageLink to="/package/1/summary">
+            <TPackage travel_package={travel_package} />
+          </PackageLink>
+        ))}
       </FlexContainer>
     </Container>
   );

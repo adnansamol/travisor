@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../constant/colors";
-import { travel_package } from "../../constant/package";
+// import { travel_package } from "../../constant/package";
 import { priceFormatter } from "../../util/formatter";
 import Card from "../card/Card";
 
@@ -55,28 +55,32 @@ const Price = styled.div`
   font-weight: 600;
 `;
 
-const TPackage = () => {
+const TPackage = ({ travel_package }) => {
   return (
-    <Container>
-      <Preview>
-        <Image src={travel_package.p_imagePreview} alt="img" />
-      </Preview>
-      <SubContainer>
-        <Title>{travel_package.p_name}</Title>
-        <Location>
-          Destination: <strong>{travel_package.p_destination}</strong>
-        </Location>
-        <Details>
-          <Days>
-            {travel_package.p_days}N/{travel_package.p_days + 1}D
-          </Days>
-          <PriceContainer>
-            package starts at:
-            <Price>{priceFormatter.format(travel_package.p_price)}</Price>
-          </PriceContainer>
-        </Details>
-      </SubContainer>
-    </Container>
+    travel_package && (
+      <Container>
+        <Preview>
+          <Image src={travel_package.p_imagePreview} alt="img" />
+        </Preview>
+        <SubContainer>
+          <Title>{travel_package.p_name}</Title>
+          <Location>
+            Destination: <strong>{travel_package.p_destination}</strong>
+          </Location>
+          <Details>
+            <Days>
+              {travel_package.p_days}N/{travel_package.p_days + 1}D
+            </Days>
+            <PriceContainer>
+              package starts at:
+              <Price>
+                {priceFormatter.format(travel_package.p_price.base_price)}
+              </Price>
+            </PriceContainer>
+          </Details>
+        </SubContainer>
+      </Container>
+    )
   );
 };
 
