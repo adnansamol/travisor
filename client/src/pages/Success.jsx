@@ -1,10 +1,11 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { PackageContext } from "../context/package-context";
 import { getUserProfileAPI } from "../service/user-api";
-
+import Loading from "../components/ui/Loading";
 const Success = () => {
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const book = async () => {
       try {
@@ -15,13 +16,14 @@ const Success = () => {
           "http://localhost:8000/travelPackage/confirmBooking/" + id,
           { userId: user._id, bookedPackage: travelPackage }
         );
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
     };
     book();
   }, []);
-  return <h1>Package booked!</h1>;
+  return loading ? <Loading /> : <h1>Package Booked Successfully</h1>;
 };
 
 export default Success;

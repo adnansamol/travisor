@@ -8,7 +8,7 @@ import {
   getBookingByUserId,
 } from "../controllers/booking-controller.js";
 import { makePayment } from "../controllers/payment-controller.js";
-import { createBookingPackage } from "../controllers/travel-package-controller.js";
+import { createBookingPackage } from "../controllers/booked-package-controller.js";
 
 const packageRouter = express.Router();
 
