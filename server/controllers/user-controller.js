@@ -45,7 +45,7 @@ export const loginUser = async (req, res) => {
 export const logoutUser = async (req, res) => {
   try {
     console.log(req.body);
-    await userModel.updateOne({ u_email: req.body }, { u_token: null });
+    await userModel.updateOne({ u_email: req.body.u_email }, { u_token: null });
     res.status(200).send("User logged out successfully");
   } catch (error) {
     res.status(500).send(error);

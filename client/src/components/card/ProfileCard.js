@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../../constant/colors";
 import { getUserProfileAPI, logoutUserAPI } from "../../service/user-api";
+import ProfileForm from "../form/ProfileForm";
 import Button from "../ui/Button";
 import Loading from "../ui/Loading";
 
@@ -34,6 +35,7 @@ const ProfileCard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     fetchUser();
   }, []);
@@ -57,11 +59,12 @@ const ProfileCard = () => {
       <hr />
       {loading ? (
         <Loading />
-      ) : (
+      ) : !isOpen ? (
         user && (
           <>
             <div>
               Welcome, <b>{user.u_name}</b>
+              <button onClick={() => setIsOpen(true)}>Update</button>
             </div>
             <Text>
               <Label>Email:</Label> {user.u_email}
@@ -80,6 +83,8 @@ const ProfileCard = () => {
             </div>
           </>
         )
+      ) : (
+        <ProfileForm setIsOpen={setIsOpen} user={user} />
       )}
     </UserDetailsContainer>
   );

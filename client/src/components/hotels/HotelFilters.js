@@ -40,12 +40,15 @@ const ResetButton = styled(Button)`
 
 const HotelFilters = ({ appliedFilters, setAppliedFilters }) => {
   const [ratingLabel, setRatingLabel] = useState(3);
+  let ratingVar = 3;
   useEffect(() => {
     if (!appliedFilters) {
     }
   }, [appliedFilters]);
   const onRatingChange = (e) => {
     setRatingLabel(e.target.value);
+    ratingVar = e.target.value;
+    console.log("ratingVar", ratingVar);
     setAppliedFilters({ ...appliedFilters, rating: e.target.value });
   };
   const onRoomTypeChange = (e) => {

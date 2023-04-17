@@ -13,8 +13,10 @@ export const loginUserAPI = async (data) => {
 };
 export const logoutUserAPI = async (data) => {
   try {
-    const response = await axios.put(`${base_url}/user/logout`, data);
-
+    const response = await axios.put(`${base_url}/user/logout`, {
+      u_email: data,
+    });
+    console.log("logout", response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -33,6 +35,15 @@ export const getUserProfileAPI = async (token) => {
     const response = await axios.get(`${base_url}/user/profile`, {
       headers: { Authorization: token },
     });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const updateUserAPI = async (data) => {
+  try {
+    const response = await axios.put(`${base_url}/user/profile/update`, data);
+    console.log("data: ", response.data);
     return response.data;
   } catch (error) {
     console.log(error);
