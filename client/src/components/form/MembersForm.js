@@ -6,6 +6,7 @@ import { PackageContext } from "../../context/package-context";
 import { getUserProfileAPI } from "../../service/user-api";
 import { useNavigate } from "react-router-dom";
 import { colors } from "../../constant/colors";
+import { IoClose } from "react-icons/io5";
 
 const Container = styled.div`
   width: 100%;
@@ -62,8 +63,12 @@ const RemoveMember = styled(Button)`
   padding: 5px 15px;
   font-size: 13px;
 `;
+const CloseButton = styled.div`
+  cursor: pointer;
+  margin: 0 0 10px 5px;
+`;
 const PaymentButton = styled(Button)``;
-const MembersForm = () => {
+const MembersForm = ({ setIsOpen }) => {
   const navigate = useNavigate();
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
   const [guestCount, setGuestCount] = useState(2);
@@ -106,6 +111,9 @@ const MembersForm = () => {
 
   return (
     <Container id="modal">
+      <CloseButton onClick={() => setIsOpen(false)}>
+        <IoClose size={24} />
+      </CloseButton>
       {!togglePayment && (
         <GuestContainer>
           {guestCount < 6 && (
@@ -117,6 +125,7 @@ const MembersForm = () => {
             <>
               <Form name="guest" id={i}>
                 <InputContainer>
+                  <h4>New Guest</h4>
                   <FormLabel>Full name</FormLabel>
                   <FormInput name="fullName" />
                 </InputContainer>

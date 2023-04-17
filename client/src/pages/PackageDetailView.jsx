@@ -170,7 +170,7 @@ const PackageDetailView = () => {
           onRequestClose={closeBookingModal}
           shouldCloseOnOverlayClick={true}
         >
-          <MembersForm />
+          <MembersForm setIsOpen={setOpenBookingModal} />
         </Modal>
         {travelPackage && (
           <Container>

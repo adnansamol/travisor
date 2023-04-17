@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { colors } from "../../constant/colors";
 import { FaCar } from "react-icons/fa";
 import Button from "../ui/Button";
+import { IoClose } from "react-icons/io5";
 const TransportContainer = styled.div`
   background-color: white;
   border-radius: 10px;
@@ -36,9 +37,16 @@ const SelectButton = styled(Button)`
   padding: 5px 20px;
 `;
 const Transports = ({ setIsOpen }) => {
-  return transports.map((transport) => (
-    <Transport transport={transport} close={setIsOpen} />
-  ));
+  return (
+    <>
+      <CloseButton onClick={() => setIsOpen(false)}>
+        <IoClose size={24} />
+      </CloseButton>
+      {transports.map((transport) => (
+        <Transport transport={transport} close={setIsOpen} />
+      ))}
+    </>
+  );
 };
 
 export default Transports;
