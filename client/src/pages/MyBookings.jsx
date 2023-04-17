@@ -139,7 +139,6 @@ const MyBookings = () => {
     setIsOpen(false);
   };
   const openModal = (id) => {
-    packageId.current = id;
     setIsOpen(true);
   };
   return (
