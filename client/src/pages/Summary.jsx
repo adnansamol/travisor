@@ -334,7 +334,7 @@ const Summary = () => {
         </TransportContainer>
         <HotelContainer>
           <TitleContainer>
-            <Title>Check In</Title>
+            <Title>Check In & Stay</Title>
             <ChangeButton onClick={() => setOpenHotelModal(true)}>
               CHANGE
             </ChangeButton>
@@ -361,7 +361,7 @@ const Summary = () => {
                       <HotelDine>Dinner</HotelDine>
                     </HotelDineContainer>
                   ) : (
-                    "dine not included"
+                    <p style={{ color: "orangered" }}>Dine is not included</p>
                   )}
                 </div>
 

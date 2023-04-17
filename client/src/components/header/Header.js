@@ -48,8 +48,8 @@ const InlineNavLink = styled(Link)`
   color: rgba(0, 0, 0, 0.7);
 `;
 
-const Header = ({ scrollValue }) => {
-  const [headerTransparency, setHeaderTransparency] = useState("FF");
+const Header = ({ isStatic }) => {
+  const [headerTransparency, setHeaderTransparency] = useState("00");
   const [navDisplay, setNavDisplay] = useState("none");
   const [loading, setLoading] = useState(true);
 
@@ -84,21 +84,26 @@ const Header = ({ scrollValue }) => {
   }, []); //authorize if user is logged in, and display button accordingly
 
   useEffect(() => {
-    const handleScroll = () => {
-      const show = window.scrollY > scrollValue;
-      if (show) {
-        setHeaderTransparency("FF");
-        setNavDisplay("flex");
-      } else {
-        setHeaderTransparency("00");
-        setNavDisplay("none");
-      }
-    };
+    if (isStatic) {
+      setHeaderTransparency("FF");
+      setNavDisplay("flex");
+    } else {
+      const handleScroll = () => {
+        const show = window.scrollY > 20;
+        if (show) {
+          setHeaderTransparency("FF");
+          setNavDisplay("flex");
+        } else {
+          setHeaderTransparency("00");
+          setNavDisplay("none");
+        }
+      };
 
-    document.addEventListener("scroll", handleScroll);
-    return () => {
-      document.removeEventListener("scroll", handleScroll);
-    };
+      document.addEventListener("scroll", handleScroll);
+      return () => {
+        document.removeEventListener("scroll", handleScroll);
+      };
+    }
   }, []); //handles the header display css
 
   return (

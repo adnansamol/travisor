@@ -75,7 +75,7 @@ const MembersForm = ({ setIsOpen }) => {
   const [togglePayment, setTogglePayment] = useState(false);
   const removeGuestHandler = (id) => {
     const form = document.getElementById(id);
-    if (guestCount > 2) {
+    if (document.getElementsByName("guest").length > 2) {
       form.remove();
     }
   };
@@ -104,7 +104,7 @@ const MembersForm = ({ setIsOpen }) => {
       localStorage.setItem("travelPackage", JSON.stringify(travelPackage));
       localStorage.setItem("id", response.id);
     } else {
-      alert("Please login to continue payment..");
+      alert("Please login to continue payment!");
       navigate("/login");
     }
   };

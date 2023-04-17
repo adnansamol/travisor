@@ -162,7 +162,7 @@ const PackageDetailView = () => {
   };
   return (
     <>
-      <Header scrollValue={-1} />
+      <Header isStatic={true} />
       <Page>
         <Modal
           isOpen={openBookingModal}

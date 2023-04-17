@@ -53,7 +53,7 @@ const Profile = () => {
 
   return (
     <>
-      <Header scrollValue={-1} />
+      <Header isStatic={true} />
       <Container>
         <NavigationContainer>
           <NavLinkContainer>
@@ -72,9 +72,11 @@ const Profile = () => {
           </NavLinkContainer>
           <NavLinkContainer>
             {pathname == "/profile/travelHistory" ? (
-              <ActiveLink to="/profile/travelHistory">TravelHistory</ActiveLink>
+              <ActiveLink to="/profile/travelHistory">
+                Travel History
+              </ActiveLink>
             ) : (
-              <NavLink to="/profile/travelHistory">TravelHistory</NavLink>
+              <NavLink to="/profile/travelHistory">Travel History</NavLink>
             )}
           </NavLinkContainer>
         </NavigationContainer>

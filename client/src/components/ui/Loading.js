@@ -1,6 +1,7 @@
 import React from "react";
 import { ImEarth } from "react-icons/im";
 import styled, { keyframes } from "styled-components";
+import { colors } from "../../constant/colors";
 
 const spin = keyframes`
     from {transform: rotateZ(0deg);}
@@ -36,7 +37,7 @@ const Logo = styled(ImEarth)`
 const Loading = () => {
   return (
     <Container>
-      <Logo size={40} />
+      <Logo size={40} color={colors.teal500} />
 
       <Text>Fetching</Text>
     </Container>

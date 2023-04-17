@@ -17,6 +17,7 @@ const UserDetailsContainer = styled.div`
 `;
 const PersonalDetails = styled.div`
   font-size: 24px;
+  display: inline;
 `;
 const Text = styled.div`
   margin: 5px 0;
@@ -31,6 +32,14 @@ const LogoutButton = styled(Button)`
   background-color: ${colors.black};
   color: white;
 `;
+const UpdateButton = styled(Button)`
+  border: 1px solid ${colors.green};
+  background-color: white;
+  color: ${colors.green};
+  font-size: 14px;
+  padding: 8px 15px;
+`;
+
 const ProfileCard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState();
@@ -56,6 +65,16 @@ const ProfileCard = () => {
   return (
     <UserDetailsContainer>
       <PersonalDetails>Personal Details</PersonalDetails>
+      <div
+        style={{
+          textAlign: "right",
+          display: "inline-block",
+
+          marginLeft: "245px",
+        }}
+      >
+        <UpdateButton onClick={() => setIsOpen(true)}>Update</UpdateButton>
+      </div>
       <hr />
       {loading ? (
         <Loading />
@@ -64,7 +83,6 @@ const ProfileCard = () => {
           <>
             <div>
               Welcome, <b>{user.u_name}</b>
-              <button onClick={() => setIsOpen(true)}>Update</button>
             </div>
             <Text>
               <Label>Email:</Label> {user.u_email}
