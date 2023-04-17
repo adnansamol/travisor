@@ -1,4 +1,5 @@
 import express from "express";
+import { getBookedPackageById } from "../controllers/booked-package-controller.js";
 import {
   bookTravelPackage,
   cancelBooking,
@@ -10,6 +11,8 @@ import { makePayment } from "../controllers/payment-controller.js";
 import { createBookingPackage } from "../controllers/travel-package-controller.js";
 
 const packageRouter = express.Router();
+
+packageRouter.get("/get/:id", getBookedPackageById);
 
 packageRouter.post("/payment", makePayment);
 packageRouter.post("/confirmBooking/:id", confirmBooking);

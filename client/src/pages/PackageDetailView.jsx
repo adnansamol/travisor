@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
 import { IoLocationSharp } from "react-icons/io5";
-import { travel_package } from "../constant/package";
+import { travel_packages } from "../constant/package";
 import {
   getHtmlDateFormat,
   getShortDate,
@@ -13,7 +13,7 @@ import { colors } from "../constant/colors";
 import Modal from "react-modal";
 import Button from "../components/ui/Button";
 import Sidebar from "../components/sidebar/Sidebar";
-import { Outlet } from "react-router";
+import { Outlet, useParams } from "react-router";
 import { PackageContext } from "../context/package-context";
 import MembersForm from "../components/form/MembersForm";
 import { addDays } from "../util/date-functions";
@@ -118,11 +118,16 @@ const customModalStyles = {
 const PackageDetailView = () => {
   const [openBookingModal, setOpenBookingModal] = useState(false);
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
+  const params = useParams();
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem("package-cache")) != null) {
-      setTravelPackage(JSON.parse(localStorage.getItem("package-cache")));
+    const cacheData = JSON.parse(localStorage.getItem("package-cache"));
+    console.log("cacheData", cacheData);
+    if (cacheData != null && cacheData._id === params.id) {
+      setTravelPackage(cacheData);
     } else {
-      setTravelPackage(travel_package);
+      setTravelPackage(
+        travel_packages.find((value) => value._id === params.id)
+      );
     }
   }, []);
 
@@ -183,6 +188,8 @@ const PackageDetailView = () => {
                   type="date"
                   value={getHtmlDateFormat(travelPackage.p_start_date)}
                   onChange={changeTripDate}
+                  min={getHtmlDateFormat(addDays(new Date(), 4))}
+                  max={getHtmlDateFormat(addDays(new Date(), 365))}
                 />
               </div>
             </NameContainer>

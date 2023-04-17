@@ -40,24 +40,41 @@ const SelectButton = styled(Button)`
   color: white;
   padding: 5px 20px;
 `;
-const Hotels = ({ setIsOpen }) => {
+const Hotels = ({ setIsOpen, destination }) => {
   const [appliedFilters, setAppliedFilters] = useState();
   const [filteredHotels, setFilteredHotels] = useState([]);
 
   useEffect(() => {
-    setFilteredHotels(hotelsAPI[0]);
+    setFilteredHotels(
+      hotelsAPI.filter(
+        (hotel) => hotel.location.toLowerCase() == destination.toLowerCase()
+      )
+    );
+    console.log(
+      "hotels: ",
+      hotelsAPI.filter(
+        (hotel) => hotel.location.toLowerCase() == destination.toLowerCase()
+      ),
+      destination
+    );
   }, []);
 
   useEffect(() => {
     if (appliedFilters) {
       setFilteredHotels(applyFilters());
     } else {
-      setFilteredHotels(hotelsAPI[0]);
+      setFilteredHotels(
+        hotelsAPI.filter(
+          (hotel) => hotel.location.toLowerCase() == destination.toLowerCase()
+        )
+      );
     }
   }, [appliedFilters]);
 
   const applyFilters = () => {
-    let hotels = hotelsAPI[0];
+    let hotels = hotelsAPI.filter(
+      (hotel) => hotel.location.toLowerCase() == destination.toLowerCase()
+    );
 
     if (appliedFilters.rating) {
       hotels = hotels.filter((hotel) => hotel.rating == appliedFilters.rating);

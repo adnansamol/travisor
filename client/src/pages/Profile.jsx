@@ -1,97 +1,85 @@
-import React, { useEffect, useState } from "react";
-import { getUserProfileAPI, logoutUserAPI } from "../service/user-api";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Link from "../components/ui/Link";
-import { useNavigate } from "react-router-dom";
-import Button from "../components/ui/Button";
-import {
-  cancelBookingAPI,
-  getBookingByUserIdAPI,
-} from "../service/booking-api";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Header from "../components/header/Header";
 import { colors } from "../constant/colors";
 
 const Container = styled.div`
-  margin-top: 110px;
+  margin-top: 150px;
 `;
-const UserDetailsContainer = styled.div`
+
+const NavigationContainer = styled.div`
+  width: 40%;
+  display: flex;
   margin: auto;
+  gap: 25px;
+`;
+const NavLinkContainer = styled.div`
+  margin: auto;
+  margin-bottom: 25px;
+  flex: 100%;
   padding: 15px 25px;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 40%;
+  color: ${colors.black};
 `;
-const PersonalDetails = styled.div`
-  font-size: 24px;
-`;
-const Text = styled.div`
-  margin: 5px 0;
-`;
-const Label = styled.span`
+
+const NavLink = styled(Link)`
   color: ${colors.black};
   font-weight: 500;
+  text-align: center;
 `;
-const LogoutButton = styled(Button)``;
+const ActiveLink = styled(Link)`
+  font-weight: 500;
+  text-align: center;
+`;
 const Profile = () => {
-  const [user, setUser] = useState();
+  const { pathname } = useLocation();
   const [bookings, setBookings] = useState();
-
+  const [selected, setSelected] = useState();
   const navigate = useNavigate();
-  useEffect(() => {
-    fetchUser();
-  }, []);
-  const fetchUser = async () => {
-    const data = await getUserProfileAPI(localStorage.getItem("token"));
 
-    setUser(data);
-    return data;
-  };
+  // const getUserBookings = async () => {
+  //   const user = await fetchUser();
+  //   const response = await getBookingByUserIdAPI(user._id);
+  //   setBookings(response);
+  // };
 
-  const getUserBookings = async () => {
-    const user = await fetchUser();
-    const response = await getBookingByUserIdAPI(user._id);
-    setBookings(response);
-  };
-
-  const onLogout = async () => {
-    const { u_email } = await getUserProfileAPI(localStorage.getItem("token"));
-    const response = await logoutUserAPI(u_email);
-    localStorage.removeItem("token");
-    alert(response);
-    navigate("/");
-  };
-
-  const onCancelBooking = async (id) => {
-    const response = await cancelBookingAPI(id, "cancelled");
-    getUserBookings();
-  };
+  // const onCancelBooking = async (id) => {
+  //   const response = await cancelBookingAPI(id, "cancelled");
+  //   getUserBookings();
+  // };
 
   return (
     <>
       <Header scrollValue={-1} />
-      {user && (
-        <Container>
-          <UserDetailsContainer>
-            <PersonalDetails>Personal Details</PersonalDetails>
-            <hr />
-            <div>
-              Welcome, <b>{user.u_name}</b>
-            </div>
-            <Text>
-              <Label>Email:</Label> {user.u_email}
-            </Text>
-            <Text>
-              <Label>Gender:</Label> {user.u_gender}
-            </Text>
-            <Text>
-              <Label>Phone:</Label> {user.u_phone}
-            </Text>
-            <Text>
-              <Label>Country:</Label> {user.u_country}
-            </Text>
-          </UserDetailsContainer>
-        </Container>
-      )}
+      <Container>
+        <NavigationContainer>
+          <NavLinkContainer>
+            {pathname == "/profile/details" ? (
+              <ActiveLink to="/profile/details">My Profile</ActiveLink>
+            ) : (
+              <NavLink to="/profile/details">My Profile</NavLink>
+            )}
+          </NavLinkContainer>
+          <NavLinkContainer>
+            {pathname == "/profile/myBookings" ? (
+              <ActiveLink to="/profile/myBookings">My Bookings</ActiveLink>
+            ) : (
+              <NavLink to="/profile/myBookings">My Bookings</NavLink>
+            )}
+          </NavLinkContainer>
+          <NavLinkContainer>
+            {pathname == "/profile/travelHistory" ? (
+              <ActiveLink to="/profile/travelHistory">TravelHistory</ActiveLink>
+            ) : (
+              <NavLink to="/profile/travelHistory">TravelHistory</NavLink>
+            )}
+          </NavLinkContainer>
+        </NavigationContainer>
+        <Outlet />
+      </Container>
     </>
   );
 };

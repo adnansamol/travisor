@@ -78,6 +78,14 @@ const MembersForm = () => {
     const guestList = document.getElementsByName("guest");
     let guests = [];
     for (let guest of guestList) {
+      if (
+        guest.fullName.value.trim() == "" ||
+        guest.age.value == "" ||
+        guest.age.value == 0 ||
+        isNaN(guest.age.value)
+      ) {
+        return alert("Please fill all the valid details of the guest");
+      }
       guests.push({ name: guest.fullName.value, age: guest.age.value });
     }
     setTravelPackage({ ...travelPackage, p_guests: guests });

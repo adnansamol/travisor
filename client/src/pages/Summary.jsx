@@ -218,7 +218,10 @@ const Summary = () => {
           onRequestClose={closeHotelModal}
           shouldCloseOnOverlayClick={true}
         >
-          <Hotels setIsOpen={setOpenHotelModal} />
+          <Hotels
+            setIsOpen={setOpenHotelModal}
+            destination={travelPackage.p_destination}
+          />
         </Modal>
         <Modal
           isOpen={openFlightModal}

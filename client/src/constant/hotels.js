@@ -1,4 +1,4 @@
-const mauritius_hotels = [
+const travel_hotels = [
   {
     name: "Le Méridien Ile Maurice",
     address: "Village Hall Lane, Pointe Aux Piments, Mauritius 21304",
@@ -18,6 +18,7 @@ const mauritius_hotels = [
     ],
     room_types: ["Ocean view", "Suites", "Family rooms"],
     price_per_room: 4400,
+    location: "Mauritius",
   },
   {
     name: "The Westin Turtle Bay Resort & Spa",
@@ -35,6 +36,8 @@ const mauritius_hotels = [
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/7e/fb/1c/arrival-experience.jpg?w=1200&h=-1&s=1",
     ],
     room_types: ["Ocean view", "Suites", "Family rooms"],
+    price_per_room: 3400,
+    location: "Mauritius",
   },
   {
     name: "Constance Belle Mare Plage",
@@ -52,6 +55,7 @@ const mauritius_hotels = [
     ],
     room_types: ["Ocean view", "Bridal suite", "Suites", "Family rooms"],
     price_per_room: 2400,
+    location: "Mauritius",
   },
   {
     name: "Salt Of Palmar",
@@ -72,6 +76,7 @@ const mauritius_hotels = [
     ],
     room_types: ["Ocean view", "Bridal suite", "Suites", "Family rooms"],
     price_per_room: 2700,
+    location: "Mauritius",
   },
   {
     name: "Club Med La Plantation d'Albion",
@@ -94,6 +99,142 @@ const mauritius_hotels = [
     ],
     room_types: ["Ocean view", "Bridal suite", "Suites", "Family rooms"],
     price_per_room: 2700,
+    location: "Mauritius",
+  },
+  {
+    name: "JW Marriott Goa",
+    address: "Vagator Beach Road, Bardez 403509 India",
+    rating: 4,
+    facilities: [
+      "Free parking",
+      "Free High Speed Internet (WiFi)",
+      "Pool",
+      "Fitness Centre with Gym / Workout Room",
+      "Free breakfast",
+      "Beach",
+      "Bar / lounge",
+      "Bowling",
+      "Game room",
+      "Kids stay free",
+    ],
+    images: [
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/60/38/00/jw-marriott-goa-vagator.jpg?w=1200&h=-1&s=1",
+    ],
+    room_types: ["Ocean view", "Suites"],
+    price_per_room: 3000,
+    location: "Goa",
+  },
+  {
+    name: "Taj Resort & Convention Centre",
+    address: "Vainguinim Beach, Dona Paula, Panjim 403004 India",
+    rating: 5,
+    facilities: [
+      "Free parking",
+      "Free High Speed Internet (WiFi)",
+      "Pool",
+      "Fitness Centre with Gym / Workout Room",
+      "Free breakfast",
+      "Beach",
+      "Bar / lounge",
+      "Bowling",
+      "Game room",
+      "Kids stay free",
+    ],
+    images: [
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/1d/96/92/taj-hotel-convention.jpg?w=1200&h=-1&s=1",
+    ],
+    room_types: ["Ocean view", "Suites", "City view"],
+    price_per_room: 3400,
+    location: "Goa",
+  },
+  {
+    name: "Zone Connect, Goa, Calangute",
+    address:
+      "H No 2/16A, Naika Vaddo (near St. Alex Church), Calangute 403516 India",
+    rating: 4,
+    facilities: [
+      "Free parking",
+      "Free High Speed Internet (WiFi)",
+      "Pool",
+      "Fitness Centre with Gym / Workout Room",
+      "Free breakfast",
+      "Beach",
+      "Bar / lounge",
+      "Bowling",
+      "Game room",
+      "Kids stay free",
+    ],
+    images: [
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/94/22/66/zone-connect-goa-calangute.jpg?w=1200&h=-1&s=1",
+    ],
+    room_types: ["Ocean view", "Suites", "Mountain view"],
+    price_per_room: 2400,
+    location: "Goa",
+  },
+  {
+    name: "La Grace Resort",
+    address: "Vaswaddo Vaddy Beach, Benaulim 403716 India",
+    rating: 3,
+    facilities: [
+      "Free parking",
+      "Free High Speed Internet (WiFi)",
+      "Pool",
+      "Free breakfast",
+      "Beach",
+      "Kids stay free",
+    ],
+    images: [
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/08/4f/d5/la-grace-resort.jpg?w=600&h=-1&s=1",
+    ],
+    room_types: ["Family Rooms"],
+    price_per_room: 2600,
+    location: "Goa",
+  },
+  {
+    name: "Bloom Hotel - Calangute",
+    address:
+      "197/37, Calangute - Baga Road Umta Vaddo, Behind McDonalds Restaurant, Calangute 403516 India",
+    rating: 5,
+    facilities: [
+      "Free parking",
+      "Free High Speed Internet (WiFi)",
+      "Pool",
+      "Fitness Centre with Gym / Workout Room",
+      "Free breakfast",
+      "Beach",
+      "24-hour security",
+      "Game room",
+      "Kids stay free",
+    ],
+    images: [
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/e9/2f/b9/bloom-hotel-calangute.jpg?w=1000&h=-1&s=1",
+    ],
+    room_types: ["Family Rooms", "Suites"],
+    price_per_room: 3000,
+    location: "Goa",
+  },
+  {
+    name: "The Lalit Grand Palace Srinagar",
+    address: "Gupkar Road, Srinagar 190001 India",
+    rating: 4,
+    facilities: [
+      "Free parking",
+      "Free High Speed Internet (WiFi)",
+      "Pool",
+      "Fitness Centre with Gym / Workout Room",
+      "Free breakfast",
+      "Beach",
+      "Bar / lounge",
+      "Bowling",
+      "Game room",
+      "Kids stay free",
+    ],
+    images: [
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/e7/9b/d0/photo0jpg.jpg?w=1000&h=-1&s=1",
+    ],
+    room_types: ["Bridal Suites", "Suites", "Family Rooms"],
+    price_per_room: 3000,
+    location: "Kashmir",
   },
 ];
 const kashmir_hotels = [
@@ -118,6 +259,7 @@ const kashmir_hotels = [
     ],
     room_types: ["Bridal Suites", "Suites", "Family Rooms"],
     price_per_room: 3000,
+    location: "Kashmir",
   },
 ];
 const rajasthan_hotels = [{}];
@@ -143,6 +285,7 @@ const goa_hotels = [
     ],
     room_types: ["Ocean view", "Suites"],
     price_per_room: 3000,
+    location: "Goa",
   },
   {
     name: "Taj Resort & Convention Centre",
@@ -165,6 +308,7 @@ const goa_hotels = [
     ],
     room_types: ["Ocean view", "Suites", "City view"],
     price_per_room: 3400,
+    location: "Goa",
   },
   {
     name: "Zone Connect, Goa, Calangute",
@@ -188,6 +332,7 @@ const goa_hotels = [
     ],
     room_types: ["Ocean view", "Suites", "Mountain view"],
     price_per_room: 2400,
+    location: "Goa",
   },
   {
     name: "La Grace Resort",
@@ -206,6 +351,7 @@ const goa_hotels = [
     ],
     room_types: ["Family Rooms"],
     price_per_room: 2600,
+    location: "Goa",
   },
   {
     name: "Bloom Hotel - Calangute",
@@ -228,9 +374,10 @@ const goa_hotels = [
     ],
     room_types: ["Family Rooms", "Suites"],
     price_per_room: 3000,
+    location: "Goa",
   },
 ];
 const maldives_hotels = [{}];
 const bali_hotels = [{}];
 
-export const hotelsAPI = [mauritius_hotels];
+export const hotelsAPI = [...travel_hotels];

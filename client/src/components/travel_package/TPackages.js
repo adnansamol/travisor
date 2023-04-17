@@ -28,7 +28,7 @@ const TPackages = () => {
       <Title>Special Holiday Packages</Title>
       <FlexContainer>
         {travel_packages.map((travel_package) => (
-          <PackageLink to="/package/1/summary">
+          <PackageLink to={`/package/${travel_package._id}/summary`}>
             <TPackage travel_package={travel_package} />
           </PackageLink>
         ))}

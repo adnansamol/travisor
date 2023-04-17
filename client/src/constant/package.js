@@ -1,5 +1,6 @@
 export const travel_package = {
-  p_agency_id: "123",
+  _id: "1",
+  p_agency_id: "1",
   p_name: "Dreamy Mauritius",
   p_start_location: "Ahmedabad",
   p_destination: "Mauritius",
@@ -101,8 +102,9 @@ export const travel_package = {
 
 export const travel_packages = [
   {
-    p_agency_id: "123",
-    p_name: " Dreamy Mauritius",
+    _id: "1",
+    p_agency_id: "1",
+    p_name: "Dreamy Mauritius",
     p_start_location: "Ahmedabad",
     p_destination: "Mauritius",
     p_days: 7,
@@ -190,18 +192,19 @@ export const travel_packages = [
     },
     p_hotel: {
       images: [
-        "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/1d/6c/c2/aerial-view.jpg?w=1000&h=-1&s=1",
       ],
-      name: "Royale Hotel",
-      address: "Address 1bc street 24d",
-      price_per_room: 2400,
-      type: "Luxury",
+      name: "Le Méridien Ile Maurice",
+      address: "Village Hall Lane, Pointe Aux Piments, Mauritius 21304",
+      price_per_room: 4400,
+      type: "Suites",
       rooms: 2,
       dineIncluded: true,
     },
   },
   {
-    p_agency_id: "245",
+    _id: "2",
+    p_agency_id: "1",
     p_name: "Joyful Goa",
     p_start_location: "Ahmedabad",
     p_destination: "Goa",
@@ -290,12 +293,12 @@ export const travel_packages = [
     },
     p_hotel: {
       images: [
-        "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/1d/96/92/taj-hotel-convention.jpg?w=1200&h=-1&s=1",
       ],
-      name: "Royale Hotel",
-      address: "Address 1bc street 24d",
-      price_per_room: 2400,
-      type: "Luxury",
+      name: "Taj Resort & Convention Centre",
+      address: "Vainguinim Beach, Dona Paula, Panjim 403004 India",
+      price_per_room: 3400,
+      type: "Suites",
       rooms: 2,
       dineIncluded: true,
     },

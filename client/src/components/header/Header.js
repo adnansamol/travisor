@@ -107,7 +107,7 @@ const Header = ({ scrollValue }) => {
           <ImEarth size={20} />r
         </Logo>
         {isAuth ? (
-          <ProfileButton to="/profile">
+          <ProfileButton to="/profile/details">
             <FaUserCircle />
           </ProfileButton>
         ) : (

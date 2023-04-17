@@ -12,6 +12,9 @@ import { useEffect, useState } from "react";
 import { getUserProfileAPI } from "./service/user-api";
 import Summary from "./pages/Summary";
 import Policies from "./pages/Policies";
+import MyBookings from "./pages/MyBookings";
+import TravelHistory from "./pages/TravelHistory";
+import ProfileCard from "./components/card/ProfileCard";
 function App() {
   window.addEventListener("pa", () => {
     if (
@@ -37,7 +40,11 @@ function App() {
               <Profile />
             </ProtectedRoute>
           }
-        />
+        >
+          <Route path="details" element={<ProfileCard />} />
+          <Route path="myBookings" element={<MyBookings />} />
+          <Route path="travelHistory" element={<TravelHistory />} />
+        </Route>
 
         <Route path="/package/:id" element={<PackageDetailView />}>
           <Route path="summary" element={<Summary />} />

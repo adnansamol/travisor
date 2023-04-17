@@ -42,3 +42,12 @@ export const cancelBookingAPI = async (id, status) => {
     console.log("error");
   }
 };
+
+export const getBookedPackageByIdAPI = async (id) => {
+  try {
+    const response = await axios.get(`${base_url}/get/${id}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

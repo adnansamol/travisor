@@ -24,7 +24,8 @@ export const priceFormatter = new Intl.NumberFormat("en-US", {
 //to use call priceFormatter.format(price)
 
 export const getShortDate = (date) => {
-  if (typeof date == "string") date = new Date(date);
+  console.log(typeof date, date);
+  if (typeof date == "string" || "object") date = new Date(date);
 
   const day = date.getDate();
   const month = months[date.getMonth()];
