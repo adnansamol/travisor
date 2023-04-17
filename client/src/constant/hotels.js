@@ -18,6 +18,7 @@ const travel_hotels = [
     ],
     room_types: ["Ocean view", "Suites", "Family rooms"],
     price_per_room: 4400,
+    dineIncluded: true,
     location: "Mauritius",
   },
   {
@@ -37,6 +38,7 @@ const travel_hotels = [
     ],
     room_types: ["Ocean view", "Suites", "Family rooms"],
     price_per_room: 3400,
+    dineIncluded: true,
     location: "Mauritius",
   },
   {
@@ -55,6 +57,7 @@ const travel_hotels = [
     ],
     room_types: ["Ocean view", "Bridal suite", "Suites", "Family rooms"],
     price_per_room: 2400,
+    dineIncluded: true,
     location: "Mauritius",
   },
   {
@@ -76,6 +79,7 @@ const travel_hotels = [
     ],
     room_types: ["Ocean view", "Bridal suite", "Suites", "Family rooms"],
     price_per_room: 2700,
+    dineIncluded: true,
     location: "Mauritius",
   },
   {
@@ -99,6 +103,7 @@ const travel_hotels = [
     ],
     room_types: ["Ocean view", "Bridal suite", "Suites", "Family rooms"],
     price_per_room: 2700,
+    dineIncluded: true,
     location: "Mauritius",
   },
   {
@@ -122,6 +127,7 @@ const travel_hotels = [
     ],
     room_types: ["Ocean view", "Suites"],
     price_per_room: 3000,
+    dineIncluded: true,
     location: "Goa",
   },
   {
@@ -145,6 +151,7 @@ const travel_hotels = [
     ],
     room_types: ["Ocean view", "Suites", "City view"],
     price_per_room: 3400,
+    dineIncluded: true,
     location: "Goa",
   },
   {
@@ -169,6 +176,7 @@ const travel_hotels = [
     ],
     room_types: ["Ocean view", "Suites", "Mountain view"],
     price_per_room: 2400,
+    dineIncluded: true,
     location: "Goa",
   },
   {
@@ -188,6 +196,7 @@ const travel_hotels = [
     ],
     room_types: ["Family Rooms"],
     price_per_room: 2600,
+    dineIncluded: true,
     location: "Goa",
   },
   {
@@ -211,6 +220,7 @@ const travel_hotels = [
     ],
     room_types: ["Family Rooms", "Suites"],
     price_per_room: 3000,
+    dineIncluded: true,
     location: "Goa",
   },
   {
@@ -234,6 +244,7 @@ const travel_hotels = [
     ],
     room_types: ["Bridal Suites", "Suites", "Family Rooms"],
     price_per_room: 3000,
+    dineIncluded: true,
     location: "Kashmir",
   },
 ];
@@ -259,6 +270,7 @@ const kashmir_hotels = [
     ],
     room_types: ["Bridal Suites", "Suites", "Family Rooms"],
     price_per_room: 3000,
+    dineIncluded: true,
     location: "Kashmir",
   },
 ];
@@ -285,6 +297,7 @@ const goa_hotels = [
     ],
     room_types: ["Ocean view", "Suites"],
     price_per_room: 3000,
+    dineIncluded: true,
     location: "Goa",
   },
   {
@@ -308,6 +321,7 @@ const goa_hotels = [
     ],
     room_types: ["Ocean view", "Suites", "City view"],
     price_per_room: 3400,
+    dineIncluded: true,
     location: "Goa",
   },
   {
@@ -332,6 +346,7 @@ const goa_hotels = [
     ],
     room_types: ["Ocean view", "Suites", "Mountain view"],
     price_per_room: 2400,
+    dineIncluded: true,
     location: "Goa",
   },
   {
@@ -351,6 +366,7 @@ const goa_hotels = [
     ],
     room_types: ["Family Rooms"],
     price_per_room: 2600,
+    dineIncluded: true,
     location: "Goa",
   },
   {
@@ -374,6 +390,7 @@ const goa_hotels = [
     ],
     room_types: ["Family Rooms", "Suites"],
     price_per_room: 3000,
+    dineIncluded: true,
     location: "Goa",
   },
 ];

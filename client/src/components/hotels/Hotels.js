@@ -40,6 +40,15 @@ const SelectButton = styled(Button)`
   color: white;
   padding: 5px 20px;
 `;
+const SelectedLabel = styled.div`
+  background-color: orangered;
+  color: white;
+  width: fit-content;
+  padding: 5px 10px;
+  font-size: 12px;
+
+  border-radius: 50px;
+`;
 const Hotels = ({ setIsOpen, destination }) => {
   const [appliedFilters, setAppliedFilters] = useState();
   const [filteredHotels, setFilteredHotels] = useState([]);
@@ -115,11 +124,14 @@ const Hotels = ({ setIsOpen, destination }) => {
 const Hotel = ({ hotel, close }) => {
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
   const roomRef = useRef();
+  const dineRef = useRef();
   const selectHotel = () => {
+    console.log("dineref", dineRef.current.value);
     const newHotel = {
       name: hotel.name,
       address: hotel.address,
       images: hotel.images,
+      dineIncluded: dineRef.current.checked,
       type: roomRef.current.value,
     };
 
@@ -131,6 +143,9 @@ const Hotel = ({ hotel, close }) => {
     <HotelContainer>
       <HotelDetails>
         <div>
+          {travelPackage.p_hotel.name === hotel.name && (
+            <SelectedLabel>SELECTED</SelectedLabel>
+          )}
           <HotelName>{hotel.name}</HotelName>
           <HotelAddress>
             <IoLocationSharp />
@@ -146,12 +161,18 @@ const Hotel = ({ hotel, close }) => {
               ))}
             </select>
           </div>
+          <div>
+            Include dine:&nbsp;
+            <input
+              ref={dineRef}
+              type="checkbox"
+              name="dine"
+              defaultChecked={travelPackage.p_hotel.dineIncluded}
+            />
+          </div>
           <br />
-          {travelPackage.p_hotel.name === hotel.name ? (
-            <b style={{ color: "orangered" }}>SELECTED</b>
-          ) : (
-            <SelectButton onClick={selectHotel}>Select</SelectButton>
-          )}
+
+          <SelectButton onClick={selectHotel}>Select</SelectButton>
         </div>
 
         <HotelImage src={hotel.images[0]} />

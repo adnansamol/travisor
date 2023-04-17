@@ -51,6 +51,7 @@ const InlineNavLink = styled(Link)`
 const Header = ({ scrollValue }) => {
   const [headerTransparency, setHeaderTransparency] = useState("FF");
   const [navDisplay, setNavDisplay] = useState("none");
+  const [loading, setLoading] = useState(true);
 
   const [isAuth, setIsAuth] = useState(false);
   const bgRef = useRef();
@@ -63,7 +64,7 @@ const Header = ({ scrollValue }) => {
     gap: 40px;
     padding: 10px 20px;
     font-size: 16px;
-    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     background-color: white;
   `;
   const HeaderContainer = styled.div`
@@ -77,6 +78,7 @@ const Header = ({ scrollValue }) => {
     const checkAuthorization = async () => {
       if (await authorizeUser()) setIsAuth(true);
       else setIsAuth(false);
+      setLoading(false);
     };
     checkAuthorization();
   }, []); //authorize if user is logged in, and display button accordingly
@@ -106,7 +108,9 @@ const Header = ({ scrollValue }) => {
           travis
           <ImEarth size={20} />r
         </Logo>
-        {isAuth ? (
+        {loading ? (
+          <div></div>
+        ) : isAuth ? (
           <ProfileButton to="/profile/details">
             <FaUserCircle />
           </ProfileButton>

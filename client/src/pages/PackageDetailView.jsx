@@ -20,7 +20,7 @@ import { addDays } from "../util/date-functions";
 const Page = styled.div`
   background-color: whitesmoke;
   width: 100%;
-  margin-top: 130px;
+  margin-top: 90px;
 `;
 const Container = styled.div`
   margin: auto;
@@ -60,6 +60,14 @@ const StartDateInput = styled.input`
   font-size: 18px;
   font-weight: 500;
 `;
+const StartLocationInput = styled.select`
+  padding: 5px;
+  border: 3px solid ${colors.teal500};
+  border-radius: 10px;
+  color: ${colors.gray};
+  font-size: 18px;
+  font-weight: 500;
+`;
 const ImagesContainer = styled.div`
   display: flex;
 `;
@@ -80,7 +88,8 @@ const BottomContainer = styled.div`
 `;
 
 const RightContainer = styled.div`
-  width: 600px;
+  width: 400px;
+  height: fit-content;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   padding: 10px 15px;
   border-radius: 10px;
@@ -94,8 +103,11 @@ const Price = styled.div`
 `;
 const Discount = styled.div``;
 const BookingButton = styled(Button)`
-  background-color: ${colors.teal500};
-  color: ${colors.teal100};
+  background-color: ${colors.green};
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 16px;
+  padding: 8px 15px;
 `;
 
 const customModalStyles = {
@@ -182,15 +194,25 @@ const PackageDetailView = () => {
                   </Days>
                 </div>
               </div>
-              <div>
-                <p style={{ margin: 2, color: "white" }}>Start Date:</p>
-                <StartDateInput
-                  type="date"
-                  value={getHtmlDateFormat(travelPackage.p_start_date)}
-                  onChange={changeTripDate}
-                  min={getHtmlDateFormat(addDays(new Date(), 4))}
-                  max={getHtmlDateFormat(addDays(new Date(), 365))}
-                />
+              <div style={{ display: "flex", gap: 10 }}>
+                <div>
+                  <p style={{ margin: 2, color: "white" }}>Start Location:</p>
+                  <StartLocationInput>
+                    <option>Ahmedabad</option>
+                    <option>New Delhi</option>
+                    <option>Mumbai</option>
+                  </StartLocationInput>
+                </div>
+                <div>
+                  <p style={{ margin: 2, color: "white" }}>Start Date:</p>
+                  <StartDateInput
+                    type="date"
+                    value={getHtmlDateFormat(travelPackage.p_start_date)}
+                    onChange={changeTripDate}
+                    min={getHtmlDateFormat(addDays(new Date(), 4))}
+                    max={getHtmlDateFormat(addDays(new Date(), 365))}
+                  />
+                </div>
               </div>
             </NameContainer>
             <ImagesContainer>
@@ -213,12 +235,17 @@ const PackageDetailView = () => {
                 <Price>
                   {priceFormatter.format(travelPackage.p_price.base_price)}
                 </Price>
+                <span
+                  style={{ color: colors.gray, lineHeight: 1, fontSize: 14 }}
+                >
+                  *per person
+                </span>
                 <Discount>
                   <strong
                     style={{ color: "orange", margin: "0 8px", fontSize: 14 }}
                   >
                     {(
-                      (25000 * 100) /
+                      (travelPackage.p_price.discount * 100) /
                       (travelPackage.p_price.base_price +
                         travelPackage.p_price.discount)
                     ).toFixed(0)}
@@ -231,6 +258,7 @@ const PackageDetailView = () => {
                     )}
                   </strike>
                 </Discount>
+                <hr />
                 <BookingButton onClick={() => setOpenBookingModal(true)}>
                   Proceed to Booking
                 </BookingButton>

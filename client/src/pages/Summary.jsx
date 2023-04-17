@@ -63,7 +63,7 @@ const FlightArrival = styled.div`
   align-items: center;
 `;
 const FlightDate = styled.div`
-  font-size: 16px;
+  font-size: 15px;
 `;
 const FlightTime = styled.div`
   font-weight: 600;
@@ -116,10 +116,17 @@ const HotelName = styled.div`
 `;
 const HotelAddress = styled.div`
   color: ${colors.gray};
+  font-size: 13px;
+  width: 80%;
 `;
-const HotelRooms = styled.div`
+const HotelRoomType = styled.div`
   color: ${colors.black};
   font-weight: 500;
+  margin-bottom: 5px;
+`;
+const HotelDineContainer = styled.ul``;
+const HotelDine = styled.li`
+  font-size: 13px;
 `;
 const HotelImage = styled.img`
   width: 200px;
@@ -162,10 +169,10 @@ const customModalStyles = {
     backgroundColor: "rgba(0, 0, 0, 0.75)",
   },
   content: {
-    top: "19%",
-    width: "50%",
-    left: "50%",
-    height: "80%",
+    top: 120,
+    height: 480,
+    width: "80%",
+    margin: "auto",
   },
 };
 const Summary = () => {
@@ -339,14 +346,23 @@ const Summary = () => {
               <HotelDetails>
                 <div>
                   <HotelName>{travelPackage.p_hotel.name}</HotelName>
-                  Type: {travelPackage.p_hotel.type}
                   <HotelAddress>
                     <IoLocationSharp />
                     {travelPackage.p_hotel.address}
                   </HotelAddress>
-                  <HotelRooms>
-                    Total rooms: {travelPackage.p_hotel.rooms}
-                  </HotelRooms>
+                  <HotelRoomType>
+                    Type: {travelPackage.p_hotel.type}
+                  </HotelRoomType>
+                  Includes:
+                  {travelPackage.p_hotel.dineIncluded == true ? (
+                    <HotelDineContainer>
+                      <HotelDine>Breakfast</HotelDine>
+                      <HotelDine>Lunch</HotelDine>
+                      <HotelDine>Dinner</HotelDine>
+                    </HotelDineContainer>
+                  ) : (
+                    "dine not included"
+                  )}
                 </div>
 
                 <HotelImage src={travelPackage.p_hotel.images[0]} />

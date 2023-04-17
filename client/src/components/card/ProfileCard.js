@@ -36,11 +36,11 @@ const ProfileCard = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetchUser();
-    setLoading(false);
   }, []);
   const fetchUser = async () => {
     const data = await getUserProfileAPI(localStorage.getItem("token"));
     setUser(data);
+    setLoading(false);
     return data;
   };
   const onLogout = async () => {
