@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import AddTravelPackage from "./pages/AddTravelPackage";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
@@ -15,6 +16,14 @@ function App() {
       <Header />
 
       <Routes>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="addPackage"
           element={
