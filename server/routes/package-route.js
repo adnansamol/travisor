@@ -12,6 +12,7 @@ import { createBookingPackage } from "../controllers/booked-package-controller.j
 import {
   createTravelPackage,
   getAllTravelPackages,
+  getTravelPackageById,
 } from "../controllers/travel-package-controller.js";
 
 const packageRouter = express.Router();
@@ -30,5 +31,6 @@ packageRouter.get("/getBookingByUser/:id", getBookingByUserId);
 packageRouter.get("/getBookingByPkg/:id", getBookingByPackageId);
 packageRouter.get("/get/:id", getBookedPackageById);
 
-packageRouter.get("/getAllPackages", getAllTravelPackages);
+packageRouter.get("/getAllPackages/:agencyId", getAllTravelPackages);
+packageRouter.get("/getPackage/:id", getTravelPackageById);
 export default packageRouter;

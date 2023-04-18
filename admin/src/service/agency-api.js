@@ -30,3 +30,15 @@ export const getAgencyProfileAPI = async (token) => {
     console.log(error);
   }
 };
+export const updateAgencyAPI = async (data) => {
+  try {
+    const response = await axios.put(`${base_url}/profile/update`, data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const logoutAgencyAPI = () => {
+  try {
+  } catch (error) {}
+};

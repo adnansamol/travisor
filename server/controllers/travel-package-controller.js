@@ -103,9 +103,17 @@ export const createTravelPackage = async (req, res) => {
 export const getAllTravelPackages = async (req, res) => {
   try {
     const travelPackages = await travelPackageModel.find({
-      p_agency_id: req.body.id,
+      p_agency_id: req.params.agencyId,
     });
     res.status(200).send(travelPackages);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+export const getTravelPackageById = async (req, res) => {
+  try {
+    const travelPackage = await travelPackageModel.findById(req.params.id);
+    res.status(200).send(travelPackage);
   } catch (error) {
     res.status(500).send(error);
   }

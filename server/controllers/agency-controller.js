@@ -34,7 +34,7 @@ export const loginAgency = async (req, res) => {
       );
       res.status(200).send(token);
     } else {
-      res.status(401).send("The user does not exist.");
+      res.status(401).send("The Agency does not exist.");
     }
   } catch (error) {
     res.status(500).send(error);
@@ -54,7 +54,7 @@ export const logoutAgency = async (req, res) => {
 export const updateAgency = async (req, res) => {
   try {
     await agencyModel.findOneAndUpdate({ a_email: req.body.a_email }, req.body);
-    res.status(200).send("User updated successfully");
+    res.status(200).send("Agency updated successfully");
   } catch (error) {
     res.status(500).send(error);
   }

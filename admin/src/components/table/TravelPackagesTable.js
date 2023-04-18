@@ -3,7 +3,7 @@ import TravelPackageRow from "./TravelPackageRow";
 
 const TravelPackagesTable = ({ travelPackages }) => {
   return (
-    <table>
+    <table className="table">
       <thead>
         <tr>
           <th>Sr No.</th>
@@ -17,7 +17,11 @@ const TravelPackagesTable = ({ travelPackages }) => {
       <tbody>
         {travelPackages &&
           travelPackages.map((travelPackage, index) => (
-            <TravelPackageRow key={index} travelPackage={travelPackage} />
+            <TravelPackageRow
+              key={index}
+              travelPackage={travelPackage}
+              index={index}
+            />
           ))}
       </tbody>
     </table>

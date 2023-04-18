@@ -13,7 +13,15 @@ export const createNewTravelPackageAPI = async (formData) => {
 
 export const getAllTravelPackagesAPI = async (id) => {
   try {
-    const response = await axios.get(`${base_url}/getAllPackages`, { id: id });
+    const response = await axios.get(`${base_url}/getAllPackages/${id}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getTravelPackageByIdAPI = async (id) => {
+  try {
+    const response = await axios.get(`${base_url}/getPackage/${id}`);
     return response.data;
   } catch (error) {
     console.log(error);

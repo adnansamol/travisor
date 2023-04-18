@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const booked_package = mongoose.Schema({
+  p_agency_id: String,
   p_guests: Array,
   p_name: String,
   p_start_location: String,
