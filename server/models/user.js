@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
 const user = mongoose.Schema({
   u_name: String,
@@ -9,7 +9,6 @@ const user = mongoose.Schema({
   u_country: String,
   u_phone: String,
   u_token: String,
-  u_travisor_history: Schema.Types.Mixed,
 });
 
 const userModel = mongoose.model("user", user);

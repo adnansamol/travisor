@@ -7,7 +7,7 @@ const travel_package = mongoose.Schema({
   p_destination: String,
   p_days: Number,
   p_description: String,
-  p_price: Number,
+  p_price: Schema.Types.Mixed,
   p_start_date: Date,
   p_end_date: Date,
   p_imagePreview: String,
@@ -20,6 +20,7 @@ const travel_package = mongoose.Schema({
   p_policies: Schema.Types.Mixed,
   p_flight: Schema.Types.Mixed,
   p_return_flight: Schema.Types.Mixed,
+  p_hotel: Schema.Types.Mixed,
 });
 
 const travelPackageModel = mongoose.model("travel_package", travel_package);

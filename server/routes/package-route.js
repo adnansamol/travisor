@@ -9,9 +9,11 @@ import {
 } from "../controllers/booking-controller.js";
 import { makePayment } from "../controllers/payment-controller.js";
 import { createBookingPackage } from "../controllers/booked-package-controller.js";
+import { createTravelPackage } from "../controllers/travel-package-controller.js";
 
 const packageRouter = express.Router();
 
+packageRouter.post("/create", createTravelPackage);
 packageRouter.get("/get/:id", getBookedPackageById);
 
 packageRouter.post("/payment", makePayment);
