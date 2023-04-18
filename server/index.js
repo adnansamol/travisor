@@ -5,7 +5,7 @@ import Connection from "./database/mongodb.js";
 import userRouter from "./routes/user-route.js";
 import packageRouter from "./routes/package-route.js";
 import agencyRouter from "./routes/agency-route.js";
-
+import bodyParser from "body-parser";
 const app = express();
 app.use(cors());
 config();
@@ -14,7 +14,7 @@ app.use(express.json({ extended: true }));
 app.use("/user", userRouter);
 app.use("/agency", agencyRouter);
 app.use("/travelPackage", packageRouter);
-
+app.use(bodyParser.urlencoded({ extended: false }));
 Connection();
 
 app.listen(PORT, () => {

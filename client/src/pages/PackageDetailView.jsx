@@ -70,6 +70,7 @@ const StartLocationInput = styled.select`
 `;
 const ImagesContainer = styled.div`
   display: flex;
+  width: 100%;
 `;
 const DescriptionContainer = styled.div`
   background-color: ${colors.teal100};

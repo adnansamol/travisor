@@ -17,8 +17,10 @@ const AddTravelPackageForm = ({ createTravelPackage }) => {
       p_price: form.p_price.value,
       p_refund_date: form.p_refund_date.value,
       p_refund_desc: form.p_refund_desc.value,
+      p_image: form.p_imagePreview.files,
     };
-    createTravelPackage(data);
+    const formData = new FormData(form);
+    createTravelPackage(formData);
   };
   return (
     <form onSubmit={createTravelPackageHandler} name="addPackage">

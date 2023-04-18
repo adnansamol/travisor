@@ -4,6 +4,7 @@ import { config } from "dotenv";
 config();
 export const createTravelPackage = async (req, res) => {
   try {
+    console.log(req.body);
     const data = {
       p_agency_id: req.body.p_agency_id,
       p_name: req.body.p_name,
@@ -92,8 +93,8 @@ export const createTravelPackage = async (req, res) => {
         location: "Mauritius",
       },
     };
-    const travelPackage = await new travelPackageModel(data);
-    console.log(await travelPackage.save());
+    // const travelPackage = await new travelPackageModel(data);
+    // console.log(await travelPackage.save());
     res.status(200).send("Package created successfully");
   } catch (error) {
     res.status(500).send(error);
