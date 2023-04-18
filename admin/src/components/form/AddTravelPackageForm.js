@@ -1,10 +1,15 @@
 import React from "react";
+import { getAgencyProfileAPI } from "../../service/agency-api";
 
 const AddTravelPackageForm = ({ createTravelPackage }) => {
-  const createTravelPackageHandler = (e) => {
+  const createTravelPackageHandler = async (e) => {
     e.preventDefault();
     const form = e.target;
+    const { _id } = await getAgencyProfileAPI(
+      localStorage.getItem("admin-token")
+    );
     const data = {
+      p_agency_id: _id,
       p_name: form.p_name.value,
       p_description: form.p_description.value,
       p_destination: form.p_destination.value,

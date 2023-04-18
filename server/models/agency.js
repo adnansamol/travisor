@@ -8,6 +8,7 @@ const agency = mongoose.Schema({
   a_establish_date: Date,
   a_country: String,
   a_phone: String,
+  a_gstnumber: String,
   a_token: String,
 });
 

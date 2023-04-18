@@ -5,7 +5,7 @@ config();
 export const createTravelPackage = async (req, res) => {
   try {
     const data = {
-      p_agency_id: "1",
+      p_agency_id: req.body.p_agency_id,
       p_name: req.body.p_name,
       p_start_location: "Ahmedabad",
       p_destination: req.body.p_destination,
@@ -102,6 +102,10 @@ export const createTravelPackage = async (req, res) => {
 
 export const getAllTravelPackages = async (req, res) => {
   try {
+    const travelPackages = await travelPackageModel.find({
+      p_agency_id: req.body.id,
+    });
+    res.status(200).send(travelPackages);
   } catch (error) {
     res.status(500).send(error);
   }

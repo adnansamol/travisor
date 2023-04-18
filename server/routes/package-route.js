@@ -9,12 +9,14 @@ import {
 } from "../controllers/booking-controller.js";
 import { makePayment } from "../controllers/payment-controller.js";
 import { createBookingPackage } from "../controllers/booked-package-controller.js";
-import { createTravelPackage } from "../controllers/travel-package-controller.js";
+import {
+  createTravelPackage,
+  getAllTravelPackages,
+} from "../controllers/travel-package-controller.js";
 
 const packageRouter = express.Router();
 
 packageRouter.post("/create", createTravelPackage);
-packageRouter.get("/get/:id", getBookedPackageById);
 
 packageRouter.post("/payment", makePayment);
 packageRouter.post("/confirmBooking/:id", confirmBooking);
@@ -26,5 +28,7 @@ packageRouter.post("/cancelBooking", cancelBooking);
 
 packageRouter.get("/getBookingByUser/:id", getBookingByUserId);
 packageRouter.get("/getBookingByPkg/:id", getBookingByPackageId);
+packageRouter.get("/get/:id", getBookedPackageById);
 
+packageRouter.get("/getAllPackages", getAllTravelPackages);
 export default packageRouter;

@@ -10,3 +10,12 @@ export const createNewTravelPackageAPI = async (formData) => {
     console.log(error);
   }
 };
+
+export const getAllTravelPackagesAPI = async (id) => {
+  try {
+    const response = await axios.get(`${base_url}/getAllPackages`, { id: id });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
