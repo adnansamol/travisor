@@ -149,7 +149,7 @@ const Flight = ({ flight, close }) => {
             <div style={{ textAlign: "center" }}>
               <IoIosAirplane size={24} />
               <div style={{ fontSize: 12 }}>
-                {nonStop ? "Non Stop" : flight.stops.length + " Stops"}
+                {nonStop ? "Non Stop" : flight.stops.length - 1 + " Stops"}
               </div>
             </div>
             <HorizontalRule></HorizontalRule>

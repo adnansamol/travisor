@@ -4,6 +4,15 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+export const getBookingByAgencyId = async (req, res) => {
+  try {
+    const data = await bookingModel.find({ b_travel_agency_id: req.params.id });
+
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 export const getBookingByUserId = async (req, res) => {
   try {
     const data = await bookingModel.find({ b_booked_user_id: req.params.id });

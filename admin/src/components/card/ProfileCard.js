@@ -51,7 +51,7 @@ const ProfileCard = () => {
 
   return (
     <AgencyDetailsContainer>
-      <PersonalDetails>Personal Details</PersonalDetails>
+      <PersonalDetails>Agency Details</PersonalDetails>
       <div
         style={{
           textAlign: "right",

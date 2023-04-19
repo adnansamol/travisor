@@ -4,6 +4,7 @@ import {
   bookTravelPackage,
   cancelBooking,
   confirmBooking,
+  getBookingByAgencyId,
   getBookingByPackageId,
   getBookingByUserId,
 } from "../controllers/booking-controller.js";
@@ -27,6 +28,7 @@ packageRouter.post("/booking", bookTravelPackage);
 
 packageRouter.post("/cancelBooking", cancelBooking);
 
+packageRouter.get("/getBookingByAgency/:id", getBookingByAgencyId);
 packageRouter.get("/getBookingByUser/:id", getBookingByUserId);
 packageRouter.get("/getBookingByPkg/:id", getBookingByPackageId);
 packageRouter.get("/get/:id", getBookedPackageById);
