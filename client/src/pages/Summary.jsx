@@ -31,9 +31,11 @@ const Title = styled.div`
 
 const FlightContainer = styled.div`
   background-color: white;
+  width: 100%;
   border-radius: 10px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   padding: 10px 15px;
+  margin: auto;
 `;
 
 const Plane = styled.div`
@@ -257,7 +259,9 @@ const Summary = () => {
                 </ChangeButton>
               </div>
             ) : (
-              <AddButton>ADD</AddButton>
+              <AddButton onClick={() => setOpenFlightModal(true)}>
+                ADD
+              </AddButton>
             )}
           </TitleContainer>
           {travelPackage.p_flight && (
@@ -268,8 +272,10 @@ const Summary = () => {
                   <Plane>{stop.plane}</Plane>
                   <FlightTimeContainer>
                     <FlightDeparture>
-                      <FlightTime>{getShortTime(stop.departure)}</FlightTime>
-                      <FlightDate>{getShortDate(stop.departure)}</FlightDate>
+                      <FlightTime>{stop.departure_time}</FlightTime>
+                      <FlightDate>
+                        {getShortDate(travelPackage.p_start_date)}
+                      </FlightDate>
                       <FlightPlace>{stop.from}</FlightPlace>
                     </FlightDeparture>
 
@@ -277,14 +283,17 @@ const Summary = () => {
                     <IoIosAirplane size={24} />
                     <HorizontalRule></HorizontalRule>
                     <FlightArrival>
-                      <FlightTime>{getShortTime(stop.departure)}</FlightTime>
-                      <FlightDate>{getShortDate(stop.departure)}</FlightDate>
+                      <FlightTime>{stop.arrival_time}</FlightTime>
+                      <FlightDate>
+                        {getShortDate(travelPackage.p_start_date)}
+                      </FlightDate>
                       <FlightPlace>{stop.to}</FlightPlace>
                     </FlightArrival>
                   </FlightTimeContainer>
                   <FlightTypeContainer>
                     <FlightClass>
-                      <MdFlightClass size={24} title="Class" />: {stop.class}
+                      <MdFlightClass size={24} title="planeClass" />:{" "}
+                      {stop.planeClass}
                     </FlightClass>
                     <p>
                       <MdFlightLand size={24} title="Flight Time" />:{" "}
@@ -370,6 +379,61 @@ const Summary = () => {
             </>
           )}
         </HotelContainer>
+        <FlightContainer>
+          <TitleContainer>
+            <Title>Return Flight</Title>
+            {travelPackage.p_flight ? (
+              <div>
+                <RemoveButton onClick={removeFlight}>REMOVE</RemoveButton>
+                <ChangeButton onClick={() => setOpenFlightModal(true)}>
+                  CHANGE
+                </ChangeButton>
+              </div>
+            ) : (
+              <AddButton onClick={() => setIsOpen}>ADD</AddButton>
+            )}
+          </TitleContainer>
+          {travelPackage.p_flight && (
+            <>
+              <hr />
+              {travelPackage.p_flight.stops.map((stop) => (
+                <>
+                  <Plane>{stop.plane}</Plane>
+                  <FlightTimeContainer>
+                    <FlightDeparture>
+                      <FlightTime>{stop.departure_time}</FlightTime>
+                      <FlightDate>
+                        {getShortDate(travelPackage.p_start_date)}
+                      </FlightDate>
+                      <FlightPlace>{stop.from}</FlightPlace>
+                    </FlightDeparture>
+
+                    <HorizontalRule></HorizontalRule>
+                    <IoIosAirplane size={24} />
+                    <HorizontalRule></HorizontalRule>
+                    <FlightArrival>
+                      <FlightTime>{stop.arrival_time}</FlightTime>
+                      <FlightDate>
+                        {getShortDate(travelPackage.p_start_date)}
+                      </FlightDate>
+                      <FlightPlace>{stop.to}</FlightPlace>
+                    </FlightArrival>
+                  </FlightTimeContainer>
+                  <FlightTypeContainer>
+                    <FlightClass>
+                      <MdFlightClass size={24} title="class" />:{" "}
+                      {stop.planeClass}
+                    </FlightClass>
+                    <p>
+                      <MdFlightLand size={24} title="Flight Time" />:{" "}
+                      {stop.time}
+                    </p>
+                  </FlightTypeContainer>
+                </>
+              ))}
+            </>
+          )}
+        </FlightContainer>
       </Container>
     )
   );

@@ -17,7 +17,7 @@ export const transports = [
   },
   ,
   {
-    vehicle: "Sedan",
+    vehicle: "Sedan (Electric)",
     type: "Private",
     fuel_type: "EV",
     seat: 4,
@@ -25,7 +25,7 @@ export const transports = [
     price: 1000,
   },
   {
-    vehicle: "Wagon",
+    vehicle: "Wagon (Electric)",
     type: "Private",
     fuel_type: "EV",
     seat: 6,

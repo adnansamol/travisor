@@ -8,6 +8,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 15px;
+  height: fit-content;
   width: 300px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   border-radius: 10px;

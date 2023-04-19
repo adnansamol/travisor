@@ -75,7 +75,7 @@ const MembersForm = ({ setIsOpen }) => {
   const [togglePayment, setTogglePayment] = useState(false);
   const removeGuestHandler = (id) => {
     const form = document.getElementById(id);
-    if (document.getElementsByName("guest").length > 2) {
+    if (document.getElementsByName("guest").length > 1) {
       form.remove();
     }
   };
@@ -116,11 +116,10 @@ const MembersForm = ({ setIsOpen }) => {
       </CloseButton>
       {!togglePayment && (
         <GuestContainer>
-          {guestCount < 6 && (
-            <AddMember onClick={() => setGuestCount((old) => old + 1)}>
-              Add Guest
-            </AddMember>
-          )}
+          <AddMember onClick={() => setGuestCount((old) => old + 1)}>
+            Add Guest
+          </AddMember>
+
           {[...Array(guestCount)].map((_, i) => (
             <>
               <Form name="guest" id={i}>

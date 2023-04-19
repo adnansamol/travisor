@@ -1,0 +1,18 @@
+export const destinations = [
+  "Goa",
+  "Kashmir",
+  "Rajasthan",
+  "Udaipur",
+  "Darjeeling",
+  "Manali",
+  "Mauritius",
+  "Italy",
+  "Thailand",
+  "Singapore",
+  "Maldives",
+  "Switzerland",
+  "Dubai",
+  "Jordan",
+  "USA",
+  "Greece",
+];

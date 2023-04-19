@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../constant/colors";
-import Button from "../ui/Button";
 
 const Container = styled.div`
   padding: 5px 10px;
@@ -31,7 +30,7 @@ const FilterCheckbox = styled.input`
   margin-left: 3px;
   margin-right: 8px;
 `;
-const ResetButton = styled(Button)`
+const ResetButton = styled.button`
   font-size: 14px;
   padding: 5px 10px;
   background-color: ${colors.gray};
@@ -40,12 +39,14 @@ const ResetButton = styled(Button)`
 
 const HotelFilters = ({ appliedFilters, setAppliedFilters }) => {
   const [ratingLabel, setRatingLabel] = useState(5);
+
   useEffect(() => {
     if (!appliedFilters) {
     }
   }, [appliedFilters]);
   const onRatingChange = (e) => {
     setRatingLabel(e.target.value);
+
     setAppliedFilters({ ...appliedFilters, rating: e.target.value });
   };
   const onRoomTypeChange = (e) => {
