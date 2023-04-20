@@ -6,6 +6,7 @@ const TravelPackagesTable = ({ travelPackages }) => {
   const deleteTravelPackage = async (id) => {
     const response = await deleteTravelPackageByIdAPI(id);
     alert(response);
+    window.location.reload();
   };
   return (
     <table className="table">

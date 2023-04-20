@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import AddTravelPackageForm from "../components/form/AddTravelPackageForm";
 import { createNewTravelPackageAPI } from "../service/package-api";
@@ -10,9 +11,11 @@ const FormContainer = styled.div`
 `;
 
 const AddTravelPackage = () => {
+  const navigate = useNavigate();
   const createTravelPackage = async (formData) => {
     const response = await createNewTravelPackageAPI(formData);
     alert(response);
+    navigate("/allPackages");
   };
 
   return (
