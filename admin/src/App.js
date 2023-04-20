@@ -2,6 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import AddTravelPackage from "./pages/AddTravelPackage";
+import BookingDetailView from "./pages/BookingDetailView";
+import Bookings from "./pages/Bookings";
+import CancelledBookings from "./pages/CancelledBookings";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
@@ -53,6 +56,30 @@ function App() {
           element={
             <ProtectedRoute>
               <TravelPackageDetailView />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="bookings"
+          element={
+            <ProtectedRoute>
+              <Bookings />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="cancelledBookings"
+          element={
+            <ProtectedRoute>
+              <CancelledBookings />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="booking/:id"
+          element={
+            <ProtectedRoute>
+              <BookingDetailView />
             </ProtectedRoute>
           }
         />

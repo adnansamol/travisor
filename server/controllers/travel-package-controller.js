@@ -119,3 +119,12 @@ export const getTravelPackageById = async (req, res) => {
     res.status(500).send(error);
   }
 };
+
+export const deleteTravelPackageById = async (req, res) => {
+  try {
+    await travelPackageModel.findByIdAndDelete(req.params.id);
+    res.status(200).send("Package deleted successfully");
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};

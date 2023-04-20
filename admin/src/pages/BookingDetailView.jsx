@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { getBookedPackageByIdAPI } from "../service/booking-api";
 import { getTravelPackageByIdAPI } from "../service/package-api";
 
 const Container = styled.div``;
@@ -20,7 +21,7 @@ const HotelContainer = styled.div`
   margin-top: 50px;
 `;
 
-const BookingDetails = () => {
+const BookingDetailView = () => {
   const [booking, setBooking] = useState();
   const params = useParams();
 
@@ -29,7 +30,7 @@ const BookingDetails = () => {
   }, []);
 
   const fetchTravelPackage = async () => {
-    const response = await getBookingsAPI(params.id);
+    const response = await getBookedPackageByIdAPI(params.id);
     console.log(response);
     setBooking(response);
   };
@@ -157,4 +158,4 @@ const BookingDetails = () => {
   );
 };
 
-export default BookingDetails;
+export default BookingDetailView;

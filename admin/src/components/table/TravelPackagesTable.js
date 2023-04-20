@@ -1,7 +1,12 @@
 import React from "react";
+import { deleteTravelPackageByIdAPI } from "../../service/package-api";
 import TravelPackageRow from "./TravelPackageRow";
 
 const TravelPackagesTable = ({ travelPackages }) => {
+  const deleteTravelPackage = async (id) => {
+    const response = await deleteTravelPackageByIdAPI(id);
+    alert(response);
+  };
   return (
     <table className="table">
       <thead>

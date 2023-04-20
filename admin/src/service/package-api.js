@@ -27,3 +27,12 @@ export const getTravelPackageByIdAPI = async (id) => {
     console.log(error);
   }
 };
+
+export const deleteTravelPackageByIdAPI = async (id) => {
+  try {
+    const response = await axios.delete(`${base_url}/deletePackage/${id}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -22,6 +22,7 @@ const booked_package = mongoose.Schema({
   p_flight: Schema.Types.Mixed,
   p_return_flight: Schema.Types.Mixed,
   p_hotel: Schema.Types.Mixed,
+  p_keywords: Array,
 });
 
 const bookedPackageModel = mongoose.model("booked_package", booked_package);

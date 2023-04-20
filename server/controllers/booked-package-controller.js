@@ -11,11 +11,9 @@ export const getBookedPackageById = async (req, res) => {
 
 export const createBookingPackage = async (req, res) => {
   try {
-    console.log("in creatbook", req.body);
     req.body._id = undefined;
     const newBookedPackage = await new bookedPackageModel(req.body);
     const bookedPackage = await newBookedPackage.save();
-    console.log("booked package: ", bookedPackage);
     res.status(200).send({
       _id: bookedPackage._id,
       price: bookedPackage.p_price.base_price,

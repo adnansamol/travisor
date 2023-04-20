@@ -6,7 +6,22 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const getBookingByAgencyId = async (req, res) => {
   try {
-    const data = await bookingModel.find({ b_travel_agency_id: req.params.id });
+    const data = await bookingModel.find({
+      b_travel_agency_id: req.params.id,
+      b_booking_status: "booked",
+    });
+
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+export const getCancelledBookingByAgencyId = async (req, res) => {
+  try {
+    const data = await bookingModel.find({
+      b_travel_agency_id: req.params.id,
+      b_booking_status: "cancelled",
+    });
 
     res.status(200).send(data);
   } catch (error) {
@@ -33,19 +48,13 @@ export const getBookingByPackageId = async (req, res) => {
   }
 };
 
-export const bookTravelPackage = async (req, res) => {
-  try {
-  } catch (error) {
-    res.status(500).send(error);
-  }
-};
 export const confirmBooking = async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.retrieve(req.params.id);
 
     if (session.payment_status == "paid") {
       const response = await axios.post(
-        "http://localhost:8000/travelPackage/bookedPackage",
+        "http://localhost:8000/travelPackage/createBookedPackage",
         req.body.bookedPackage
       );
       console.log("Response: ", response.data);

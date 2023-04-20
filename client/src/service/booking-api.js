@@ -30,7 +30,7 @@ export const getBookingByUserIdAPI = async (id) => {
 export const cancelBookingAPI = async (id, status) => {
   try {
     if (getUserProfileAPI(localStorage.getItem("token"))) {
-      const response = await axios.post(base_url + "/cancelBooking", {
+      const response = await axios.put(base_url + "/cancelBooking", {
         packageId: id,
         status: status,
       });
@@ -45,7 +45,7 @@ export const cancelBookingAPI = async (id, status) => {
 
 export const getBookedPackageByIdAPI = async (id) => {
   try {
-    const response = await axios.get(`${base_url}/get/${id}`);
+    const response = await axios.get(`${base_url}/getBookedPackage/${id}`);
     return response.data;
   } catch (error) {
     console.log(error);
