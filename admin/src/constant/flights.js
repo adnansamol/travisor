@@ -5,14 +5,14 @@ export const flights = [
     price: 8000,
     stops: [
       {
-        company: "Indigo",
+        airline: "Indigo",
         departure_time: "09:00",
         arrival_time: "18:00",
         planeClass: ["Economy", "Business", "First"],
         plane: "MK-745",
       },
       {
-        company: "Indigo",
+        airline: "Indigo",
         departure_time: "20:00",
         arrival_time: "04:00",
         planeClass: ["Economy", "Business", "First"],
@@ -25,14 +25,14 @@ export const flights = [
     price: 8000,
     stops: [
       {
-        company: "Emirates",
+        airline: "Emirates",
         departure_time: "04:00",
         arrival_time: "13:00",
         planeClass: ["Economy", "Business", "First"],
         plane: "FV-35",
       },
       {
-        company: "Emirates",
+        airline: "Emirates",
         departure_time: "15:00",
         arrival_time: "06:00",
         planeClass: ["Economy", "Business", "First"],
@@ -46,7 +46,7 @@ export const flights = [
     price: 8000,
     stops: [
       {
-        company: "AirIndia",
+        airline: "AirIndia",
         departure_time: "22:00",
         arrival_time: "08:25",
         planeClass: ["Economy", "Business", "First"],
@@ -60,7 +60,7 @@ export const flights = [
     price: 8000,
     stops: [
       {
-        company: "Indigo",
+        airline: "Indigo",
         departure_time: "01:00",
         arrival_time: "11:00",
         planeClass: ["Economy", "Business", "First"],
@@ -74,14 +74,14 @@ export const flights = [
     price: 8000,
     stops: [
       {
-        company: "Emirates",
+        airline: "Emirates",
         departure_time: "03:00",
         arrival_time: "15:00",
         planeClass: ["Economy", "Business", "First"],
         plane: "WR-3R",
       },
       {
-        company: "Emirates",
+        airline: "Emirates",
         departure_time: "18:00",
         arrival_time: "04:00",
         planeClass: ["Economy", "Business", "First"],
@@ -95,14 +95,14 @@ export const flights = [
     price: 8000,
     stops: [
       {
-        company: "Indigo",
+        airline: "Indigo",
         departure_time: "19:25",
         arrival_time: "02:00",
         planeClass: ["Economy", "Business", "First"],
         plane: "JK-132",
       },
       {
-        company: "Emirates",
+        airline: "Emirates",
         departure_time: "05:00",
         arrival_time: "17:35",
         planeClass: ["Economy", "Business", "First"],

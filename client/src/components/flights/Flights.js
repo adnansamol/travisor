@@ -20,7 +20,7 @@ const FlightContainer = styled.div`
   margin-bottom: 15px;
 `;
 
-const Company = styled.div`
+const Airline = styled.div`
   margin: 3px 2px;
   font-size: 20px;
   color: ${colors.black};
@@ -134,7 +134,7 @@ const Flight = ({ flight, close }) => {
     travelPackage && (
       <FlightContainer>
         <div style={{ margin: "auto" }}>
-          <Company>{flight.stops[0].company}</Company>
+          <Airline>{flight.stops[0].airline}</Airline>
           <Plane>{flight.stops[0].plane}</Plane>
           <FlightTimeContainer>
             <FlightDeparture>

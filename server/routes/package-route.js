@@ -16,10 +16,10 @@ import {
   getAllTravelPackages,
   getTravelPackageById,
 } from "../controllers/travel-package-controller.js";
-
+import multer from "multer";
 const packageRouter = express.Router();
-
-packageRouter.post("/create", createTravelPackage);
+const upload = multer();
+packageRouter.post("/create", upload.any(), createTravelPackage);
 
 packageRouter.post("/payment", makePayment);
 packageRouter.post("/confirmBooking/:id", confirmBooking);

@@ -19,7 +19,7 @@ const FlightContainer = styled.div`
   margin-bottom: 15px;
 `;
 
-const Company = styled.div`
+const Airline = styled.div`
   margin: 3px 2px;
   font-size: 20px;
   color: ${colors.black};
@@ -122,14 +122,14 @@ const Flight = ({ setFlight, startDate, days, destination, flight, close }) => {
   const selectFlight = () => {
     const stops = flight.stops;
     if (nonStop) {
-      stops[0].from = "Ahmedabad";
-      stops[0].to = destination.value;
+      stops[0].from = destination.value;
+      stops[0].to = "Ahmedabad";
       stops[0].planeClass = planeClassRef.current.value;
     } else {
-      stops[0].from = "Ahmedabad";
+      stops[0].from = destination.value;
       stops[0].to = "New Delhi";
       stops[1].from = "New Delhi";
-      stops[1].to = destination.value;
+      stops[1].to = "Ahmedabad";
       stops[0].planeClass = planeClassRef.current.value;
       stops[1].planeClass = planeClassRef.current.value;
     }
@@ -145,13 +145,13 @@ const Flight = ({ setFlight, startDate, days, destination, flight, close }) => {
   return (
     <FlightContainer>
       <div style={{ margin: "auto" }}>
-        <Company>{flight.stops[0].company}</Company>
+        <Airline>{flight.stops[0].airline}</Airline>
         <Plane>{flight.stops[0].plane}</Plane>
         <FlightTimeContainer>
           <FlightDeparture>
             <FlightTime>{flight.stops[0].departure_time}</FlightTime>
             <FlightDate>{getShortDate(addDays(startDate.value, 5))}</FlightDate>
-            <FlightPlace>Ahmedabad</FlightPlace>
+            <FlightPlace>{destination.value}</FlightPlace>
           </FlightDeparture>
 
           <HorizontalRule></HorizontalRule>
@@ -171,7 +171,7 @@ const Flight = ({ setFlight, startDate, days, destination, flight, close }) => {
             <FlightDate>
               {getShortDate(addDays(startDate.value, days.value))}
             </FlightDate>
-            <FlightPlace>{destination.value}</FlightPlace>
+            <FlightPlace>Ahmedabad</FlightPlace>
           </FlightArrival>
         </FlightTimeContainer>
         <FlightTypeContainer>

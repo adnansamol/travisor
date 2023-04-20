@@ -4,7 +4,6 @@ import { config } from "dotenv";
 config();
 export const createTravelPackage = async (req, res) => {
   try {
-    console.log(req.body);
     const data = {
       p_agency_id: req.body.p_agency_id,
       p_name: req.body.p_name,
@@ -24,7 +23,7 @@ export const createTravelPackage = async (req, res) => {
         "https://images.pexels.com/photos/7744992/pexels-photo-7744992.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         "https://images.pexels.com/photos/13696647/pexels-photo-13696647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       ],
-      p_transport: req.body.p_transport,
+
       p_days_plan: [],
       p_policies: {
         cancellation: {
@@ -33,11 +32,13 @@ export const createTravelPackage = async (req, res) => {
           description: req.body.p_refund_desc,
         },
       },
-      p_flight: req.body.p_flight,
-      p_return_flight: req.body.p_return_flight,
-      p_hotel: req.body.p_hotel,
+      p_flight: JSON.parse(req.body.p_flight),
+      p_return_flight: JSON.parse(req.body.p_return_flight),
+      p_transport: JSON.parse(req.body.p_transport),
+      p_hotel: JSON.parse(req.body.p_hotel),
       p_keywords: req.body.p_keywords.split(","),
     };
+
     const travelPackage = await new travelPackageModel(data);
     await travelPackage.save();
     res.status(200).send("Package created successfully");

@@ -180,7 +180,12 @@ const AddTravelPackageForm = ({ createTravelPackage }) => {
         p_keywords: form.p_keywords.value,
       };
       const formData = new FormData(form);
-      createTravelPackage(data);
+      formData.append("p_agency_id", _id);
+      formData.append("p_flight", JSON.stringify(flight));
+      formData.append("p_return_flight", JSON.stringify(returnFlight));
+      formData.append("p_transport", JSON.stringify(transport));
+      formData.append("p_hotel", JSON.stringify(hotel));
+      createTravelPackage(formData);
     }
   };
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Loading from "../components/loading/Loading";
-import BookingTable from "../components/table/BookingTable";
 import CancelledBookingTable from "../components/table/CancelledBookingTable";
 import { getAgencyProfileAPI } from "../service/agency-api";
 import { getCancelledBookingByAgencyIdAPI } from "../service/booking-api";
