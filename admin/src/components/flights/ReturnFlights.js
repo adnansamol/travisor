@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { IoIosAirplane } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import { MdFlightClass, MdFlightLand } from "react-icons/md";
 import styled from "styled-components";
 import { colors } from "../../constant/colors";
 import { flights } from "../../constant/flights";
+import { addDays } from "../../util/date-functions";
 // import { getFlightsAPI } from "../../service/flight-api";
 import { getShortDate } from "../../util/formatter";
 
@@ -77,7 +78,13 @@ const SelectButton = styled.button`
   padding: 5px 20px;
 `;
 
-const Flights = ({ setFlight, startDate, destination, setIsOpen }) => {
+const ReturnFlights = ({
+  setFlight,
+  startDate,
+  days,
+  destination,
+  setIsOpen,
+}) => {
   useEffect(() => {
     // fetchFlights();
   }, []);
@@ -99,15 +106,16 @@ const Flights = ({ setFlight, startDate, destination, setIsOpen }) => {
           setFlight={setFlight}
           destination={destination}
           startDate={startDate}
+          days={days}
         />
       ))}
     </div>
   );
 };
 
-export default Flights;
+export default ReturnFlights;
 
-const Flight = ({ setFlight, startDate, destination, flight, close }) => {
+const Flight = ({ setFlight, startDate, days, destination, flight, close }) => {
   const planeClassRef = useRef();
   const nonStop = flight && flight.stops.length > 1 ? false : true;
 
@@ -142,7 +150,7 @@ const Flight = ({ setFlight, startDate, destination, flight, close }) => {
         <FlightTimeContainer>
           <FlightDeparture>
             <FlightTime>{flight.stops[0].departure_time}</FlightTime>
-            <FlightDate>{getShortDate(startDate.value)}</FlightDate>
+            <FlightDate>{getShortDate(addDays(startDate.value, 5))}</FlightDate>
             <FlightPlace>Ahmedabad</FlightPlace>
           </FlightDeparture>
 
@@ -160,7 +168,9 @@ const Flight = ({ setFlight, startDate, destination, flight, close }) => {
                 ? flight.stops[0].arrival_time
                 : flight.stops[1].arrival_time}
             </FlightTime>
-            <FlightDate>{getShortDate(startDate.value)}</FlightDate>
+            <FlightDate>
+              {getShortDate(addDays(startDate.value, days.value))}
+            </FlightDate>
             <FlightPlace>{destination.value}</FlightPlace>
           </FlightArrival>
         </FlightTimeContainer>

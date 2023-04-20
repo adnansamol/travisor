@@ -9,7 +9,6 @@ const travel_package = mongoose.Schema({
   p_description: String,
   p_price: Schema.Types.Mixed,
   p_start_date: Date,
-  p_end_date: Date,
   p_imagePreview: String,
   p_images: Array,
   p_transport: Schema.Types.Mixed,

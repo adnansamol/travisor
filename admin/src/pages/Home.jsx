@@ -9,7 +9,7 @@ const TabContainer = styled.div`
   justify-content: center;
   gap: 30px;
   margin: auto;
-  width: 60%;
+  width: 65%;
   padding-top: 30px;
 `;
 const TabLink = styled(Link)`
@@ -23,6 +23,10 @@ const TabLink = styled(Link)`
   text-decoration: none;
   font-size: 20px;
   font-weight: 600;
+  transition: transform 0.25s linear;
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 const Title = styled.h1`
   margin-top: 10px;
@@ -39,17 +43,36 @@ const Home = () => {
       <Prompt>Here you can manage your customers and your product!</Prompt>
       <hr />
       <TabContainer>
-        <TabLink to="allPackages" style={{ color: "orange" }}>
+        <TabLink
+          to="allPackages"
+          style={{ color: "orange", border: "1px solid orange" }}
+        >
           Active Packages
         </TabLink>
-        <TabLink to="/bookings" style={{ color: "seagreen" }}>
+        <TabLink
+          to="/bookings"
+          style={{ color: "seagreen", border: "1px solid seagreen" }}
+        >
           Active Bookings
         </TabLink>
-        <TabLink to="/cancelledBookings" style={{ color: "red" }}>
+        <TabLink
+          to="/cancelledBookings"
+          style={{ color: "red", border: "1px solid red" }}
+        >
           Cancelled Bookings
         </TabLink>
-        <TabLink>Customer Requests</TabLink>
-        <TabLink to="/addPackage">Add Package</TabLink>
+        <TabLink
+          to="/customerRequests"
+          style={{ border: "1px solid rgb(5, 99, 193)" }}
+        >
+          Customer Requests
+        </TabLink>
+        <TabLink
+          to="/addPackage"
+          style={{ border: "1px solid rgb(5, 99, 193)" }}
+        >
+          Add Package
+        </TabLink>
       </TabContainer>
     </Container>
   );

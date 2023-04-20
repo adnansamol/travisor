@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import LoginForm from "../components/form/LoginForm";
@@ -6,6 +6,7 @@ import Link from "../components/ui/Link";
 import { colors } from "../constant/colors";
 import { loginUserAPI } from "../service/user-api";
 import { MdKeyboardBackspace } from "react-icons/md";
+import { authorizeUser } from "../auth/Authorization";
 
 const Component = styled.div`
   width: 100%;
@@ -42,6 +43,7 @@ const SignupPrompt = styled.div`
 const SignupLink = styled(Link)`
   font-weight: 600;
 `;
+const Cancel = styled(Link)``;
 const Login = () => {
   const navigate = useNavigate();
   const loginUserHandler = async (data) => {
@@ -51,7 +53,11 @@ const Login = () => {
     navigate(-1);
   };
 
-  const Cancel = styled(Link)``;
+  useEffect(() => {
+    if (authorizeUser()) {
+      navigate(-1);
+    }
+  }, []);
   return (
     <Component>
       <LoginContainer>

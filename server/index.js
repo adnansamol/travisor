@@ -15,7 +15,7 @@ app.use(express.json({ extended: true }));
 app.use("/user", userRouter);
 app.use("/agency", agencyRouter);
 app.use("/travelPackage", packageRouter);
-app.use("/customerRequest", customerRequestRouter);
+app.use("/customer", customerRequestRouter);
 app.use(bodyParser.urlencoded({ extended: false }));
 Connection();
 

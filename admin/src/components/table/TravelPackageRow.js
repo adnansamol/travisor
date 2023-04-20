@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const TravelPackageRow = ({ travelPackage, index }) => {
+const TravelPackageRow = ({ travelPackage, deleteTravelPackage, index }) => {
+  const deleteTravelPackageHandler = () => {
+    if (window.confirm("This package will be deleted permanently!")) {
+      deleteTravelPackage(travelPackage._id);
+    }
+  };
   return (
     <tr>
       <td>{index + 1}</td>
@@ -15,7 +20,7 @@ const TravelPackageRow = ({ travelPackage, index }) => {
         </Link>
         <button
           className="btn btn-danger mx-2"
-          to={"/package/" + travelPackage._id}
+          onClick={deleteTravelPackageHandler}
         >
           Delete
         </button>

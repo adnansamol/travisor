@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Loading from "../components/loading/Loading";
 import BookingTable from "../components/table/BookingTable";
+import CancelledBookingTable from "../components/table/CancelledBookingTable";
 import { getAgencyProfileAPI } from "../service/agency-api";
 import { getCancelledBookingByAgencyIdAPI } from "../service/booking-api";
 
@@ -30,7 +31,8 @@ const CancelledBookings = () => {
         <Loading />
       ) : cancelledBookings.length > 0 ? (
         <TableContainer>
-          <BookingTable cancelledBookings={cancelledBookings} />
+          <h1>Cancelled Bookings</h1>
+          <CancelledBookingTable cancelledBookings={cancelledBookings} />
         </TableContainer>
       ) : (
         <h2 style={{ textAlign: "center", marginTop: 20 }}>

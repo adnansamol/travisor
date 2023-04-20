@@ -1,16 +1,71 @@
 import React, { useRef, useState } from "react";
 import { destinations } from "../../constant/destinations";
 import { getAgencyProfileAPI } from "../../service/agency-api";
-import { getHtmlDateFormat } from "../../util/formatter";
+import { getHtmlDateFormat, getShortDate } from "../../util/formatter";
 import { addDays } from "../../util/date-functions";
 import Transports from "../transport/Transports";
 import Flights from "../flights/Flights";
+import ReturnFlights from "../flights/ReturnFlights";
 import Hotels from "../hotels/Hotels";
 import Modal from "react-modal";
 import styled from "styled-components";
 import { colors } from "../../constant/colors";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaCar } from "react-icons/fa";
+import { IoIosAirplane } from "react-icons/io";
+import { MdFlightClass, MdFlightLand } from "react-icons/md";
+const FlightContainer = styled.div`
+  background-color: white;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  padding: 10px 15px;
+  margin: auto;
+`;
+
+const Plane = styled.div`
+  font-weight: 600;
+  margin: 3px 2px;
+  color: ${colors.gray};
+`;
+const FlightTimeContainer = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+`;
+const HorizontalRule = styled.div`
+  border-bottom: 1px solid black;
+  width: 29%;
+  margin: 0 8px;
+`;
+const FlightDeparture = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const FlightArrival = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const FlightDate = styled.div`
+  font-size: 13px;
+`;
+const FlightTime = styled.div`
+  font-size: 16px;
+  font-weight: 600;
+`;
+const FlightPlace = styled.div`
+  font-size: 14px;
+  font-weight: 600;
+  color: ${colors.gray};
+`;
+const FlightTypeContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+const FlightClass = styled.div``;
 
 const TransportContainer = styled.div`
   background-color: white;
@@ -82,47 +137,80 @@ const customModalStyles = {
 
 const AddTravelPackageForm = ({ createTravelPackage }) => {
   const [flight, setFlight] = useState();
+  const [returnFlight, setReturnFlight] = useState();
   const [transport, setTransport] = useState();
   const [hotel, setHotel] = useState();
 
   const [isOpenFlight, setIsOpenFlight] = useState(false);
+  const [isOpenReturnFlight, setIsOpenReturnFlight] = useState(false);
   const [isOpenTransport, setIsOpenTransport] = useState(false);
   const [isOpenHotel, setIsOpenHotel] = useState(false);
 
   const destinationRef = useRef();
+  const startDateRef = useRef();
+  const daysRef = useRef();
   const createTravelPackageHandler = async (e) => {
     e.preventDefault();
     const form = e.target;
     const { _id } = await getAgencyProfileAPI(
       localStorage.getItem("admin-token")
     );
-
-    const data = {
-      p_agency_id: _id,
-      p_name: form.p_name.value,
-      p_description: form.p_description.value,
-      p_destination: form.p_destination.value,
-      p_days: form.p_days.value,
-      p_price: form.p_price.value,
-      p_refund_date: form.p_refund_date.value,
-      p_refund_desc: form.p_refund_desc.value,
-      p_image: form.p_imagePreview.files,
-      p_hotel: hotel,
-      p_transport: transport,
-      p_flight: flight,
-    };
-    const formData = new FormData(form);
-    createTravelPackage(formData);
+    if (
+      isValid(flight, "Flight") &&
+      isValid(returnFlight, "Return Flight") &&
+      isValid(transport, "Transport") &&
+      isValid(hotel, "Hotel")
+    ) {
+      const data = {
+        p_agency_id: _id,
+        p_name: form.p_name.value,
+        p_description: form.p_description.value,
+        p_start_date: new Date(startDateRef.current.value),
+        p_end_date: new Date(addDays(startDateRef.current.value, form.p_days)),
+        p_destination: form.p_destination.value,
+        p_days: form.p_days.value,
+        p_price: form.p_price.value,
+        p_refund_date: form.p_refund_date.value,
+        p_refund_desc: form.p_refund_desc.value,
+        p_image: form.p_imagePreview.files,
+        p_hotel: hotel,
+        p_transport: transport,
+        p_flight: flight,
+        p_return_flight: returnFlight,
+        p_keywords: form.p_keywords.value,
+      };
+      const formData = new FormData(form);
+      createTravelPackage(data);
+    }
   };
 
   const openFlight = () => {
-    setIsOpenFlight(true);
+    if (destinationRef.current.value === "") {
+      alert("Please select the destination first");
+    } else if (startDateRef.current.value === "") {
+      alert("Please select the start date first");
+    } else {
+      setIsOpenFlight(true);
+    }
+  };
+  const openReturnFlight = () => {
+    if (destinationRef.current.value === "") {
+      alert("Please select the destination first");
+    } else if (startDateRef.current.value === "") {
+      alert("Please select the start date first");
+    } else {
+      setIsOpenReturnFlight(true);
+    }
   };
   const openTransport = () => {
     setIsOpenTransport(true);
   };
   const openHotel = () => {
-    setIsOpenHotel(true);
+    if (destinationRef.current.value === "") {
+      alert("Please select the destination first");
+    } else {
+      setIsOpenHotel(true);
+    }
   };
   const closeFlight = () => {
     setIsOpenFlight(false);
@@ -134,6 +222,13 @@ const AddTravelPackageForm = ({ createTravelPackage }) => {
     setIsOpenHotel(false);
   };
 
+  const isValid = (field, fieldName) => {
+    if (field === undefined) {
+      alert("please add " + fieldName);
+      return false;
+    }
+    return true;
+  };
   return (
     <>
       <Modal
@@ -154,7 +249,26 @@ const AddTravelPackageForm = ({ createTravelPackage }) => {
         onRequestClose={closeFlight}
         shouldCloseOnOverlayClick={true}
       >
-        <Flights setIsOpen={setIsOpenFlight} />
+        <Flights
+          setIsOpen={setIsOpenFlight}
+          destination={destinationRef.current}
+          startDate={startDateRef.current}
+          setFlight={setFlight}
+        />
+      </Modal>
+      <Modal
+        isOpen={isOpenReturnFlight}
+        style={customModalStyles}
+        onRequestClose={closeFlight}
+        shouldCloseOnOverlayClick={true}
+      >
+        <ReturnFlights
+          setIsOpen={setIsOpenReturnFlight}
+          destination={destinationRef.current}
+          startDate={startDateRef.current}
+          setFlight={setReturnFlight}
+          days={daysRef.current}
+        />
       </Modal>
       <Modal
         isOpen={isOpenTransport}
@@ -201,6 +315,7 @@ const AddTravelPackageForm = ({ createTravelPackage }) => {
           <div className="form-group col">
             <label className="form-label">Package Days</label>
             <input
+              ref={daysRef}
               name="p_days"
               className="form-control"
               type="number"
@@ -221,6 +336,7 @@ const AddTravelPackageForm = ({ createTravelPackage }) => {
           <div className="form-group col">
             <label className="form-label">Start Date</label>
             <input
+              ref={startDateRef}
               name="p_start_date"
               className="form-control"
               type="date"
@@ -258,17 +374,105 @@ const AddTravelPackageForm = ({ createTravelPackage }) => {
           >
             Select Flight
           </button>
+          {flight && (
+            <FlightContainer>
+              {flight.stops.map((stop) => (
+                <>
+                  <Plane>{stop.plane}</Plane>
+                  <FlightTimeContainer>
+                    <FlightDeparture>
+                      <FlightTime>{stop.departure_time}</FlightTime>
+                      <FlightDate>
+                        {getShortDate(startDateRef.current.value)}
+                      </FlightDate>
+                      <FlightPlace>{stop.from}</FlightPlace>
+                    </FlightDeparture>
+
+                    <HorizontalRule></HorizontalRule>
+                    <IoIosAirplane size={24} />
+                    <HorizontalRule></HorizontalRule>
+                    <FlightArrival>
+                      <FlightTime>{stop.arrival_time}</FlightTime>
+                      <FlightDate>
+                        {getShortDate(startDateRef.current.value)}
+                      </FlightDate>
+                      <FlightPlace>{stop.to}</FlightPlace>
+                    </FlightArrival>
+                  </FlightTimeContainer>
+                  <FlightTypeContainer>
+                    <FlightClass>
+                      <MdFlightClass size={24} title="planeClass" />:{" "}
+                      {stop.planeClass}
+                    </FlightClass>
+                    <p>
+                      <MdFlightLand size={24} title="Flight Time" />:{" "}
+                      {stop.time}
+                    </p>
+                  </FlightTypeContainer>
+                </>
+              ))}
+            </FlightContainer>
+          )}
         </div>
         <hr />
         <h4>Return Flight</h4>
         <div>
           <button
             type="button"
-            onClick={openFlight}
+            onClick={openReturnFlight}
             className="btn btn-primary"
           >
             Select Flight
           </button>
+          {returnFlight && (
+            <FlightContainer>
+              {returnFlight.stops.map((stop) => (
+                <>
+                  <Plane>{stop.plane}</Plane>
+                  <FlightTimeContainer>
+                    <FlightDeparture>
+                      <FlightTime>{stop.departure_time}</FlightTime>
+                      <FlightDate>
+                        {getShortDate(
+                          addDays(
+                            startDateRef.current.value,
+                            daysRef.current.value
+                          )
+                        )}
+                      </FlightDate>
+                      <FlightPlace>{stop.from}</FlightPlace>
+                    </FlightDeparture>
+
+                    <HorizontalRule></HorizontalRule>
+                    <IoIosAirplane size={24} />
+                    <HorizontalRule></HorizontalRule>
+                    <FlightArrival>
+                      <FlightTime>{stop.arrival_time}</FlightTime>
+                      <FlightDate>
+                        {getShortDate(
+                          addDays(
+                            startDateRef.current.value,
+                            daysRef.current.value
+                          )
+                        )}
+                      </FlightDate>
+                      <FlightPlace>{stop.to}</FlightPlace>
+                    </FlightArrival>
+                  </FlightTimeContainer>
+                  <FlightTypeContainer>
+                    <FlightClass>
+                      <MdFlightClass size={24} title="planeClass" />:{" "}
+                      {stop.planeClass}
+                    </FlightClass>
+                    <p>
+                      <MdFlightLand size={24} title="Flight Time" />:{" "}
+                      {stop.time}
+                    </p>
+                  </FlightTypeContainer>
+                </>
+              ))}
+            </FlightContainer>
+          )}
         </div>
         <hr />
         <h4>Transport</h4>
@@ -336,6 +540,15 @@ const AddTravelPackageForm = ({ createTravelPackage }) => {
         <div className="form-group">
           <label className="form-label">Refund Policy description</label>
           <textarea name="p_refund_desc" className="form-control" required />
+        </div>
+        <div className="form-group">
+          <label className="form-label">Package Keywords</label>
+          <input
+            name="p_keywords"
+            className="form-control"
+            required
+            placeholder="ex. beach, resort"
+          />
         </div>
         <input
           className="btn btn-primary"

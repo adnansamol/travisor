@@ -1,9 +1,9 @@
 import React from "react";
 import { deleteTravelPackageByIdAPI } from "../../service/package-api";
-import TravelPackageRow from "./TravelPackageRow";
+import CustomerRequestRow from "./CustomerRequestRow";
 
-const TravelPackagesTable = ({ travelPackages }) => {
-  const deleteTravelPackage = async (id) => {
+const CustomerRequestTable = ({ customerRequests }) => {
+  const deleteCustomerRequest = async (id) => {
     const response = await deleteTravelPackageByIdAPI(id);
     alert(response);
   };
@@ -13,20 +13,19 @@ const TravelPackagesTable = ({ travelPackages }) => {
         <tr>
           <th>Sr No.</th>
           <th>Name</th>
-          <th>Destination</th>
-          <th>Days</th>
-          <th>Price</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Country</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        {travelPackages &&
-          travelPackages.map((travelPackage, index) => (
-            <TravelPackageRow
+        {customerRequests &&
+          customerRequests.map((customerRequest, index) => (
+            <CustomerRequestRow
               key={index}
-              travelPackage={travelPackage}
+              customerRequest={customerRequest}
               index={index}
-              deleteTravelPackage={deleteTravelPackage}
             />
           ))}
       </tbody>
@@ -34,4 +33,4 @@ const TravelPackagesTable = ({ travelPackages }) => {
   );
 };
 
-export default TravelPackagesTable;
+export default CustomerRequestTable;

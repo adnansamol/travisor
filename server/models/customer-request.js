@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
 
 const customerRequest = mongoose.Schema({
-  u_name: String,
-  u_email: String,
-  u_country: String,
-  u_phone: String,
-  u_message: String,
+  c_ageny_id: String,
+  c_name: String,
+  c_email: String,
+  c_country: String,
+  c_phone: String,
+  c_message: String,
 });
 
 const customerRequestModel = mongoose.model(

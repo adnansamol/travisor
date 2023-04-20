@@ -12,6 +12,7 @@ const FormContainer = styled.div`
 const AddTravelPackage = () => {
   const createTravelPackage = async (formData) => {
     const response = await createNewTravelPackageAPI(formData);
+    alert(response);
   };
 
   return (

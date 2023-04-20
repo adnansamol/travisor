@@ -5,6 +5,7 @@ import AddTravelPackage from "./pages/AddTravelPackage";
 import BookingDetailView from "./pages/BookingDetailView";
 import Bookings from "./pages/Bookings";
 import CancelledBookings from "./pages/CancelledBookings";
+import CustomerRequests from "./pages/CustomerRequests";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
@@ -64,6 +65,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Bookings />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="customerRequests"
+          element={
+            <ProtectedRoute>
+              <CustomerRequests />
             </ProtectedRoute>
           }
         />

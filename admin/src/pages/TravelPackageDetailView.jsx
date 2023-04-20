@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { getTravelPackageByIdAPI } from "../service/package-api";
+import { addDays } from "../util/date-functions";
 
 const Container = styled.div``;
 const DetailsContainer = styled.div`
@@ -79,26 +80,64 @@ const TravelPackageDetailView = () => {
                 <tbody>
                   <tr>
                     <td>{stop.plane}</td>
-                    <td>{stop.class}</td>
+                    <td>{stop.planeClass}</td>
                     <td>{stop.from}</td>
                     <td>{stop.to}</td>
                     <td>
-                      <b>
-                        {new Date(stop.departure)
-                          .toLocaleTimeString()
-                          .slice(0, 5)}
-                      </b>
+                      <b>{stop.departure_time}</b>
                       <br />
-                      {new Date(stop.departure).toLocaleDateString()}
+                      {new Date(
+                        travelPackage.p_start_date
+                      ).toLocaleDateString()}
                     </td>
                     <td>
-                      <b>
-                        {new Date(stop.arrival)
-                          .toLocaleTimeString()
-                          .slice(0, 5)}
-                      </b>
+                      <b>{stop.arrival_time}</b>
                       <br />
-                      {new Date(stop.arrival).toLocaleDateString()}
+                      {stop.arrival_time}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            ))}
+          </TransportContainer>
+        )}
+        {travelPackage.p_flight && (
+          <TransportContainer>
+            <h3>Return Flight Details</h3>
+            {travelPackage.p_return_flight.stops.map((stop) => (
+              <table className="table table-bordered">
+                <thead className="thead-dark">
+                  <tr>
+                    <th>Plane</th>
+                    <th>Class</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Departure</th>
+                    <th>Arrival</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{stop.plane}</td>
+                    <td>{stop.planeClass}</td>
+                    <td>{stop.from}</td>
+                    <td>{stop.to}</td>
+                    <td>
+                      <b>{stop.departure_time}</b>
+                      <br />
+                      {new Date(
+                        travelPackage.p_start_date
+                      ).toLocaleDateString()}
+                    </td>
+                    <td>
+                      <b>{stop.arrival_time}</b>
+                      <br />
+                      {new Date(
+                        addDays(
+                          travelPackage.p_start_date,
+                          travelPackage.p_days
+                        )
+                      ).toLocaleDateString()}
                     </td>
                   </tr>
                 </tbody>
@@ -144,7 +183,7 @@ const TravelPackageDetailView = () => {
               <tbody>
                 <tr>
                   <td>{travelPackage.p_hotel.name}</td>
-                  <td>{travelPackage.p_hotel.room_types.toString()}</td>
+                  <td>{travelPackage.p_hotel.type}</td>
                   <td>{travelPackage.p_hotel.address}</td>
                   <td>{travelPackage.p_hotel.dineIncluded ? "yes" : "no"}</td>
                 </tr>

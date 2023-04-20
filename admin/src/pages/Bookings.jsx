@@ -30,6 +30,7 @@ const Bookings = () => {
         <Loading />
       ) : bookings.length > 0 ? (
         <TableContainer>
+          <h1>Active Bookings</h1>
           <BookingTable bookings={bookings} />
         </TableContainer>
       ) : (
