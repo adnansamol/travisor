@@ -4,7 +4,6 @@ import { generateJWTToken, verifyJWTToken } from "../util/authentication.js";
 export const registerAgency = async (req, res) => {
   try {
     const agency = req.body;
-    console.log(req);
 
     if (await alreadyRegisteredAgency(agency.a_email)) {
       return res.send("Agency already registered");
@@ -19,7 +18,7 @@ export const registerAgency = async (req, res) => {
 
 export const loginAgency = async (req, res) => {
   try {
-    if (alreadyRegisteredAgency(req.body.email)) {
+    if (await alreadyRegisteredAgency(req.body.email)) {
       const token = generateJWTToken({
         email: req.body.email,
         date: new Date(),
@@ -34,7 +33,7 @@ export const loginAgency = async (req, res) => {
       );
       res.status(200).send(token);
     } else {
-      res.status(401).send("The Agency does not exist.");
+      res.status(401).send("The Account does not exist.");
     }
   } catch (error) {
     res.status(500).send(error);

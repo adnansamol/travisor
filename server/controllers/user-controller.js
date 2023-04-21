@@ -19,8 +19,7 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   try {
-    console.log(req.body);
-    if (alreadyRegistered(req.body.email)) {
+    if (await alreadyRegistered(req.body.email)) {
       const token = generateJWTToken({
         email: req.body.email,
         date: new Date(),

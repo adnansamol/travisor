@@ -8,7 +8,6 @@ const Login = () => {
   const navigate = useNavigate();
   const loginAgency = async (data) => {
     const response = await loginAgencyAPI(data);
-    alert(response);
     navigate("/");
   };
 

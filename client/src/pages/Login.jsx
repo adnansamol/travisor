@@ -53,11 +53,11 @@ const Login = () => {
     navigate(-1);
   };
 
-  useEffect(() => {
-    if (authorizeUser()) {
-      navigate(-1);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (authorizeUser()) {
+  //     navigate(-1);
+  //   }
+  // }, []);
   return (
     <Component>
       <LoginContainer>

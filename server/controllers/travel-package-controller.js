@@ -1,9 +1,31 @@
 import travelPackageModel from "../models/travel-package.js";
+import cloudinary from "cloudinary";
 import jwt from "jsonwebtoken";
 import { config } from "dotenv";
 config();
+
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET_KEY,
+});
 export const createTravelPackage = async (req, res) => {
   try {
+    const localPath = "./uploads/";
+    const imagePreview = await cloudinary.v2.uploader
+      .upload(localPath + req.files[0].filename)
+      .then((result) => {
+        return result.url;
+      });
+
+    const images = [];
+    for (let i = 1; i < req.files.length; i++) {
+      await cloudinary.v2.uploader
+        .upload(localPath + req.files[i].filename)
+        .then((result) => {
+          images.push(result.url);
+        });
+    }
     const data = {
       p_agency_id: req.body.p_agency_id,
       p_name: req.body.p_name,
@@ -16,13 +38,8 @@ export const createTravelPackage = async (req, res) => {
         discount: (req.body.p_price * 10) / 100,
       },
       p_start_date: req.body.p_start_date,
-      p_imagePreview:
-        "https://images.pexels.com/photos/13696647/pexels-photo-13696647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      p_images: [
-        "https://images.pexels.com/photos/3703465/pexels-photo-3703465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        "https://images.pexels.com/photos/7744992/pexels-photo-7744992.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        "https://images.pexels.com/photos/13696647/pexels-photo-13696647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      ],
+      p_imagePreview: imagePreview,
+      p_images: images,
 
       p_days_plan: [],
       p_policies: {

@@ -9,6 +9,7 @@ export const alreadyRegistered = async (email) => {
 };
 export const alreadyRegisteredAgency = async (email) => {
   let exist = await agencyModel.findOne({ a_email: email });
+
   if (exist) {
     return true;
   }

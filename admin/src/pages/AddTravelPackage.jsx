@@ -15,7 +15,7 @@ const AddTravelPackage = () => {
   const createTravelPackage = async (formData) => {
     const response = await createNewTravelPackageAPI(formData);
     alert(response);
-    navigate("/allPackages");
+    // navigate("/allPackages");
   };
 
   return (

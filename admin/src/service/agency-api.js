@@ -9,6 +9,7 @@ export const loginAgencyAPI = async (data) => {
     return response.data;
   } catch (error) {
     console.log(error);
+    return error.response.data;
   }
 };
 
