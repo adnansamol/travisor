@@ -1,6 +1,7 @@
 import travelPackageModel from "../models/travel-package.js";
 import cloudinary from "cloudinary";
 import jwt from "jsonwebtoken";
+import fs from "fs";
 import { config } from "dotenv";
 config();
 
@@ -15,6 +16,7 @@ export const createTravelPackage = async (req, res) => {
     const imagePreview = await cloudinary.v2.uploader
       .upload(localPath + req.files[0].filename)
       .then((result) => {
+        fs.unlinkSync(localPath + req.files[i].filename);
         return result.url;
       });
 
@@ -23,6 +25,7 @@ export const createTravelPackage = async (req, res) => {
       await cloudinary.v2.uploader
         .upload(localPath + req.files[i].filename)
         .then((result) => {
+          fs.unlinkSync(localPath + req.files[i].filename);
           images.push(result.url);
         });
     }
