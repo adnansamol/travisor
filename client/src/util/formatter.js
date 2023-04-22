@@ -28,7 +28,7 @@ export const getShortDate = (date) => {
   if (typeof date == "string" || "object") date = new Date(date);
 
   const day = date.getDate();
-  const month = months[date.getMonth()];
+  const month = months[date.getMonth() - 1];
   const year = date.getFullYear();
 
   return day + " " + month + " " + year;

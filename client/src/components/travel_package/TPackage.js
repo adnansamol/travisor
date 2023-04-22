@@ -55,26 +55,26 @@ const Price = styled.div`
   font-weight: 600;
 `;
 
-const TPackage = ({ travel_package }) => {
+const TPackage = ({ travelPackage }) => {
   return (
-    travel_package && (
+    travelPackage && (
       <Container>
         <Preview>
-          <Image src={travel_package.p_imagePreview} alt="img" />
+          <Image src={travelPackage.p_imagePreview} alt="img" />
         </Preview>
         <SubContainer>
-          <Title>{travel_package.p_name}</Title>
+          <Title>{travelPackage.p_name}</Title>
           <Location>
-            Destination: <strong>{travel_package.p_destination}</strong>
+            Destination: <strong>{travelPackage.p_destination}</strong>
           </Location>
           <Details>
             <Days>
-              {travel_package.p_days}N/{travel_package.p_days + 1}D
+              {travelPackage.p_days}N/{travelPackage.p_days + 1}D
             </Days>
             <PriceContainer>
               package starts at:
               <Price>
-                {priceFormatter.format(travel_package.p_price.base_price)}
+                {priceFormatter.format(travelPackage.p_price.base_price)}
               </Price>
             </PriceContainer>
           </Details>

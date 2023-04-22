@@ -16,6 +16,7 @@ export const createBookingPackage = async (req, res) => {
     const bookedPackage = await newBookedPackage.save();
     res.status(200).send({
       _id: bookedPackage._id,
+      agencyId: bookedPackage.p_agency_id,
       price: bookedPackage.p_price.base_price,
     });
   } catch (error) {

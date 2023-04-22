@@ -21,7 +21,7 @@ export const getAllTravelPackagesAPI = async (id) => {
 };
 export const getTravelPackageByIdAPI = async (id) => {
   try {
-    const response = await axios.get(`${base_url}/getPackage/${id}`);
+    const response = await axios.get(`${base_url}/getTravelPackage/${id}`);
     return response.data;
   } catch (error) {
     console.log(error);

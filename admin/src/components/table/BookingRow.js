@@ -14,26 +14,32 @@ const BookingRow = ({ booking, index }) => {
     const bookedPackage = await getBookedPackageByIdAPI(
       booking.b_travel_package_id
     );
+    console.log(bookedPackage);
     setBookedPackage(bookedPackage);
     setLoading(false);
   };
   return (
-    <tr>
-      <td>{index + 1}</td>
-      <td>{bookedPackage.p_name}</td>
-      <td>{bookedPackage.p_destination}</td>
-      <td>{booking.p_days}</td>
-      <td>{bookedPackage.p_start_date}</td>
-      <td>{customer.u_name}</td>
-      <td>{booking.b_booking_date}</td>
-      <td>{booking.b_booking_cost}</td>
-      <td>
-        <Link className="btn btn-warning" to={"/booking/" + booking._id}>
-          View
-        </Link>
-        <button className="btn btn-danger mx-2">Delete</button>
-      </td>
-    </tr>
+    bookedPackage && (
+      <tr>
+        <td>{index + 1}</td>
+        <td>{bookedPackage.p_name}</td>
+        <td>{bookedPackage.p_destination}</td>
+        <td>{bookedPackage.p_days}</td>
+        <td>{bookedPackage.p_start_date}</td>
+        <td></td>
+        <td>{booking.b_booking_date}</td>
+        <td>{booking.b_booking_cost}</td>
+        <td>
+          <Link
+            className="btn btn-warning"
+            to={"/booking/" + bookedPackage._id}
+          >
+            View
+          </Link>
+          <button className="btn btn-danger mx-2">Delete</button>
+        </td>
+      </tr>
+    )
   );
 };
 

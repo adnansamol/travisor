@@ -1,7 +1,20 @@
+import axios from "axios";
+
 const base_url = "http://localhost:8000/travelPackage";
-export const getAllTravelPackagesAPI = async () => {
+export const getRecentlyAddedTravelPackagesAPI = async (date) => {
   try {
-    const response = await axios.get(`${base_url}/getAllPackages/`);
+    const response = await axios.post(
+      `${base_url}/getRecentlyAddedTravelPackages/`,
+      { date: date }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getTravelPackageByIdAPI = async (id) => {
+  try {
+    const response = await axios.get(`${base_url}/getTravelPackage/${id}`);
     return response.data;
   } catch (error) {
     console.log(error);

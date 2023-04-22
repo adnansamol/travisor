@@ -57,10 +57,11 @@ export const confirmBooking = async (req, res) => {
         "http://localhost:8000/travelPackage/createBookedPackage",
         req.body.bookedPackage
       );
-      console.log("Response: ", response.data);
       const bookedPackageId = response.data._id;
+      const agencyId = response.data.agencyId;
       const bookedPackagePrice = response.data.price;
       const booking = {
+        b_travel_agency_id: agencyId,
         b_travel_package_id: bookedPackageId,
         b_booked_user_id: req.body.userId,
         b_booking_status: "booked",

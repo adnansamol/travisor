@@ -17,6 +17,7 @@ import { Outlet, useParams } from "react-router";
 import { PackageContext } from "../context/package-context";
 import MembersForm from "../components/form/MembersForm";
 import { addDays } from "../util/date-functions";
+import { getTravelPackageByIdAPI } from "../service/travel-package-api";
 const Page = styled.div`
   background-color: whitesmoke;
   width: 100%;
@@ -133,21 +134,22 @@ const PackageDetailView = () => {
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
   const params = useParams();
   useEffect(() => {
-    const cacheData = JSON.parse(localStorage.getItem("package-cache"));
-    console.log("cacheData", cacheData);
-    if (cacheData != null && cacheData._id === params.id) {
-      setTravelPackage(cacheData);
-    } else {
-      setTravelPackage(
-        travel_packages.find((value) => value._id === params.id)
-      );
-    }
+    fetchTravelPackage();
   }, []);
 
   useEffect(() => {
     localStorage.setItem("package-cache", JSON.stringify(travelPackage));
   }, [travelPackage]);
 
+  const fetchTravelPackage = async () => {
+    const cacheData = JSON.parse(localStorage.getItem("package-cache"));
+    if (cacheData != null && cacheData._id === params.id) {
+      setTravelPackage(cacheData);
+    } else {
+      const data = await getTravelPackageByIdAPI(params.id);
+      setTravelPackage(data);
+    }
+  };
   const changeTripDate = (event) => {
     const newStartDate = {
       ...travelPackage,

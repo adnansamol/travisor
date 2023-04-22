@@ -14,6 +14,7 @@ import {
   createTravelPackage,
   deleteTravelPackageById,
   getAllTravelPackages,
+  getRecentlyAddedTravelPackages,
   getTravelPackageById,
 } from "../controllers/travel-package-controller.js";
 import multer from "multer";
@@ -46,8 +47,13 @@ packageRouter.get("/getBookingByUser/:id", getBookingByUserId);
 packageRouter.get("/getBookingByPkg/:id", getBookingByPackageId);
 packageRouter.get("/getBookedPackage/:id", getBookedPackageById);
 
+packageRouter.post(
+  "/getRecentlyAddedTravelPackages",
+  getRecentlyAddedTravelPackages
+);
+
 packageRouter.get("/getAllPackages/:agencyId", getAllTravelPackages);
-packageRouter.get("/getPackage/:id", getTravelPackageById);
+packageRouter.get("/getTravelPackage/:id", getTravelPackageById);
 
 packageRouter.delete("/deletePackage/:id", deleteTravelPackageById);
 

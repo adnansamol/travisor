@@ -13,6 +13,8 @@ import Button from "../components/ui/Button";
 import Hotels from "../components/hotels/Hotels";
 import Flights from "../components/flights/Flights";
 import Transports from "../components/transport/Transports";
+import { addDays } from "../util/date-functions";
+import ReturnFlights from "../components/flights/ReturnFlights";
 
 const Container = styled.div`
   display: flex;
@@ -181,6 +183,7 @@ const Summary = () => {
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
   const [isOpen, setIsOpen] = useState(false);
   const [openFlightModal, setOpenFlightModal] = useState(false);
+  const [openReturnFlightModal, setOpenReturnFlightModal] = useState(false);
   const [openTransportModal, setOpenTransportModal] = useState(false);
   const [openHotelModal, setOpenHotelModal] = useState(false);
 
@@ -194,6 +197,18 @@ const Summary = () => {
       ...travelPackage,
       p_price: newPrice,
       p_flight: undefined,
+    });
+  };
+  const removeReturnFlight = () => {
+    const flightprice = travelPackage.p_return_flight.price;
+    const newPrice = {
+      ...travelPackage.p_price,
+      base_price: travelPackage.p_price.base_price - flightprice,
+    };
+    setTravelPackage({
+      ...travelPackage,
+      p_price: newPrice,
+      p_return_flight: undefined,
     });
   };
 
@@ -214,6 +229,9 @@ const Summary = () => {
   };
   const closeFlightModal = () => {
     setOpenFlightModal(false);
+  };
+  const closeReturnFlightModal = () => {
+    setOpenReturnFlightModal(false);
   };
   const closeTransportModal = () => {
     setOpenTransportModal(false);
@@ -239,6 +257,19 @@ const Summary = () => {
           shouldCloseOnOverlayClick={true}
         >
           <Flights setIsOpen={setOpenFlightModal} />
+        </Modal>
+        <Modal
+          isOpen={openReturnFlightModal}
+          style={customModalStyles}
+          onRequestClose={closeReturnFlightModal}
+          shouldCloseOnOverlayClick={true}
+        >
+          <ReturnFlights
+            setIsOpen={setOpenReturnFlightModal}
+            destination={travelPackage.p_destination}
+            startDate={travelPackage.p_start_date}
+            days={travelPackage.p_days}
+          />
         </Modal>
         <Modal
           isOpen={openTransportModal}
@@ -382,28 +413,35 @@ const Summary = () => {
         <FlightContainer>
           <TitleContainer>
             <Title>Return Flight</Title>
-            {travelPackage.p_flight ? (
+            {travelPackage.p_return_flight ? (
               <div>
-                <RemoveButton onClick={removeFlight}>REMOVE</RemoveButton>
-                <ChangeButton onClick={() => setOpenFlightModal(true)}>
+                <RemoveButton onClick={removeReturnFlight}>REMOVE</RemoveButton>
+                <ChangeButton onClick={() => setOpenReturnFlightModal(true)}>
                   CHANGE
                 </ChangeButton>
               </div>
             ) : (
-              <AddButton onClick={() => setIsOpen}>ADD</AddButton>
+              <AddButton onClick={() => setOpenReturnFlightModal(true)}>
+                ADD
+              </AddButton>
             )}
           </TitleContainer>
-          {travelPackage.p_flight && (
+          {travelPackage.p_return_flight && (
             <>
               <hr />
-              {travelPackage.p_flight.stops.map((stop) => (
+              {travelPackage.p_return_flight.stops.map((stop) => (
                 <>
                   <Plane>{stop.plane}</Plane>
                   <FlightTimeContainer>
                     <FlightDeparture>
                       <FlightTime>{stop.departure_time}</FlightTime>
                       <FlightDate>
-                        {getShortDate(travelPackage.p_start_date)}
+                        {getShortDate(
+                          addDays(
+                            travelPackage.p_start_date,
+                            travelPackage.p_days
+                          )
+                        )}
                       </FlightDate>
                       <FlightPlace>{stop.from}</FlightPlace>
                     </FlightDeparture>
@@ -414,7 +452,12 @@ const Summary = () => {
                     <FlightArrival>
                       <FlightTime>{stop.arrival_time}</FlightTime>
                       <FlightDate>
-                        {getShortDate(travelPackage.p_start_date)}
+                        {getShortDate(
+                          addDays(
+                            travelPackage.p_start_date,
+                            travelPackage.p_days
+                          )
+                        )}
                       </FlightDate>
                       <FlightPlace>{stop.to}</FlightPlace>
                     </FlightArrival>
