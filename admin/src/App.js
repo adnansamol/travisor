@@ -13,6 +13,7 @@ import Register from "./pages/Register";
 import TravelPackageDetailView from "./pages/TravelPackageDetailView";
 import TravelPackages from "./pages/TravelPackages";
 import ProtectedRoute from "./ProtectedRoute";
+import UpdateTravelPackage from "./pages/UpdateTravelPackage";
 
 function App() {
   return (
@@ -33,6 +34,14 @@ function App() {
           element={
             <ProtectedRoute>
               <AddTravelPackage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="updatePackage/:id"
+          element={
+            <ProtectedRoute>
+              <UpdateTravelPackage />
             </ProtectedRoute>
           }
         />

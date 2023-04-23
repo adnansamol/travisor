@@ -96,3 +96,13 @@ export const getAllUsers = async (req, res) => {
     res.status(500).send(error);
   }
 };
+export const getCustomer = async (req, res) => {
+  try {
+    const { u_email, u_phone, u_name } = await userModel.findById(
+      req.params.id
+    );
+    res.status(200).send({ u_email, u_phone, u_name });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};

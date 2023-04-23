@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
-import { IoLocationSharp } from "react-icons/io5";
+import { IoClose, IoLocationSharp } from "react-icons/io5";
+import { GoRequestChanges } from "react-icons/go";
 import { travel_packages } from "../constant/package";
 import {
   getHtmlDateFormat,
@@ -18,6 +19,7 @@ import { PackageContext } from "../context/package-context";
 import MembersForm from "../components/form/MembersForm";
 import { addDays } from "../util/date-functions";
 import { getTravelPackageByIdAPI } from "../service/travel-package-api";
+import CustomerRequestForm from "../components/form/CustomerRequestForm";
 const Page = styled.div`
   background-color: whitesmoke;
   width: 100%;
@@ -128,9 +130,42 @@ const customModalStyles = {
     height: "29rem",
   },
 };
+const CustomerRequestButton = styled.div`
+  position: fixed;
+  top: 60%;
+  left: calc(100% - 80px);
+  background-color: orangered;
+  color: white;
+  padding: 8px;
+  max-width: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 10px 0 0 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  cursor: pointer;
+`;
+const requestModalCustomStyle = {
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.75)",
+  },
+  content: {
+    top: "8rem",
+    width: "40%",
+    left: "30%",
+    height: "35rem",
+    backgroundColor: "orangered",
+  },
+};
 
 const PackageDetailView = () => {
   const [openBookingModal, setOpenBookingModal] = useState(false);
+  const [openRequestModal, setOpenRequestModal] = useState(false);
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
   const params = useParams();
   useEffect(() => {
@@ -163,10 +198,44 @@ const PackageDetailView = () => {
   const closeBookingModal = () => {
     setOpenBookingModal(false);
   };
+  const closeRequestModal = () => {
+    setOpenRequestModal(false);
+  };
   return (
     <>
       <Header isStatic={true} />
       <Page>
+        <CustomerRequestButton onClick={() => setOpenRequestModal(true)}>
+          <GoRequestChanges size={30} />
+          <br />
+          Customize
+          <br />
+          Package
+        </CustomerRequestButton>
+        <Modal
+          isOpen={openRequestModal}
+          style={requestModalCustomStyle}
+          onRequestClose={closeRequestModal}
+          shouldCloseOnOverlayClick={true}
+        >
+          <IoClose
+            size={30}
+            color="white"
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              setOpenRequestModal(false);
+            }}
+          />
+          <h3 style={{ color: "white", textAlign: "center" }}>
+            Request Customization
+          </h3>
+          {travelPackage && (
+            <CustomerRequestForm
+              agencyId={travelPackage.p_agency_id}
+              modal={setOpenRequestModal}
+            />
+          )}
+        </Modal>
         <Modal
           isOpen={openBookingModal}
           style={customModalStyles}

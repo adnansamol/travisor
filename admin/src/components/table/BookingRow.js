@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getBookedPackageByIdAPI } from "../../service/booking-api";
+import {
+  getBookedPackageByIdAPI,
+  getCustomerAPI,
+} from "../../service/booking-api";
 
 const BookingRow = ({ booking, index }) => {
   const [bookedPackage, setBookedPackage] = useState();
@@ -14,20 +17,26 @@ const BookingRow = ({ booking, index }) => {
     const bookedPackage = await getBookedPackageByIdAPI(
       booking.b_travel_package_id
     );
-    console.log(bookedPackage);
     setBookedPackage(bookedPackage);
+    fetchCustomer();
+  };
+  const fetchCustomer = async () => {
+    const customer = await getCustomerAPI(booking.b_booked_user_id);
+    console.log(customer);
+    setCustomer(customer);
     setLoading(false);
   };
   return (
-    bookedPackage && (
+    bookedPackage &&
+    customer && (
       <tr>
         <td>{index + 1}</td>
         <td>{bookedPackage.p_name}</td>
         <td>{bookedPackage.p_destination}</td>
         <td>{bookedPackage.p_days}</td>
-        <td>{bookedPackage.p_start_date}</td>
-        <td></td>
-        <td>{booking.b_booking_date}</td>
+        <td>{new Date(bookedPackage.p_start_date).toLocaleString()}</td>
+        <td>{customer.u_name}</td>
+        <td>{new Date(booking.b_booking_date).toDateString()}</td>
         <td>{booking.b_booking_cost}</td>
         <td>
           <Link

@@ -16,6 +16,7 @@ import {
   getAllTravelPackages,
   getRecentlyAddedTravelPackages,
   getTravelPackageById,
+  updateTravelPackage,
 } from "../controllers/travel-package-controller.js";
 import multer from "multer";
 const packageRouter = express.Router();
@@ -37,6 +38,11 @@ packageRouter.post("/confirmBooking/:id", confirmBooking);
 packageRouter.post("/createBookedPackage", createBookingPackage);
 
 packageRouter.put("/cancelBooking", cancelBooking);
+packageRouter.put(
+  "/updateTravelPackage/:id",
+  upload.any(),
+  updateTravelPackage
+);
 
 packageRouter.get("/getBookingByAgency/:id", getBookingByAgencyId);
 packageRouter.get(

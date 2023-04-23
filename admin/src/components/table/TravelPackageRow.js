@@ -18,10 +18,14 @@ const TravelPackageRow = ({ travelPackage, deleteTravelPackage, index }) => {
         <Link className="btn btn-warning" to={"/package/" + travelPackage._id}>
           View
         </Link>
-        <button
-          className="btn btn-danger mx-2"
-          onClick={deleteTravelPackageHandler}
+        <Link
+          className="btn btn-info mx-2"
+          to={"/updatePackage/" + travelPackage._id}
         >
+          Update
+        </Link>
+
+        <button className="btn btn-danger" onClick={deleteTravelPackageHandler}>
           Delete
         </button>
       </td>

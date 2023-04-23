@@ -16,7 +16,7 @@ export const createTravelPackage = async (req, res) => {
     const imagePreview = await cloudinary.v2.uploader
       .upload(localPath + req.files[0].filename)
       .then((result) => {
-        fs.unlinkSync(localPath + req.files[i].filename);
+        fs.unlinkSync("uploads/" + req.files[0].filename);
         return result.url;
       });
 
@@ -25,7 +25,7 @@ export const createTravelPackage = async (req, res) => {
       await cloudinary.v2.uploader
         .upload(localPath + req.files[i].filename)
         .then((result) => {
-          fs.unlinkSync(localPath + req.files[i].filename);
+          fs.unlinkSync("uploads/" + req.files[i].filename);
           images.push(result.url);
         });
     }
@@ -101,6 +101,69 @@ export const getRecentlyAddedTravelPackages = async (req, res) => {
       p_start_date: { $lt: new Date(req.body.date).getTime() },
     });
     res.status(200).send(recentTravelPackages);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+export const updateTravelPackage = async (req, res) => {
+  try {
+    let imagePreview = "";
+    console.log(req.files);
+    if (req.files.length > 0 && req.files[0].fieldname == "p_imagePreview") {
+      const localPath = "./uploads/";
+      imagePreview = await cloudinary.v2.uploader
+        .upload(localPath + req.files[0].filename)
+        .then((result) => {
+          fs.unlinkSync("uploads/" + req.files[0].filename);
+          return result.url;
+        });
+    }
+
+    const images = [];
+    if (req.files.length > 0 && req.files[0].fieldname == "p_images") {
+      for (let i = 1; i < req.files.length; i++) {
+        await cloudinary.v2.uploader
+          .upload(localPath + req.files[i].filename)
+          .then((result) => {
+            fs.unlinkSync("uploads/" + req.files[0].filename);
+            images.push(result.url);
+          });
+      }
+    }
+    const data = {
+      p_agency_id: req.body.p_agency_id,
+      p_name: req.body.p_name,
+      p_start_location: "Ahmedabad",
+      p_destination: req.body.p_destination,
+      p_days: req.body.p_days,
+      p_description: req.body.p_description,
+      p_price: {
+        base_price: req.body.p_price,
+        discount: (req.body.p_price * 10) / 100,
+      },
+      p_start_date: req.body.p_start_date,
+      p_imagePreview:
+        imagePreview == "" ? req.body.p_defaultImagePreview : imagePreview,
+      p_images:
+        images.length == 0 ? req.body.p_defaultImages.split(",") : images,
+
+      p_days_plan: [],
+      p_policies: {
+        cancellation: {
+          from: req.body.p_start_date,
+          to: req.body.p_refund_date,
+          description: req.body.p_refund_desc,
+        },
+      },
+      p_flight: JSON.parse(req.body.p_flight),
+      p_return_flight: JSON.parse(req.body.p_return_flight),
+      p_transport: JSON.parse(req.body.p_transport),
+      p_hotel: JSON.parse(req.body.p_hotel),
+      p_keywords: req.body.p_keywords.split(","),
+    };
+    console.log(data);
+    await travelPackageModel.findByIdAndUpdate(req.params.id, data);
+    res.status(200).send("Package updated successfully");
   } catch (error) {
     res.status(500).send(error);
   }

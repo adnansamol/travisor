@@ -1,21 +1,24 @@
 import React from "react";
-import { deleteTravelPackageByIdAPI } from "../../service/package-api";
 import CustomerRequestRow from "./CustomerRequestRow";
+import { deleteCustomerRequestAPI } from "../../service/customer-request-api";
 
 const CustomerRequestTable = ({ customerRequests }) => {
   const deleteCustomerRequest = async (id) => {
-    const response = await deleteTravelPackageByIdAPI(id);
-    alert(response);
+    if (window.confirm("Customer Request will be permanently deleted")) {
+      const response = await deleteCustomerRequestAPI(id);
+      alert(response);
+    }
   };
   return (
     <table className="table">
       <thead>
         <tr>
           <th>Sr No.</th>
+          <th>Sent At</th>
           <th>Name</th>
           <th>Email</th>
           <th>Phone</th>
-          <th>Country</th>
+          <th>Message</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -26,6 +29,7 @@ const CustomerRequestTable = ({ customerRequests }) => {
               key={index}
               customerRequest={customerRequest}
               index={index}
+              deleteCustomerRequest={deleteCustomerRequest}
             />
           ))}
       </tbody>

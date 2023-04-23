@@ -8,3 +8,13 @@ export const getCustomerRequestsAPI = async (id) => {
     console.log(error);
   }
 };
+export const deleteCustomerRequestAPI = async (id) => {
+  try {
+    const response = await axios.delete(
+      `${base_url}/deleteCustomerRequest/${id}`
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -21,6 +21,7 @@ const CustomerRequests = () => {
       localStorage.getItem("admin-token")
     );
     const response = await getCustomerRequestsAPI(_id);
+
     setCustomerRequests(response);
     setLoading(false);
   };
@@ -28,13 +29,16 @@ const CustomerRequests = () => {
     <Container>
       {loading ? (
         <Loading />
-      ) : customerRequests ? (
+      ) : customerRequests.length > 0 ? (
         <TableContainer>
           <h1>Customer Requests</h1>
           <CustomerRequestTable customerRequests={customerRequests} />
         </TableContainer>
       ) : (
-        <h1>It has been quite here for a while..</h1>
+        <>
+          <h1 align="center">It has been quite here for a while..</h1>
+          <h3 align="center">No customer requests found!</h3>
+        </>
       )}
     </Container>
   );
