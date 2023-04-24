@@ -39,6 +39,7 @@ export const createTravelPackage = async (req, res) => {
       p_price: {
         base_price: Number(req.body.p_price),
         discount: (req.body.p_price * req.body.p_discount) / 100,
+        percentage: Number(req.body.p_discount),
       },
       p_start_date: req.body.p_start_date,
       p_imagePreview: imagePreview,
@@ -117,6 +118,21 @@ export const getTravelPackagesByDestination = async (req, res) => {
     res.status(500).send(error);
   }
 };
+export const getSpecialOfferPackages = async (req, res) => {
+  try {
+    const specialOfferPackages = await travelPackageModel
+      .find({
+        "p_price.percentage": {
+          $gt: Number(req.params.discount),
+        },
+      })
+      .limit(7);
+
+    res.status(200).send(specialOfferPackages);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 export const updateTravelPackage = async (req, res) => {
   try {
     let imagePreview = "";
@@ -152,6 +168,7 @@ export const updateTravelPackage = async (req, res) => {
       p_price: {
         base_price: Number(req.body.p_price),
         discount: (req.body.p_price * req.body.p_discount) / 100,
+        percentage: Number(req.body.p_discount),
       },
       p_start_date: req.body.p_start_date,
       p_imagePreview:

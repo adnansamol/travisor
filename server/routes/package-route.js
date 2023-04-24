@@ -15,6 +15,7 @@ import {
   deleteTravelPackageById,
   getAllTravelPackages,
   getRecentlyAddedTravelPackages,
+  getSpecialOfferPackages,
   getTravelPackageById,
   getTravelPackagesByDestination,
   updateTravelPackage,
@@ -61,6 +62,10 @@ packageRouter.post(
 packageRouter.get(
   "/getTravelPackagesByDestination/:destination",
   getTravelPackagesByDestination
+);
+packageRouter.get(
+  "/getSpecialOfferPackages/:discount",
+  getSpecialOfferPackages
 );
 
 packageRouter.get("/getAllPackages/:agencyId", getAllTravelPackages);

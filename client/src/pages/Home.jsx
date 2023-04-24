@@ -6,7 +6,10 @@ import Navbar from "../components/navbar/Navbar";
 import TPackage from "../components/travel_package/TPackage";
 import TPackages from "../components/travel_package/TPackages";
 import Header from "../components/header/Header";
-import { getRecentlyAddedTravelPackagesAPI } from "../service/travel-package-api";
+import {
+  getRecentlyAddedTravelPackagesAPI,
+  getSpecialOfferPackagesAPI,
+} from "../service/travel-package-api";
 import { addDays } from "../util/date-functions";
 import TDestinations from "../components/travel_package/TDestinations";
 import { destinations } from "../constant/destinations";
@@ -14,9 +17,11 @@ import Footer from "../components/footer/Footer";
 
 const Home = () => {
   const [travelPackages, setTravelPackages] = useState([]);
+  const [specialOfferPackages, setSpecialOfferPackages] = useState([]);
 
   useEffect(() => {
     fetchRecentlyAddedTravelPackages();
+    fetchSpecialOfferPackages();
   }, []);
 
   const fetchRecentlyAddedTravelPackages = async () => {
@@ -25,6 +30,12 @@ const Home = () => {
     );
     setTravelPackages(response);
   };
+
+  const fetchSpecialOfferPackages = async () => {
+    const response = await getSpecialOfferPackagesAPI(15);
+    setSpecialOfferPackages(response);
+  };
+
   return (
     <>
       <Header scrollValue={20} />
@@ -32,9 +43,14 @@ const Home = () => {
         <Navbar />
         <Jumbotron></Jumbotron>
         <TPackages
+          title={"Special Offers"}
+          travelPackages={specialOfferPackages}
+        />
+        <TPackages
           title={"New Travel Packages"}
           travelPackages={travelPackages}
         />
+
         <TDestinations
           title={"Popular Destinations"}
           destinations={destinations}

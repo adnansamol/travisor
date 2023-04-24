@@ -42,7 +42,7 @@ const NameContainer = styled.div`
   justify-content: space-between;
 `;
 const PackageName = styled.div`
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 600;
   color: white;
 `;
@@ -220,6 +220,12 @@ const PackageDetailView = () => {
     } else {
       const data = await getTravelPackageByIdAPI(params.id);
       setTravelPackage(data);
+      data.p_images.map((image) =>
+        setImageGallery((old) => [
+          ...old,
+          { original: image, thumbnail: image },
+        ])
+      );
     }
   };
   const changeTripDate = (event) => {

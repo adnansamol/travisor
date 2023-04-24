@@ -32,7 +32,7 @@ const CopyrightText = styled.div`
   font-size: 13px;
 `;
 const SocialLinks = styled.div`
-  margin-top: 100px;
+  margin-top: 40px;
 `;
 const Footer = () => {
   return (
@@ -44,13 +44,37 @@ const Footer = () => {
       <CopyrightText>All rights reserved © 2023</CopyrightText>
 
       <SocialLinks>
-        <FaInstagramSquare size={30} />
+        <a
+          style={{ color: colors.black }}
+          href="https://www.linkedin.com/in/adnan-samol/"
+          target="blank"
+        >
+          <FaInstagramSquare size={30} />
+        </a>
         &nbsp;&nbsp;
-        <FaFacebookSquare size={30} />
+        <a
+          style={{ color: colors.black }}
+          href="https://www.linkedin.com/in/adnan-samol/"
+          target="blank"
+        >
+          <FaFacebookSquare size={30} />
+        </a>
         &nbsp;&nbsp;
-        <FaLinkedin size={30} />
+        <a
+          style={{ color: colors.black }}
+          href="https://www.linkedin.com/in/adnan-samol/"
+          target="blank"
+        >
+          <FaLinkedin size={30} />
+        </a>
         &nbsp;&nbsp;
-        <FaGithubSquare size={30} />
+        <a
+          style={{ color: colors.black }}
+          href="https://github.com/adnansamol"
+          target="blank"
+        >
+          <FaGithubSquare size={30} />
+        </a>
       </SocialLinks>
     </Container>
   );

@@ -390,6 +390,9 @@ const UpdateTravelPackageForm = ({ updateTravelPackage }) => {
                 name="p_discount"
                 className="form-control"
                 type="number"
+                min={0}
+                max={100}
+                defaultValue={travelPackage.p_price.percentage}
                 required
               />
             </div>
