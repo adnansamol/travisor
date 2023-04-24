@@ -14,12 +14,7 @@ const Container = styled.div`
   margin-top: 90px;
 `;
 const ThumbnailContainer = styled.div``;
-const Thumbnail = styled.div`
-  position: relative;
-  background-color: ${colors.teal500};
-  width: 100%;
-  height: 250px;
-`;
+
 const FilterContainer = styled.div`
   display: flex;
   align-items: center;
@@ -76,41 +71,50 @@ const Destination = () => {
   };
   const params = useParams();
 
+  const Thumbnail = styled.div`
+    position: relative;
+    background-image: url(${destinations.find(
+      (value) => value.name === params.name
+    ).banner});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 -300px;
+    width: 100%;
+    height: 250px;
+  `;
   return (
     <>
       <Header isStatic={true} />
       <Container>
+        <ThumbnailContainer>
+          <Thumbnail>
+            <FilterContainer>
+              <DestinationName>
+                {params.name} ({travelPackages.length})
+              </DestinationName>
+              <div>
+                <p style={{ margin: 2, color: "white", fontSize: 14 }}>
+                  Start Date:
+                </p>
+                <StartDateInput
+                  type="date"
+                  onChange={changeTripDate}
+                  min={getHtmlDateFormat(addDays(new Date(), 4))}
+                  max={getHtmlDateFormat(addDays(new Date(), 365))}
+                />
+              </div>
+            </FilterContainer>
+          </Thumbnail>
+        </ThumbnailContainer>
         {travelPackages.length > 0 ? (
-          <>
-            <ThumbnailContainer>
-              <Thumbnail>
-                <FilterContainer>
-                  <DestinationName>
-                    {params.name} ({travelPackages.length})
-                  </DestinationName>
-                  <div>
-                    <p style={{ margin: 2, color: "white", fontSize: 14 }}>
-                      Start Date:
-                    </p>
-                    <StartDateInput
-                      type="date"
-                      onChange={changeTripDate}
-                      min={getHtmlDateFormat(addDays(new Date(), 4))}
-                      max={getHtmlDateFormat(addDays(new Date(), 365))}
-                    />
-                  </div>
-                </FilterContainer>
-              </Thumbnail>
-            </ThumbnailContainer>
-            <TPackages
-              title={"Best deals"}
-              travelPackages={filteredTravelPackages}
-              dateFilter={dateFilter}
-            />
-          </>
+          <TPackages
+            title={"Best deals"}
+            travelPackages={filteredTravelPackages}
+            dateFilter={dateFilter}
+          />
         ) : (
-          <h1 style={{ textAlign: "center", marginTop: 150 }}>
-            No package found...
+          <h1 style={{ textAlign: "center", margin: 90 }}>
+            No packages found...
           </h1>
         )}
       </Container>

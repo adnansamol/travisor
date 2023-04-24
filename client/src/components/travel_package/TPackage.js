@@ -25,11 +25,11 @@ const SubContainer = styled.div`
   padding: 0px 10px 15px;
 `;
 const Title = styled.div`
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 600;
 `;
 const Location = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   color: ${colors.gray};
   font-weight: 500;
 `;

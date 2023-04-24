@@ -26,6 +26,7 @@ import Footer from "../components/footer/Footer";
 const Page = styled.div`
   background-color: whitesmoke;
   width: 100%;
+  margin-top: 90px;
 `;
 const Container = styled.div`
   margin: auto;
@@ -356,9 +357,12 @@ const PackageDetailView = () => {
                 Image Gallery <IoImages size={20} />
               </ImageGalleryButton>
 
-              {travelPackage.p_images.map((image) => (
-                <img src={image} alt="img" width={400} height={200} />
-              ))}
+              {travelPackage.p_images.map(
+                (image, index) =>
+                  index < 3 && (
+                    <img src={image} alt="img" width={400} height={200} />
+                  )
+              )}
             </ImagesContainer>
             <DescriptionContainer>
               {travelPackage.p_description}

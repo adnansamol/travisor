@@ -6,8 +6,9 @@ import { priceFormatter } from "../../util/formatter";
 import Card from "../card/Card";
 
 const Container = styled(Card)`
+  position: relative;
   background-color: white;
-  width: 260px;
+  width: 230px;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -18,14 +19,20 @@ const Preview = styled.div`
 `;
 const Image = styled.img`
   width: inherit;
-  height: 200px;
+  height: 340px;
 `;
 const SubContainer = styled.div`
-  padding: 0px 10px 15px;
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  padding: 10px;
+  z-index: 10;
 `;
 const Title = styled.div`
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 600;
+  color: white;
 `;
 
 const TDestination = ({ destination }) => {

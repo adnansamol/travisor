@@ -5,6 +5,7 @@ import RegisterForm from "../components/form/RegisterForm";
 import Link from "../components/ui/Link";
 import { colors } from "../constant/colors";
 import { MdKeyboardBackspace } from "react-icons/md";
+import { registerUserAPI } from "../service/user-api";
 
 const Component = styled.div`
   display: flex;
@@ -62,7 +63,8 @@ const LoginLink = styled(Link)`
 const Register = () => {
   const navigate = useNavigate();
   const registerUserHandler = async (data) => {
-    // const response = await loginUser(data);
+    const response = await registerUserAPI(data);
+    alert("Account created successfully");
     navigate("/login");
   };
 
