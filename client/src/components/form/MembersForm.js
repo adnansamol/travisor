@@ -101,12 +101,10 @@ const MembersForm = ({ setIsOpen }) => {
       if (guest.age.value > 18) adults++;
       else if (guest.age.value < 18) children++;
     }
-    const rooms = Math.abs(guests.length / 2);
-    const basePrice =
-      (travelPackage.p_price.base_price - travelPackage.p_price.discount) *
-      guests.length;
-    console.log(travelPackage.p_hotel);
-    const hotelPrice = Number(travelPackage.p_hotel.price_per_room * rooms);
+    const rooms = Math.ceil(adults / 2);
+    console.log("Rooms", rooms, travelPackage.p_hotel.price_per_room);
+    const basePrice = Number(travelPackage.p_price.base_price) * guests.length;
+    const hotelPrice = Number(travelPackage.p_hotel.price_per_room) * rooms;
     const transportPrice = travelPackage.p_transport
       ? Number(travelPackage.p_transport.price)
       : 0;
@@ -115,7 +113,7 @@ const MembersForm = ({ setIsOpen }) => {
       : 0 + travelPackage.p_flight_return
       ? Number(travelPackage.p_flight_return.price)
       : 0;
-    console.log(flightPrice, hotelPrice, transportPrice);
+
     const totalCost = basePrice + hotelPrice + transportPrice + flightPrice;
 
     setTravelPackage({

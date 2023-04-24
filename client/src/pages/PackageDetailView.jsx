@@ -366,7 +366,7 @@ const PackageDetailView = () => {
 
             <BottomContainer>
               <Sidebar
-                links={["Summary", "Policies"]}
+                links={["Itinerary", "Policies", "Summary"]}
                 id={travelPackage._id}
               ></Sidebar>
 

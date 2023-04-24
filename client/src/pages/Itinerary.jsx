@@ -247,9 +247,61 @@ const Itinerary = () => {
   return (
     travelPackage && (
       <Container>
+        <Modal
+          isOpen={openHotelModal}
+          style={customModalStyles}
+          onRequestClose={closeHotelModal}
+          shouldCloseOnOverlayClick={true}
+        >
+          <Hotels
+            setIsOpen={setOpenHotelModal}
+            destination={travelPackage.p_destination}
+          />
+        </Modal>
+        <Modal
+          isOpen={openFlightModal}
+          style={customModalStyles}
+          onRequestClose={closeFlightModal}
+          shouldCloseOnOverlayClick={true}
+        >
+          <Flights setIsOpen={setOpenFlightModal} />
+        </Modal>
+        <Modal
+          isOpen={openReturnFlightModal}
+          style={customModalStyles}
+          onRequestClose={closeReturnFlightModal}
+          shouldCloseOnOverlayClick={true}
+        >
+          <ReturnFlights
+            setIsOpen={setOpenReturnFlightModal}
+            destination={travelPackage.p_destination}
+            startDate={travelPackage.p_start_date}
+            days={travelPackage.p_days}
+          />
+        </Modal>
+        <Modal
+          isOpen={openTransportModal}
+          style={customModalStyles}
+          onRequestClose={closeTransportModal}
+          shouldCloseOnOverlayClick={true}
+        >
+          <Transports setIsOpen={setOpenTransportModal} />
+        </Modal>
         <FlightContainer>
           <TitleContainer>
             <Title>Flight</Title>
+            {travelPackage.p_flight ? (
+              <div>
+                <RemoveButton onClick={removeFlight}>REMOVE</RemoveButton>
+                <ChangeButton onClick={() => setOpenFlightModal(true)}>
+                  CHANGE
+                </ChangeButton>
+              </div>
+            ) : (
+              <AddButton onClick={() => setOpenFlightModal(true)}>
+                ADD
+              </AddButton>
+            )}
           </TitleContainer>
           {travelPackage.p_flight && (
             <>
@@ -297,6 +349,18 @@ const Itinerary = () => {
         <TransportContainer>
           <TitleContainer>
             <Title>Transport</Title>
+            {travelPackage.p_transport ? (
+              <div>
+                <RemoveButton onClick={removeTransport}>REMOVE</RemoveButton>
+                <ChangeButton onClick={() => setOpenTransportModal(true)}>
+                  CHANGE
+                </ChangeButton>
+              </div>
+            ) : (
+              <AddButton onClick={() => setOpenTransportModal(true)}>
+                ADD
+              </AddButton>
+            )}
           </TitleContainer>
           {travelPackage.p_transport && (
             <>
@@ -321,7 +385,11 @@ const Itinerary = () => {
         <HotelContainer>
           <TitleContainer>
             <Title>Check In & Stay</Title>
+            <ChangeButton onClick={() => setOpenHotelModal(true)}>
+              CHANGE
+            </ChangeButton>
           </TitleContainer>
+
           {travelPackage.p_hotel && (
             <>
               <hr />
@@ -355,6 +423,18 @@ const Itinerary = () => {
         <FlightContainer>
           <TitleContainer>
             <Title>Return Flight</Title>
+            {travelPackage.p_return_flight ? (
+              <div>
+                <RemoveButton onClick={removeReturnFlight}>REMOVE</RemoveButton>
+                <ChangeButton onClick={() => setOpenReturnFlightModal(true)}>
+                  CHANGE
+                </ChangeButton>
+              </div>
+            ) : (
+              <AddButton onClick={() => setOpenReturnFlightModal(true)}>
+                ADD
+              </AddButton>
+            )}
           </TitleContainer>
           {travelPackage.p_return_flight && (
             <>

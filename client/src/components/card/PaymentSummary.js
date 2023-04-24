@@ -47,7 +47,7 @@ const PaymentSummary = ({ onMakePaymentHandler }) => {
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
   return (
     <PaymentContainer>
-      <h3 style={{ textAlign: "center" }}>Package Summary</h3>
+      <h3 style={{ textAlign: "center" }}>Package Itinerary</h3>
       <PaymentDetails>
         <h6>Package Details</h6>
         <FieldContainer>
@@ -155,8 +155,7 @@ const PaymentSummary = ({ onMakePaymentHandler }) => {
               <Text>
                 {priceFormatter.format(
                   travelPackage.p_transport.price +
-                    travelPackage.p_hotel.price_per_room *
-                      travelPackage.p_guests.length
+                    travelPackage.p_hotel.price_per_room
                 )}
               </Text>
             </FieldContainer>

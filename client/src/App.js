@@ -8,8 +8,7 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import PackageDetailView from "./pages/PackageDetailView";
 import ProtectedRoute from "./protected-routes";
-import { useEffect, useState } from "react";
-import { getUserProfileAPI } from "./service/user-api";
+import Itinerary from "./pages/Itinerary";
 import Summary from "./pages/Summary";
 import Policies from "./pages/Policies";
 import MyBookings from "./pages/MyBookings";
@@ -17,11 +16,10 @@ import TravelHistory from "./pages/TravelHistory";
 import ProfileCard from "./components/card/ProfileCard";
 import About from "./pages/About";
 import Destination from "./pages/Destination";
-import Footer from "./components/footer/Footer";
 function App() {
   window.addEventListener("pa", () => {
     if (
-      window.location.pathname != "/package/1/summary" ||
+      window.location.pathname != "/package/1/itinerary" ||
       "/package/1/policies"
     ) {
       localStorage.removeItem("package-cache");
@@ -52,8 +50,9 @@ function App() {
         </Route>
 
         <Route path="/package/:id" element={<PackageDetailView />}>
-          <Route path="summary" element={<Summary />} />
+          <Route path="itinerary" element={<Itinerary />} />
           <Route path="policies" element={<Policies />} />
+          <Route path="summary" element={<Summary />} />
         </Route>
         <Route exact path="/success" element={<Success />} />
         <Route exact path="/cancel" element={<Cancel />} />

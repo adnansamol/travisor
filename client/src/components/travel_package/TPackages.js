@@ -32,7 +32,7 @@ const TPackages = ({ title, travelPackages, dateFilter }) => {
       <FlexContainer>
         {travelPackages &&
           travelPackages.map((travelPackage) => (
-            <PackageLink to={`/package/${travelPackage._id}/summary`}>
+            <PackageLink to={`/package/${travelPackage._id}/itinerary`}>
               <TPackage travelPackage={travelPackage} />
             </PackageLink>
           ))}
