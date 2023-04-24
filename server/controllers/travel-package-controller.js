@@ -37,8 +37,8 @@ export const createTravelPackage = async (req, res) => {
       p_days: req.body.p_days,
       p_description: req.body.p_description,
       p_price: {
-        base_price: req.body.p_price,
-        discount: (req.body.p_price * 10) / 100,
+        base_price: Number(req.body.p_price),
+        discount: (req.body.p_price * req.body.p_discount) / 100,
       },
       p_start_date: req.body.p_start_date,
       p_imagePreview: imagePreview,
@@ -138,8 +138,8 @@ export const updateTravelPackage = async (req, res) => {
       p_days: req.body.p_days,
       p_description: req.body.p_description,
       p_price: {
-        base_price: req.body.p_price,
-        discount: (req.body.p_price * 10) / 100,
+        base_price: Number(req.body.p_price),
+        discount: (req.body.p_price * req.body.p_discount) / 100,
       },
       p_start_date: req.body.p_start_date,
       p_imagePreview:

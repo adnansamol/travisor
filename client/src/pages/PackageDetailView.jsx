@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header/Header";
-import { IoClose, IoLocationSharp } from "react-icons/io5";
+import { IoClose, IoLocationSharp, IoImages } from "react-icons/io5";
 import { GoRequestChanges } from "react-icons/go";
 import { travel_packages } from "../constant/package";
+import ImageGallery from "react-image-gallery";
 import {
   getHtmlDateFormat,
   getShortDate,
@@ -20,6 +21,7 @@ import MembersForm from "../components/form/MembersForm";
 import { addDays } from "../util/date-functions";
 import { getTravelPackageByIdAPI } from "../service/travel-package-api";
 import CustomerRequestForm from "../components/form/CustomerRequestForm";
+import { useRef } from "react";
 const Page = styled.div`
   background-color: whitesmoke;
   width: 100%;
@@ -70,6 +72,13 @@ const StartLocationInput = styled.select`
   color: ${colors.gray};
   font-size: 18px;
   font-weight: 500;
+`;
+const ImageGalleryButton = styled(Button)`
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  margin: 5px;
+  border: 1px solid ${colors.gray};
 `;
 const ImagesContainer = styled.div`
   display: flex;
@@ -162,11 +171,31 @@ const requestModalCustomStyle = {
     backgroundColor: "orangered",
   },
 };
-
+const ImageGalleryWrapper = styled.div`
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.95);
+  overflow-x: hidden;
+`;
+const GalleryCloseButton = styled.div`
+  cursor: pointer;
+  z-index: 30;
+  position: absolute;
+  color: white;
+  top: 10px;
+  left: 95%;
+`;
 const PackageDetailView = () => {
   const [openBookingModal, setOpenBookingModal] = useState(false);
   const [openRequestModal, setOpenRequestModal] = useState(false);
+  const [imageGallery, setImageGallery] = useState([]);
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
+
+  const galleryWrapperRef = useRef();
+  const galleryRef = useRef();
   const params = useParams();
   useEffect(() => {
     fetchTravelPackage();
@@ -180,6 +209,12 @@ const PackageDetailView = () => {
     const cacheData = JSON.parse(localStorage.getItem("package-cache"));
     if (cacheData != null && cacheData._id === params.id) {
       setTravelPackage(cacheData);
+      cacheData.p_images.map((image) =>
+        setImageGallery((old) => [
+          ...old,
+          { original: image, thumbnail: image },
+        ])
+      );
     } else {
       const data = await getTravelPackageByIdAPI(params.id);
       setTravelPackage(data);
@@ -194,7 +229,14 @@ const PackageDetailView = () => {
 
     setTravelPackage(newStartDate);
   };
+  const changeStartLocation = (event) => {
+    const newStartLocation = {
+      ...travelPackage,
+      p_start_location: event.target.value,
+    };
 
+    setTravelPackage(newStartLocation);
+  };
   const closeBookingModal = () => {
     setOpenBookingModal(false);
   };
@@ -244,6 +286,20 @@ const PackageDetailView = () => {
         >
           <MembersForm setIsOpen={setOpenBookingModal} />
         </Modal>
+        <ImageGalleryWrapper ref={galleryWrapperRef}>
+          <GalleryCloseButton
+            onClick={() => (galleryWrapperRef.current.style.display = "none")}
+          >
+            <IoClose size={50} />
+          </GalleryCloseButton>
+          {imageGallery.length > 0 && (
+            <ImageGallery
+              showPlayButton={false}
+              ref={galleryRef}
+              items={imageGallery}
+            />
+          )}
+        </ImageGalleryWrapper>
         {travelPackage && (
           <Container>
             <NameContainer>
@@ -269,10 +325,13 @@ const PackageDetailView = () => {
               <div style={{ display: "flex", gap: 10 }}>
                 <div>
                   <p style={{ margin: 2, color: "white" }}>Start Location:</p>
-                  <StartLocationInput>
-                    <option>Ahmedabad</option>
-                    <option>New Delhi</option>
-                    <option>Mumbai</option>
+                  <StartLocationInput
+                    onChange={changeStartLocation}
+                    defaultValue={travelPackage.p_start_location}
+                  >
+                    <option value="Ahmedabad">Ahmedabad</option>
+                    <option value="New Delhi">New Delhi</option>
+                    <option value="Mumbai">Mumbai</option>
                   </StartLocationInput>
                 </div>
                 <div>
@@ -288,6 +347,14 @@ const PackageDetailView = () => {
               </div>
             </NameContainer>
             <ImagesContainer>
+              <ImageGalleryButton
+                onClick={() => {
+                  galleryWrapperRef.current.style.display = "block";
+                }}
+              >
+                Image Gallery <IoImages size={20} />
+              </ImageGalleryButton>
+
               {travelPackage.p_images.map((image) => (
                 <img src={image} alt="img" width={400} height={200} />
               ))}
@@ -305,7 +372,10 @@ const PackageDetailView = () => {
               <Outlet />
               <RightContainer>
                 <Price>
-                  {priceFormatter.format(travelPackage.p_price.base_price)}
+                  {priceFormatter.format(
+                    travelPackage.p_price.base_price -
+                      travelPackage.p_price.discount
+                  )}
                 </Price>
                 <span
                   style={{ color: colors.gray, lineHeight: 1, fontSize: 14 }}
@@ -318,16 +388,12 @@ const PackageDetailView = () => {
                   >
                     {(
                       (travelPackage.p_price.discount * 100) /
-                      (travelPackage.p_price.base_price +
-                        travelPackage.p_price.discount)
+                      travelPackage.p_price.base_price
                     ).toFixed(0)}
                     % OFF
                   </strong>
                   <strike style={{ fontSize: 18, color: colors.gray }}>
-                    {priceFormatter.format(
-                      travelPackage.p_price.base_price +
-                        travelPackage.p_price.discount
-                    )}
+                    {priceFormatter.format(travelPackage.p_price.base_price)}
                   </strike>
                 </Discount>
                 <hr />

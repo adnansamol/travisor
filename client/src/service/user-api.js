@@ -5,10 +5,11 @@ const base_url = "http://localhost:8000";
 export const loginUserAPI = async (data) => {
   try {
     const response = await axios.post(`${base_url}/user/login`, data);
-
+    localStorage.setItem("token", response.data);
     return response.data;
   } catch (error) {
     console.log(error);
+    return error.response;
   }
 };
 export const logoutUserAPI = async (data) => {

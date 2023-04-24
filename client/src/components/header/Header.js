@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Link from "../ui/Link";
 import { colors } from "../../constant/colors";
@@ -7,8 +8,9 @@ import { SiYourtraveldottv } from "react-icons/si";
 import { MdLocationCity, MdOutlineContactSupport } from "react-icons/md";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
-import { getUserProfileAPI } from "../../service/user-api";
+import { getUserProfileAPI, logoutUserAPI } from "../../service/user-api";
 import { authorizeUser } from "../../auth/Authorization";
+import Button from "../ui/Button";
 
 const Container = styled.div`
   z-index: 1;
@@ -35,6 +37,21 @@ const Login = styled(Link)`
   font-size: 20px;
   margin-right: 50px;
 `;
+
+const ProfileDropdown = styled.div`
+  overflow: clip;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  right: 50px;
+  width: fit-content;
+  border-radius: 5px;
+  background-color: white;
+  margin-top: 3px;
+  z-index: 5;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.1s linear;
+`;
 const ProfileButton = styled(Link)`
   background-color: white;
   border-radius: 5px;
@@ -43,7 +60,35 @@ const ProfileButton = styled(Link)`
   font-size: 20px;
   margin-right: 50px;
 `;
+const DropdownWrapper = styled.div`
+  & ${ProfileButton}:hover + ${ProfileDropdown} {
+    visibility: visible;
+    opacity: 100%;
+  }
+  & ${ProfileDropdown}:hover {
+    visibility: visible;
+    opacity: 100%;
+  }
+`;
 
+const DropdownLink = styled(Link)`
+  color: ${colors.black};
+`;
+
+const LogoutButton = styled(Button)`
+  color: black;
+  background-color: transparent;
+  padding: 0;
+`;
+const DropdownLinkWrapper = styled.div`
+  padding: 10px 20px;
+  &:hover {
+    background-color: ${colors.teal500};
+  }
+  &:hover > ${DropdownLink} {
+    color: white;
+  }
+`;
 const InlineNavLink = styled(Link)`
   color: rgba(0, 0, 0, 0.7);
 `;
@@ -59,6 +104,7 @@ const Header = ({ isStatic }) => {
   bgRef.current = headerTransparency;
   navRef.current = navDisplay;
 
+  const navigate = useNavigate();
   const InlineNavbar = styled.div`
     display: ${navRef.current};
     gap: 40px;
@@ -106,6 +152,13 @@ const Header = ({ isStatic }) => {
     }
   }, []); //handles the header display css
 
+  const onLogout = async () => {
+    const { u_email } = await getUserProfileAPI(localStorage.getItem("token"));
+    const response = await logoutUserAPI(u_email);
+    localStorage.removeItem("token");
+    alert(response);
+    window.location.reload();
+  };
   return (
     <Container>
       <HeaderContainer>
@@ -116,26 +169,41 @@ const Header = ({ isStatic }) => {
         {loading ? (
           <div></div>
         ) : isAuth ? (
-          <ProfileButton to="/profile/details">
-            <FaUserCircle />
-          </ProfileButton>
+          <DropdownWrapper>
+            <ProfileButton to="/profile/details">
+              <FaUserCircle />
+            </ProfileButton>
+            <ProfileDropdown>
+              <DropdownLinkWrapper>
+                <DropdownLink to="/profile/details">Profile</DropdownLink>
+              </DropdownLinkWrapper>
+              <DropdownLinkWrapper>
+                <DropdownLink to="/profile/myBookings">
+                  My Bookings
+                </DropdownLink>
+              </DropdownLinkWrapper>
+              <DropdownLinkWrapper>
+                <LogoutButton onClick={onLogout}>Logout</LogoutButton>
+              </DropdownLinkWrapper>
+            </ProfileDropdown>
+          </DropdownWrapper>
         ) : (
           <Login to="/login">Login</Login>
         )}
       </HeaderContainer>
       <InlineNavbar>
-        <InlineNavLink>
+        <InlineNavLink to={"/packages"}>
           <SiYourtraveldottv /> Packages
         </InlineNavLink>
-        <InlineNavLink>
+        <InlineNavLink to={"/destinations"}>
           <MdLocationCity />
           Destinations
         </InlineNavLink>
-        <InlineNavLink>
+        <InlineNavLink to={"/contact"}>
           <MdOutlineContactSupport />
           Contact
         </InlineNavLink>
-        <InlineNavLink>
+        <InlineNavLink to={"/about"}>
           <BsFillInfoCircleFill />
           About
         </InlineNavLink>

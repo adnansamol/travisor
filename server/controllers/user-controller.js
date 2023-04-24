@@ -34,7 +34,7 @@ export const loginUser = async (req, res) => {
       );
       res.status(200).send(token);
     } else {
-      res.status(401).send("The user does not exist.");
+      res.status(401).send("The account does not exist.");
     }
   } catch (error) {
     res.status(500).send(error);

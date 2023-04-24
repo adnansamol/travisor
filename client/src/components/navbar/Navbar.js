@@ -43,10 +43,10 @@ const Navbar = () => {
     position: absolute;
     display: ${navRef.current};
     top: 100px;
-    left: 150px;
+    left: 20%;
     background-color: white;
-    width: 80%;
-    padding: 8px 15px;
+    width: 60%;
+    padding: 8px 30px;
     font-size: 24px;
     border-radius: 10px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
@@ -61,7 +61,7 @@ const Navbar = () => {
           <NavText>Packages</NavText>
         </NavContainer>
       </NavLink>
-      <NavLink to={`/about`}>
+      <NavLink to={`/destinations`}>
         <NavContainer>
           <MdLocationCity size={iconSize} />
           <NavText>Destinations</NavText>
@@ -73,7 +73,7 @@ const Navbar = () => {
           <NavText>Contact</NavText>
         </NavContainer>
       </NavLink>
-      <NavLink to={`/contact`}>
+      <NavLink to={`/about`}>
         <NavContainer>
           <BsFillInfoCircleFill size={iconSize} />
           <NavText>About</NavText>

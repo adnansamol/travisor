@@ -385,6 +385,15 @@ const UpdateTravelPackageForm = ({ updateTravelPackage }) => {
               />
             </div>
             <div className="form-group col">
+              <label className="form-label">Discount (%)</label>
+              <input
+                name="p_discount"
+                className="form-control"
+                type="number"
+                required
+              />
+            </div>
+            <div className="form-group col">
               <label className="form-label">Start Date</label>
               <input
                 defaultValue={getHtmlDateFormat(

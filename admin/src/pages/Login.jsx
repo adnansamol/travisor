@@ -8,7 +8,11 @@ const Login = () => {
   const navigate = useNavigate();
   const loginAgency = async (data) => {
     const response = await loginAgencyAPI(data);
-    navigate("/");
+    if (response.status) {
+      alert(response.data);
+    } else {
+      navigate("/");
+    }
   };
 
   useEffect(() => {

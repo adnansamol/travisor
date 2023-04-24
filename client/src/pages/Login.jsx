@@ -48,9 +48,11 @@ const Login = () => {
   const navigate = useNavigate();
   const loginUserHandler = async (data) => {
     const response = await loginUserAPI(data);
-    console.log(response);
-    localStorage.setItem("token", response);
-    navigate(-1);
+    if (response.status) {
+      alert(response.data);
+    } else {
+      navigate(-1);
+    }
   };
 
   // useEffect(() => {

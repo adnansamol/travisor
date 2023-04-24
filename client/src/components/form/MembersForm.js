@@ -7,6 +7,7 @@ import { getUserProfileAPI } from "../../service/user-api";
 import { useNavigate } from "react-router-dom";
 import { colors } from "../../constant/colors";
 import { IoClose } from "react-icons/io5";
+import PaymentSummary from "../card/PaymentSummary";
 
 const Container = styled.div`
   width: 100%;
@@ -17,11 +18,6 @@ const GuestContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-`;
-const PaymentContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  border: 1px solid;
 `;
 
 const Form = styled.form`
@@ -67,7 +63,7 @@ const CloseButton = styled.div`
   cursor: pointer;
   margin: 0 0 10px 5px;
 `;
-const PaymentButton = styled(Button)``;
+
 const MembersForm = ({ setIsOpen }) => {
   const navigate = useNavigate();
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
@@ -146,11 +142,7 @@ const MembersForm = ({ setIsOpen }) => {
         </GuestContainer>
       )}
       {togglePayment && (
-        <PaymentContainer>
-          <PaymentButton onClick={onMakePaymentHandler}>
-            Make Payment
-          </PaymentButton>
-        </PaymentContainer>
+        <PaymentSummary onMakePaymentHandler={onMakePaymentHandler} />
       )}
     </Container>
   );

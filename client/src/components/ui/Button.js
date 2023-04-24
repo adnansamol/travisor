@@ -5,8 +5,7 @@ const Component = styled.button`
   padding: 8px 16px;
   border-radius: 5px;
   border: none;
-  font-size: 20px;
-  padding: 12px 25px;
+  font-size: 16px;
   cursor: pointer;
 
   &:hover {
