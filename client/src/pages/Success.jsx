@@ -23,7 +23,20 @@ const Success = () => {
     };
     book();
   }, []);
-  return loading ? <Loading /> : <h1>Package Booked Successfully</h1>;
+  return loading ? (
+    <>
+      <Loading />
+      <br />
+      <h6>We are processing your booking. Do not close the tab.</h6>
+    </>
+  ) : (
+    <>
+      <h1 style={{ textAlign: "center", marginTop: 50 }}>
+        Package Booked Successfully
+      </h1>
+      <h6>You may close the tab now.</h6>
+    </>
+  );
 };
 
 export default Success;

@@ -28,7 +28,7 @@ export const getShortDate = (date) => {
   if (typeof date == "string" || "object") date = new Date(date);
 
   const day = date.getDate();
-  const month = months[date.getMonth() - 1];
+  const month = months[date.getMonth()];
   const year = date.getFullYear();
 
   return day + " " + month + " " + year;
@@ -44,9 +44,9 @@ export const getShortTime = (time) => {
 
 export const getHtmlDateFormat = (date) => {
   if (typeof date == "string") date = new Date(date);
-
   const year = date.getFullYear();
-  const month = date.getMonth() > 10 ? date.getMonth() : "0" + date.getMonth();
+  const month =
+    date.getMonth() > 10 ? date.getMonth() + 1 : "0" + (date.getMonth() + 1);
   const day = date.getDate() > 10 ? date.getDate() : "0" + date.getDate();
 
   console.log(year + "-" + month + "-" + day);

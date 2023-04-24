@@ -123,7 +123,7 @@ const BookingButton = styled(Button)`
   padding: 8px 15px;
 `;
 
-const customModalStyles = {
+const customMembersModalStyles = {
   overlay: {
     position: "fixed",
     top: 0,
@@ -133,10 +133,10 @@ const customModalStyles = {
     backgroundColor: "rgba(0, 0, 0, 0.75)",
   },
   content: {
-    top: "9rem",
+    top: "6.5rem",
     width: "60%",
     left: "20%",
-    height: "29rem",
+    height: "32rem",
   },
 };
 const CustomerRequestButton = styled.div`
@@ -280,7 +280,7 @@ const PackageDetailView = () => {
         </Modal>
         <Modal
           isOpen={openBookingModal}
-          style={customModalStyles}
+          style={customMembersModalStyles}
           onRequestClose={closeBookingModal}
           shouldCloseOnOverlayClick={true}
         >

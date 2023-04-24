@@ -1,4 +1,5 @@
 import React from "react";
+import { IoLocationSharp } from "react-icons/io5";
 import styled from "styled-components";
 import { colors } from "../../constant/colors";
 // import { travel_package } from "../../constant/package";
@@ -29,6 +30,8 @@ const Title = styled.div`
 `;
 const Location = styled.div`
   font-size: 18px;
+  color: ${colors.gray};
+  font-weight: 500;
 `;
 const Details = styled.div`
   margin-top: 20px;
@@ -43,6 +46,7 @@ const Days = styled.div`
   font-weight: 600;
   font-size: 20px;
   background-color: ${colors.teal500};
+  border-radius: 5px;
 `;
 const PriceContainer = styled.div`
   text-align: right;
@@ -65,11 +69,12 @@ const TPackage = ({ travelPackage }) => {
         <SubContainer>
           <Title>{travelPackage.p_name}</Title>
           <Location>
-            Destination: <strong>{travelPackage.p_destination}</strong>
+            <IoLocationSharp />
+            {travelPackage.p_destination}
           </Location>
           <Details>
             <Days>
-              {travelPackage.p_days}N/{travelPackage.p_days + 1}D
+              {travelPackage.p_days - 1}N/{travelPackage.p_days}D
             </Days>
             <PriceContainer>
               package starts at:

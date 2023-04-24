@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { addDays } from "../../util/date-functions";
 import Link from "../ui/Link";
-import TPackage from "./TPackage";
-import { travel_packages } from "../../constant/package";
-import { getRecentlyAddedTravelPackagesAPI } from "../../service/travel-package-api";
 import { colors } from "../../constant/colors";
+import TDestination from "./TDestination";
 
 const Container = styled.div`
   margin: auto;
@@ -23,22 +20,25 @@ const Title = styled.div`
   padding-bottom: 15px;
   margin-bottom: 20px;
 `;
-const PackageLink = styled(Link)``;
+const DestinationLink = styled(Link)``;
 
-const TPackages = ({ title, travelPackages, dateFilter }) => {
+const TDestinations = ({ title, destinations }) => {
   return (
     <Container>
       <Title>{title}</Title>
       <FlexContainer>
-        {travelPackages &&
-          travelPackages.map((travelPackage) => (
-            <PackageLink to={`/package/${travelPackage._id}/summary`}>
-              <TPackage travelPackage={travelPackage} />
-            </PackageLink>
-          ))}
+        {destinations &&
+          destinations.map(
+            (destination, index) =>
+              index < 7 && (
+                <DestinationLink to={`/destination/${destination.name}`}>
+                  <TDestination destination={destination} />
+                </DestinationLink>
+              )
+          )}
       </FlexContainer>
     </Container>
   );
 };
 
-export default TPackages;
+export default TDestinations;

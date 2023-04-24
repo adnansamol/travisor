@@ -13,7 +13,7 @@ const booked_package = mongoose.Schema({
   p_end_date: Date,
   p_imagePreview: String,
   p_images: Array,
-  p_rooms: Array,
+  p_rooms: Number,
   p_adults: Number,
   p_children: Number,
   p_transport: Schema.Types.Mixed,

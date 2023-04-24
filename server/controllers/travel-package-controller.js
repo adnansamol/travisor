@@ -97,10 +97,22 @@ export const deleteTravelPackageById = async (req, res) => {
 
 export const getRecentlyAddedTravelPackages = async (req, res) => {
   try {
-    const recentTravelPackages = await travelPackageModel.find({
-      p_start_date: { $lt: new Date(req.body.date).getTime() },
-    });
+    const recentTravelPackages = await travelPackageModel
+      .find({
+        p_start_date: { $lt: new Date(req.body.date).getTime() },
+      })
+      .limit(7);
     res.status(200).send(recentTravelPackages);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+export const getTravelPackagesByDestination = async (req, res) => {
+  try {
+    const travelPackagesByDestination = await travelPackageModel.find({
+      p_destination: req.params.destination,
+    });
+    res.status(200).send(travelPackagesByDestination);
   } catch (error) {
     res.status(500).send(error);
   }

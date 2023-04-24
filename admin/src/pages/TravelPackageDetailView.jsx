@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { getTravelPackageByIdAPI } from "../service/package-api";
 import { addDays } from "../util/date-functions";
 import { MdLocalAirport } from "react-icons/md";
+import { getShortDate } from "../util/formatter";
 const Container = styled.div``;
 const DetailsContainer = styled.div`
   width: 60%;
@@ -46,6 +47,7 @@ const TravelPackageDetailView = () => {
                 <th>Name</th>
                 <th>Destination</th>
                 <th>Days</th>
+                <th>Start Date</th>
                 <th>Price</th>
                 <th>Discount</th>
               </tr>
@@ -55,6 +57,7 @@ const TravelPackageDetailView = () => {
                 <td>{travelPackage.p_name}</td>
                 <td>{travelPackage.p_destination}</td>
                 <td>{travelPackage.p_days}</td>
+                <td>{getShortDate(travelPackage.p_start_date)}</td>
                 <td>{travelPackage.p_price.base_price}</td>
                 <td>{travelPackage.p_price.discount}</td>
               </tr>

@@ -16,6 +16,8 @@ import MyBookings from "./pages/MyBookings";
 import TravelHistory from "./pages/TravelHistory";
 import ProfileCard from "./components/card/ProfileCard";
 import About from "./pages/About";
+import Destination from "./pages/Destination";
+import Footer from "./components/footer/Footer";
 function App() {
   window.addEventListener("pa", () => {
     if (
@@ -31,6 +33,7 @@ function App() {
       <Routes>
         <Route path="*" element={<div>404</div>} />
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/destination/:name" element={<Destination />} />
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/about" element={<About />} />
 
@@ -57,8 +60,6 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
       </Routes>
-
-      {/* <Footer /> */}
     </>
   );
 }

@@ -15,9 +15,11 @@ const Container = styled.div`
 `;
 const GuestContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 80%;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  padding-bottom: 20px;
 `;
 
 const Form = styled.form`
@@ -47,9 +49,14 @@ const AddMember = styled(Button)`
   background-color: ${colors.dodgerblue};
   color: white;
 `;
-const ProceedButton = styled(Button)`
-  margin-left: calc(100% - 120px);
-  margin-top: 20%;
+const ButtonContainer = styled.div`
+  background-color: white;
+  border-top: 1px solid;
+  width: 100%;
+  text-align: right;
+`;
+const ContinueButton = styled(Button)`
+  margin-top: 10px;
   background-color: ${colors.teal500};
 `;
 
@@ -111,35 +118,38 @@ const MembersForm = ({ setIsOpen }) => {
         <IoClose size={24} />
       </CloseButton>
       {!togglePayment && (
-        <GuestContainer>
-          <AddMember onClick={() => setGuestCount((old) => old + 1)}>
-            Add Guest
-          </AddMember>
-
-          {[...Array(guestCount)].map((_, i) => (
-            <>
-              <Form name="guest" id={i}>
-                <InputContainer>
-                  <h4>New Guest</h4>
-                  <FormLabel>Full name</FormLabel>
-                  <FormInput name="fullName" />
-                </InputContainer>
-                <InputContainer>
-                  <FormLabel>Age</FormLabel>
-                  <FormInput type="number" name="age" />
-                </InputContainer>
-                <RemoveMember
-                  type="button"
-                  onClick={() => removeGuestHandler(i)}
-                >
-                  Remove
-                </RemoveMember>
-              </Form>
-            </>
-          ))}
-
-          <ProceedButton onClick={onProceedHandler}>Proceed</ProceedButton>
-        </GuestContainer>
+        <>
+          {" "}
+          <GuestContainer>
+            <AddMember onClick={() => setGuestCount((old) => old + 1)}>
+              Add Guest
+            </AddMember>
+            {[...Array(guestCount)].map((_, i) => (
+              <>
+                <Form name="guest" id={i}>
+                  <InputContainer>
+                    <h4>New Guest</h4>
+                    <FormLabel>Full name</FormLabel>
+                    <FormInput name="fullName" />
+                  </InputContainer>
+                  <InputContainer>
+                    <FormLabel>Age</FormLabel>
+                    <FormInput type="number" name="age" />
+                  </InputContainer>
+                  <RemoveMember
+                    type="button"
+                    onClick={() => removeGuestHandler(i)}
+                  >
+                    Remove
+                  </RemoveMember>
+                </Form>
+              </>
+            ))}
+          </GuestContainer>
+          <ButtonContainer>
+            <ContinueButton onClick={onProceedHandler}>Continue</ContinueButton>
+          </ButtonContainer>
+        </>
       )}
       {togglePayment && (
         <PaymentSummary onMakePaymentHandler={onMakePaymentHandler} />

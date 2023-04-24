@@ -1,0 +1,18 @@
+export const destinations = [
+  { name: "Goa", image: "" },
+  { name: "Kashmir", image: "" },
+  { name: "Rajasthan", image: "" },
+  { name: "Udaipur", image: "" },
+  { name: "Darjeeling", image: "" },
+  { name: "Manali", image: "" },
+  { name: "Mauritius", image: "" },
+  { name: "Italy", image: "" },
+  { name: "Thailand", image: "" },
+  { name: "Singapore", image: "" },
+  { name: "Maldives", image: "" },
+  { name: "Switzerland", image: "" },
+  { name: "Dubai", image: "" },
+  { name: "Jordan", image: "" },
+  { name: "USA", image: "" },
+  { name: "Greece", image: "" },
+];
