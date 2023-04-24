@@ -5,6 +5,7 @@ import { colors } from "../../constant/colors";
 import { SiYourtraveldottv } from "react-icons/si";
 import { MdLocationCity, MdOutlineContactSupport } from "react-icons/md";
 import { BsFillInfoCircleFill } from "react-icons/bs";
+import { destinations } from "../../constant/destinations";
 
 const NavContainer = styled.div`
   text-align: center;
@@ -12,8 +13,39 @@ const NavContainer = styled.div`
 const NavText = styled.div`
   font-size: 15px;
 `;
+const DestinationDropdown = styled.div`
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  flex-wrap: wrap;
+  height: 300px;
+  gap: 5px;
+  column-gap: 20px;
+  opacity: 0;
+  position: absolute;
+  width: 23%;
+  border-radius: 5px;
+  background-color: white;
+  margin-top: 2px;
+  margin-right: 20px;
+  z-index: 5;
+  font-size: 14px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.1s linear;
+
+  &:hover {
+    visibility: visible;
+    opacity: 100%;
+  }
+`;
 const NavLink = styled(Link)`
   color: ${colors.black};
+
+  & ${NavContainer}:hover + ${DestinationDropdown} {
+    visibility: visible;
+    opacity: 100%;
+  }
 `;
 
 const Navbar = () => {
@@ -61,11 +93,18 @@ const Navbar = () => {
           <NavText>Packages</NavText>
         </NavContainer>
       </NavLink>
-      <NavLink to={`/destinations`}>
+      <NavLink>
         <NavContainer>
-          <MdLocationCity size={iconSize} />
+          <SiYourtraveldottv size={iconSize} />
           <NavText>Destinations</NavText>
         </NavContainer>
+        <DestinationDropdown>
+          {destinations.map((destination) => (
+            <NavLink to={"/destination/" + destination.name}>
+              {destination.name}
+            </NavLink>
+          ))}
+        </DestinationDropdown>
       </NavLink>
       <NavLink to={`/contact`}>
         <NavContainer>

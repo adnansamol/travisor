@@ -17,7 +17,7 @@ export const createBookingPackage = async (req, res) => {
     res.status(200).send({
       _id: bookedPackage._id,
       agencyId: bookedPackage.p_agency_id,
-      price: bookedPackage.p_price.base_price,
+      price: bookedPackage.p_total_cost,
     });
   } catch (error) {
     res.status(500).send(error);

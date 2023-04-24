@@ -11,6 +11,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { getUserProfileAPI, logoutUserAPI } from "../../service/user-api";
 import { authorizeUser } from "../../auth/Authorization";
 import Button from "../ui/Button";
+import { destinations } from "../../constant/destinations";
 
 const Container = styled.div`
   z-index: 1;
@@ -28,6 +29,10 @@ const Logo = styled(Link)`
   font-size: 35px;
   font-weight: 600;
   font-family: "Alatsi", sans-serif;
+
+  &:hover {
+    color: white;
+  }
 `;
 const Login = styled(Link)`
   background-color: white;
@@ -91,6 +96,37 @@ const DropdownLinkWrapper = styled.div`
 `;
 const InlineNavLink = styled(Link)`
   color: rgba(0, 0, 0, 0.7);
+`;
+const DestinationDropdown = styled.div`
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  flex-wrap: wrap;
+  height: 300px;
+  gap: 5px;
+  column-gap: 20px;
+  opacity: 0;
+  position: absolute;
+  width: 15%;
+  border-radius: 5px;
+  background-color: white;
+  margin-right: 20px;
+  z-index: 5;
+  font-size: 14px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.1s linear;
+
+  &:hover {
+    visibility: visible;
+    opacity: 100%;
+  }
+`;
+const DestinationWrapper = styled.div`
+  & ${InlineNavLink}:hover + ${DestinationDropdown} {
+    visibility: visible;
+    opacity: 100%;
+  }
 `;
 
 const Header = ({ isStatic }) => {
@@ -195,10 +231,19 @@ const Header = ({ isStatic }) => {
         <InlineNavLink to={"/packages"}>
           <SiYourtraveldottv /> Packages
         </InlineNavLink>
-        <InlineNavLink to={"/destinations"}>
-          <MdLocationCity />
-          Destinations
-        </InlineNavLink>
+        <DestinationWrapper>
+          <InlineNavLink to={"/destinations"}>
+            <MdLocationCity />
+            Destinations
+          </InlineNavLink>
+          <DestinationDropdown>
+            {destinations.map((destination) => (
+              <InlineNavLink to={"/destination/" + destination.name}>
+                {destination.name}
+              </InlineNavLink>
+            ))}
+          </DestinationDropdown>
+        </DestinationWrapper>
         <InlineNavLink to={"/contact"}>
           <MdOutlineContactSupport />
           Contact

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { colors } from "../../constant/colors";
 import { PackageContext } from "../../context/package-context";
-import { getShortDate } from "../../util/formatter";
+import { getShortDate, priceFormatter } from "../../util/formatter";
 import Button from "../ui/Button";
 
 const PaymentContainer = styled.div`
@@ -15,10 +15,13 @@ const PaymentDetails = styled.div`
   overflow-y: scroll;
 `;
 const PaymentButtonContainer = styled.div`
+  display: flex;
   background-color: white;
   border-top: 1px solid;
   width: 100%;
-  text-align: right;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 15px;
 `;
 const FieldContainer = styled.div`
   display: flex;
@@ -31,9 +34,12 @@ const Label = styled.div`
 const Text = styled.div`
   text-align: left;
 `;
-
+const TotalCost = styled.div`
+  font-size: 20px;
+  font-weight: 500;
+  color: ${colors.black};
+`;
 const PaymentButton = styled(Button)`
-  margin-top: 15px;
   background-color: ${colors.dodgerblue};
   color: white;
 `;
@@ -79,6 +85,45 @@ const PaymentSummary = ({ onMakePaymentHandler }) => {
             <FieldContainer>
               <Label>Class: </Label>
               <Text>{travelPackage.p_flight.stops[0].planeClass}</Text>
+            </FieldContainer>{" "}
+            <FieldContainer>
+              <Label>Cost: </Label>
+              <Text>
+                {priceFormatter.format(
+                  travelPackage.p_flight.price * travelPackage.p_guests.length
+                )}
+              </Text>
+            </FieldContainer>
+          </>
+        )}
+        {travelPackage.p_return_flight && (
+          <>
+            <hr />
+            <h6>
+              Return Flight - {travelPackage.p_return_flight.stops[0].airline}
+            </h6>
+            <FieldContainer>
+              <Label>Departure: </Label>
+              <Text>
+                {travelPackage.p_return_flight.stops[0].departure_time}
+              </Text>
+            </FieldContainer>
+            <FieldContainer>
+              <Label>Arrival: </Label>
+              <Text>{travelPackage.p_return_flight.stops[0].arrival_time}</Text>
+            </FieldContainer>
+            <FieldContainer>
+              <Label>Class: </Label>
+              <Text>{travelPackage.p_return_flight.stops[0].planeClass}</Text>
+            </FieldContainer>
+            <FieldContainer>
+              <Label>Cost: </Label>
+              <Text>
+                {priceFormatter.format(
+                  travelPackage.p_return_flight.price *
+                    travelPackage.p_guests.length
+                )}
+              </Text>
             </FieldContainer>
           </>
         )}
@@ -99,9 +144,21 @@ const PaymentSummary = ({ onMakePaymentHandler }) => {
               <Label>Room Type: </Label>
               <Text>{travelPackage.p_hotel.type}</Text>
             </FieldContainer>
+            {travelPackage.p_transport && (
+              <FieldContainer>
+                <Label>Transport: </Label>
+                <Text>{travelPackage.p_transport.vehicle}</Text>
+              </FieldContainer>
+            )}
             <FieldContainer>
-              <Label>Transport: </Label>
-              <Text>{travelPackage.p_transport.vehicle}</Text>
+              <Label>Cost: </Label>
+              <Text>
+                {priceFormatter.format(
+                  travelPackage.p_transport.price +
+                    travelPackage.p_hotel.price_per_room *
+                      travelPackage.p_guests.length
+                )}
+              </Text>
             </FieldContainer>
           </>
         )}
@@ -113,8 +170,12 @@ const PaymentSummary = ({ onMakePaymentHandler }) => {
             <Text>{guest.name + " (" + guest.age + " yrs)"}</Text>
           </FieldContainer>
         ))}
+        <br />
       </PaymentDetails>
       <PaymentButtonContainer>
+        <TotalCost>
+          Total Cost: {priceFormatter.format(travelPackage.p_total_cost)}
+        </TotalCost>
         <PaymentButton onClick={onMakePaymentHandler}>
           Proceed to Payment
         </PaymentButton>

@@ -9,4 +9,5 @@ export const colors = {
   crimson: "crimson",
   dodgerblue: "dodgerblue",
   green: "seagreen",
+  orange: "#ffc400",
 };

@@ -23,6 +23,9 @@ const Logo = styled(Link)`
   font-size: 35px;
   font-weight: 600;
   font-family: "Alatsi", sans-serif;
+  &:hover {
+    color: ${colors.black};
+  }
 `;
 const CopyrightText = styled.div`
   color: gray;

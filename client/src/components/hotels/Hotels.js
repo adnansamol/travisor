@@ -126,16 +126,19 @@ const Hotel = ({ hotel, close }) => {
   const roomRef = useRef();
   const dineRef = useRef();
   const selectHotel = () => {
-    console.log("dineref", dineRef.current.value);
     const newHotel = {
       name: hotel.name,
       address: hotel.address,
       images: hotel.images,
       dineIncluded: dineRef.current.checked,
       type: roomRef.current.value,
+      price_per_room: hotel.price_per_room,
     };
 
-    setTravelPackage({ ...travelPackage, p_hotel: newHotel });
+    setTravelPackage({
+      ...travelPackage,
+      p_hotel: newHotel,
+    });
     close(false);
   };
 

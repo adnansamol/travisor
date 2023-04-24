@@ -128,10 +128,18 @@ const HotelRoomType = styled.div`
   font-weight: 500;
   margin-bottom: 5px;
 `;
-const HotelDineContainer = styled.ul``;
+const HotelDineContainer = styled.ul`
+  background: linear-gradient(to right, orangered, ${colors.orange});
+  border-radius: 5px;
+  color: white;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  width: 65%;
+`;
+
 const HotelDine = styled.li`
   font-size: 13px;
 `;
+
 const HotelImage = styled.img`
   width: 200px;
   height: 180px;
@@ -300,7 +308,9 @@ const Summary = () => {
               <hr />
               {travelPackage.p_flight.stops.map((stop) => (
                 <>
-                  <Plane>{stop.plane}</Plane>
+                  <Plane>
+                    {stop.airline} | {stop.plane}
+                  </Plane>
                   <FlightTimeContainer>
                     <FlightDeparture>
                       <FlightTime>{stop.departure_time}</FlightTime>

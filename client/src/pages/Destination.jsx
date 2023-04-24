@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import Footer from "../components/footer/Footer";
 import Header from "../components/header/Header";
 import TPackages from "../components/travel_package/TPackages";
 import { colors } from "../constant/colors";
@@ -113,6 +114,7 @@ const Destination = () => {
           </h1>
         )}
       </Container>
+      <Footer />
     </>
   );
 };

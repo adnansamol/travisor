@@ -85,6 +85,9 @@ const MembersForm = ({ setIsOpen }) => {
   const onProceedHandler = () => {
     const guestList = document.getElementsByName("guest");
     let guests = [];
+    let adults = 0;
+    let children = 0;
+
     for (let guest of guestList) {
       if (
         guest.fullName.value.trim() == "" ||
@@ -95,8 +98,34 @@ const MembersForm = ({ setIsOpen }) => {
         return alert("Please fill all the valid details of the guest");
       }
       guests.push({ name: guest.fullName.value, age: guest.age.value });
+      if (guest.age.value > 18) adults++;
+      else if (guest.age.value < 18) children++;
     }
-    setTravelPackage({ ...travelPackage, p_guests: guests });
+    const rooms = Math.abs(guests.length / 2);
+    const basePrice =
+      (travelPackage.p_price.base_price - travelPackage.p_price.discount) *
+      guests.length;
+    console.log(travelPackage.p_hotel);
+    const hotelPrice = Number(travelPackage.p_hotel.price_per_room * rooms);
+    const transportPrice = travelPackage.p_transport
+      ? Number(travelPackage.p_transport.price)
+      : 0;
+    const flightPrice = travelPackage.p_flight
+      ? Number(travelPackage.p_flight.price)
+      : 0 + travelPackage.p_flight_return
+      ? Number(travelPackage.p_flight_return.price)
+      : 0;
+    console.log(flightPrice, hotelPrice, transportPrice);
+    const totalCost = basePrice + hotelPrice + transportPrice + flightPrice;
+
+    setTravelPackage({
+      ...travelPackage,
+      p_guests: guests,
+      p_adults: adults,
+      p_children: children,
+      p_rooms: rooms,
+      p_total_cost: totalCost,
+    });
     setTogglePayment(true);
   };
 

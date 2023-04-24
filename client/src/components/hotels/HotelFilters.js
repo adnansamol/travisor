@@ -125,9 +125,9 @@ const HotelFilters = ({ appliedFilters, setAppliedFilters }) => {
             onChange={onFacilitiesChange}
             name="facilities"
             type="checkbox"
-            value="Free parking"
+            value="Solar Equipments"
           />
-          Free High Speed Internet (WiFi)
+          Solar Equipments
           <FilterCheckbox
             onChange={onFacilitiesChange}
             name="facilities"

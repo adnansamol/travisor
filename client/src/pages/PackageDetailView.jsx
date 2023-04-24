@@ -22,15 +22,16 @@ import { addDays } from "../util/date-functions";
 import { getTravelPackageByIdAPI } from "../service/travel-package-api";
 import CustomerRequestForm from "../components/form/CustomerRequestForm";
 import { useRef } from "react";
+import Footer from "../components/footer/Footer";
 const Page = styled.div`
   background-color: whitesmoke;
   width: 100%;
-  margin-top: 90px;
 `;
 const Container = styled.div`
   margin: auto;
   background-color: whitesmoke;
   width: 75%;
+  padding-bottom: 50px;
 `;
 const NameContainer = styled.div`
   background-color: ${colors.black};
@@ -405,6 +406,7 @@ const PackageDetailView = () => {
           </Container>
         )}
       </Page>
+      <Footer />
     </>
   );
 };
