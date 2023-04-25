@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { IoIosAirplane } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
-import { MdFlightClass, MdFlightLand } from "react-icons/md";
+import { MdFlightClass, MdAirplaneTicket } from "react-icons/md";
 import styled from "styled-components";
 import { colors } from "../../constant/colors";
 import { flights } from "../../constant/flights";
 import { addDays } from "../../util/date-functions";
 // import { getFlightsAPI } from "../../service/flight-api";
-import { getShortDate } from "../../util/formatter";
+import { getShortDate, priceFormatter } from "../../util/formatter";
 import { PackageContext } from "../../context/package-context";
+import Button from "../ui/Button";
 
 const FlightContainer = styled.div`
   background-color: white;
@@ -73,12 +74,19 @@ const CloseButton = styled.div`
   cursor: pointer;
   margin: 0 0 10px 5px;
 `;
-const SelectButton = styled.button`
+const SelectButton = styled(Button)`
   background-color: ${colors.dodgerblue};
   color: white;
   padding: 5px 20px;
 `;
-
+const SelectedLabel = styled.div`
+  background-color: orangered;
+  color: white;
+  width: fit-content;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 50px;
+`;
 const ReturnFlights = ({
   startDate,
   days,
@@ -153,6 +161,9 @@ const Flight = ({
   };
   return (
     <FlightContainer>
+      {travelPackage.p_return_flight &&
+        travelPackage.p_return_flight.stops[0].plane ==
+          flight.stops[0].plane && <SelectedLabel>SELECTED</SelectedLabel>}
       <div style={{ margin: "auto" }}>
         <Airline>{flight.stops[0].airline}</Airline>
         <Plane>{flight.stops[0].plane}</Plane>
@@ -191,10 +202,8 @@ const Flight = ({
             </select>
           </FlightClass>
           <p>
-            <MdFlightLand size={24} title="Flight Time" />:{" "}
-            {nonStop
-              ? flight.stops[0].departure_time - flight.stops[0].arrival_time
-              : flight.stops[1].departure_time - flight.stops[1].arrival_time}
+            <MdAirplaneTicket size={24} title="Flight Time" />:{" "}
+            {priceFormatter.format(flight.price)}
           </p>
         </FlightTypeContainer>
       </div>

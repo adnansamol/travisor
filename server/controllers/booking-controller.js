@@ -90,3 +90,14 @@ export const cancelBooking = async (req, res) => {
     res.status(500).send(error);
   }
 };
+export const getTravelHistoryByUserId = async (req, res) => {
+  try {
+    const travelHistory = await bookingModel.find({
+      b_booked_user_id: req.params.id,
+      b_booking_status: "completed",
+    });
+    res.status(200).send(travelHistory);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};

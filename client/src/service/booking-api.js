@@ -51,3 +51,11 @@ export const getBookedPackageByIdAPI = async (id) => {
     console.log(error);
   }
 };
+export const getTravelHistoryByUserIdAPI = async (id) => {
+  try {
+    const response = await axios.get(`${base_url}/getTravelHistory/${id}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

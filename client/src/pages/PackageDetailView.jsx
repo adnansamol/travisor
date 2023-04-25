@@ -31,7 +31,7 @@ const Page = styled.div`
 const Container = styled.div`
   margin: auto;
   background-color: whitesmoke;
-  width: 75%;
+  width: 80%;
   padding-bottom: 50px;
 `;
 const NameContainer = styled.div`
@@ -99,15 +99,15 @@ const DescriptionContainer = styled.div`
 `;
 const BottomContainer = styled.div`
   display: flex;
-  gap: 15px;
+  gap: 25px;
 `;
 
 const RightContainer = styled.div`
   width: 400px;
   height: fit-content;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 10px 15px;
-  border-radius: 10px;
   background-color: white;
   text-align: right;
 `;

@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../constant/colors";
 import { FaCar } from "react-icons/fa";
-import { MdFlightClass, MdFlightLand } from "react-icons/md";
+import { MdFlightClass, MdAirplaneTicket } from "react-icons/md";
 import { IoIosAirplane } from "react-icons/io";
 import { travel_package } from "../constant/package";
-import { getShortDate, getShortTime } from "../util/formatter";
+import { getShortDate, getShortTime, priceFormatter } from "../util/formatter";
 import { IoLocationSharp } from "react-icons/io5";
 import { PackageContext } from "../context/package-context";
 import Modal from "react-modal";
@@ -19,7 +19,7 @@ import ReturnFlights from "../components/flights/ReturnFlights";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
   width: 100%;
 `;
 const TitleContainer = styled.div`
@@ -34,8 +34,8 @@ const Title = styled.div`
 const FlightContainer = styled.div`
   background-color: white;
   width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 10px 15px;
   margin: auto;
 `;
@@ -85,8 +85,8 @@ const FlightClass = styled.div``;
 
 const TransportContainer = styled.div`
   background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 10px 15px;
 `;
 const TransportVehicle = styled.div`
@@ -105,8 +105,8 @@ const VehicleSeats = styled.div`
 `;
 const HotelContainer = styled.div`
   background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 10px 15px;
 `;
 const HotelDetails = styled.div`
@@ -366,8 +366,8 @@ const Itinerary = () => {
                       {stop.planeClass}
                     </FlightClass>
                     <p>
-                      <MdFlightLand size={24} title="Flight Time" />:{" "}
-                      {stop.time}
+                      <MdAirplaneTicket size={24} title="Ticket Price" />:{" "}
+                      {priceFormatter.format(travelPackage.p_flight.price)}
                     </p>
                   </FlightTypeContainer>
                 </>
@@ -507,8 +507,8 @@ const Itinerary = () => {
                       {stop.planeClass}
                     </FlightClass>
                     <p>
-                      <MdFlightLand size={24} title="Flight Time" />:{" "}
-                      {stop.time}
+                      <MdAirplaneTicket size={24} title="Ticket Price" />:{" "}
+                      {priceFormatter.format(travelPackage.p_flight.price)}
                     </p>
                   </FlightTypeContainer>
                 </>

@@ -7,6 +7,7 @@ import {
   getBookingByPackageId,
   getBookingByUserId,
   getCancelledBookingByAgencyId,
+  getTravelHistoryByUserId,
 } from "../controllers/booking-controller.js";
 import { makePayment } from "../controllers/payment-controller.js";
 import { createBookingPackage } from "../controllers/booked-package-controller.js";
@@ -67,6 +68,7 @@ packageRouter.get(
   "/getSpecialOfferPackages/:discount",
   getSpecialOfferPackages
 );
+packageRouter.get("/getTravelHistory/:id", getTravelHistoryByUserId);
 
 packageRouter.get("/getAllPackages/:agencyId", getAllTravelPackages);
 packageRouter.get("/getTravelPackage/:id", getTravelPackageById);

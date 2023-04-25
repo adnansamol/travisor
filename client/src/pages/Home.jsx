@@ -14,12 +14,16 @@ import { addDays } from "../util/date-functions";
 import TDestinations from "../components/travel_package/TDestinations";
 import { destinations } from "../constant/destinations";
 import Footer from "../components/footer/Footer";
+import { getTravelHistoryByUserIdAPI } from "../service/booking-api";
+import { getUserProfileAPI } from "../service/user-api";
 
 const Home = () => {
   const [travelPackages, setTravelPackages] = useState([]);
+  const [travelHistory, setTravelHistory] = useState([]);
   const [specialOfferPackages, setSpecialOfferPackages] = useState([]);
 
   useEffect(() => {
+    fetchUserTravelHistory();
     fetchRecentlyAddedTravelPackages();
     fetchSpecialOfferPackages();
   }, []);
@@ -34,6 +38,12 @@ const Home = () => {
   const fetchSpecialOfferPackages = async () => {
     const response = await getSpecialOfferPackagesAPI(15);
     setSpecialOfferPackages(response);
+  };
+  const fetchUserTravelHistory = async () => {
+    const { _id } = await getUserProfileAPI(localStorage.getItem("token"));
+    const response = await getTravelHistoryByUserIdAPI(_id);
+    setTravelHistory(response);
+    console.log(response);
   };
 
   return (

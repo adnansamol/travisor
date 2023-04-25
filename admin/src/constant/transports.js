@@ -4,7 +4,8 @@ export const transports = [
     type: "Private",
     fuel_type: "Diesel",
     seat: 7,
-    description: "Pickup from airport",
+    description:
+      "This transport vehicle will drive you from the airport to your hotel",
     price: 2000,
   },
   {
@@ -12,16 +13,26 @@ export const transports = [
     type: "Private",
     fuel_type: "EV",
     seat: 8,
-    description: "Pickup from airport",
+    description:
+      "This transport vehicle will drive you from the airport to your hotel",
     price: 3000,
   },
   ,
+  {
+    vehicle: "Sedan",
+    type: "Private",
+    fuel_type: "Gas",
+    seat: 4,
+    description: "Pick up from airport",
+    price: 2000,
+  },
   {
     vehicle: "Sedan (Electric)",
     type: "Private",
     fuel_type: "EV",
     seat: 4,
-    description: "Pickup from airport",
+    description:
+      "This transport vehicle will drive you from the airport to your hotel",
     price: 1000,
   },
   {
@@ -29,7 +40,8 @@ export const transports = [
     type: "Private",
     fuel_type: "EV",
     seat: 6,
-    description: "Pickup from airport",
+    description:
+      "This transport vehicle will drive you from the airport to your hotel",
     price: 1000,
   },
   {
@@ -37,7 +49,8 @@ export const transports = [
     type: "Private",
     fuel_type: "Diesel",
     seat: 6,
-    description: "Pickup from airport",
+    description:
+      "This transport vehicle will drive you from the airport to your hotel",
     price: 2000,
   },
 ];

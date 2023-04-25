@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { IoIosAirplane } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
-import { MdFlightClass, MdFlightLand } from "react-icons/md";
+import { MdFlightClass, MdAirplaneTicket } from "react-icons/md";
 import styled from "styled-components";
 import { colors } from "../../constant/colors";
 import { flights } from "../../constant/flights";
@@ -174,7 +174,7 @@ const Flight = ({ setFlight, startDate, destination, flight, close }) => {
             </select>
           </FlightClass>
           <p>
-            <MdFlightLand size={24} title="Flight Time" />:{" "}
+            <MdAirplaneTicket size={24} title="Flight Time" />:{" "}
             {nonStop
               ? flight.stops[0].departure_time - flight.stops[0].arrival_time
               : flight.stops[1].departure_time - flight.stops[1].arrival_time}

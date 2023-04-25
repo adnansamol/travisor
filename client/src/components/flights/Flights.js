@@ -1,13 +1,17 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { IoIosAirplane } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
-import { MdFlightClass, MdFlightLand } from "react-icons/md";
+import { MdFlightClass, MdAirplaneTicket } from "react-icons/md";
 import styled from "styled-components";
 import { colors } from "../../constant/colors";
 import { flights } from "../../constant/flights";
 import { PackageContext } from "../../context/package-context";
 import { getFlightsAPI } from "../../service/flight-api";
-import { getShortDate, getShortTime } from "../../util/formatter";
+import {
+  getShortDate,
+  getShortTime,
+  priceFormatter,
+} from "../../util/formatter";
 import Button from "../ui/Button";
 
 const FlightContainer = styled.div`
@@ -78,6 +82,14 @@ const SelectButton = styled(Button)`
   color: white;
   padding: 5px 20px;
 `;
+const SelectedLabel = styled.div`
+  background-color: orangered;
+  color: white;
+  width: fit-content;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 50px;
+`;
 
 const Flights = ({ setIsOpen, setFlightCost }) => {
   useEffect(() => {
@@ -137,6 +149,10 @@ const Flight = ({ flight, close, setFlightCost }) => {
   return (
     travelPackage && (
       <FlightContainer>
+        {travelPackage.p_flight &&
+          travelPackage.p_flight.stops[0].plane == flight.stops[0].plane && (
+            <SelectedLabel>SELECTED</SelectedLabel>
+          )}
         <div style={{ margin: "auto" }}>
           <Airline>{flight.stops[0].airline}</Airline>
           <Plane>{flight.stops[0].plane}</Plane>
@@ -179,19 +195,13 @@ const Flight = ({ flight, close, setFlightCost }) => {
               </select>
             </FlightClass>
             <p>
-              <MdFlightLand size={24} title="Flight Time" />:{" "}
-              {nonStop
-                ? flight.stops[0].departure_time - flight.stops[0].arrival_time
-                : flight.stops[1].departure_time - flight.stops[1].arrival_time}
+              <MdAirplaneTicket size={24} title="Flight Time" />:{" "}
+              {priceFormatter.format(flight.price)}
             </p>
           </FlightTypeContainer>
         </div>
-        {travelPackage.p_flight &&
-        travelPackage.p_flight.stops[0].plane == flight.stops[0].plane ? (
-          <b style={{ color: "orangered" }}>SELECTED</b>
-        ) : (
-          <SelectButton onClick={selectFlight}>Select</SelectButton>
-        )}
+
+        <SelectButton onClick={selectFlight}>Select</SelectButton>
       </FlightContainer>
     )
   );

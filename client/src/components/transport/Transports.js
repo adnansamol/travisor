@@ -36,6 +36,14 @@ const SelectButton = styled(Button)`
   color: white;
   padding: 5px 20px;
 `;
+const SelectedLabel = styled.div`
+  background-color: orangered;
+  color: white;
+  width: fit-content;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 50px;
+`;
 const Transports = ({ setIsOpen, setTransportCost }) => {
   return (
     <>
@@ -73,6 +81,10 @@ const Transport = ({ transport, close, setTransportCost }) => {
   };
   return (
     <TransportContainer>
+      {travelPackage.p_transport &&
+        travelPackage.p_transport.vehicle == transport.vehicle && (
+          <SelectedLabel>SELECTED</SelectedLabel>
+        )}
       <div style={{ display: "flex", gap: 50 }}>
         <FaCar size={50} />{" "}
         <div>
@@ -82,12 +94,7 @@ const Transport = ({ transport, close, setTransportCost }) => {
       </div>
       Seats: <VehicleSeats>{transport.seat}</VehicleSeats>
       <p>{transport.description}</p>
-      {travelPackage.p_transport &&
-      travelPackage.p_transport.vehicle === transport.vehicle ? (
-        <b style={{ color: "orangered" }}>SELECTED</b>
-      ) : (
-        <SelectButton onClick={selectTransport}>Select</SelectButton>
-      )}
+      <SelectButton onClick={selectTransport}>Select</SelectButton>
     </TransportContainer>
   );
 };

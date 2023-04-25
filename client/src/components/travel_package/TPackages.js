@@ -14,7 +14,7 @@ const Container = styled.div`
 `;
 const FlexContainer = styled.div`
   display: flex;
-  gap: 25px;
+  gap: 40px;
 `;
 const Title = styled.div`
   font-size: 25px;

@@ -9,8 +9,8 @@ const Container = styled.div`
 `;
 const PoliciesContainer = styled.div`
   background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 10px 15px;
 `;
 const Title = styled.div`

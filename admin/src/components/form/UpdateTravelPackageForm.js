@@ -13,7 +13,7 @@ import { colors } from "../../constant/colors";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaCar } from "react-icons/fa";
 import { IoIosAirplane } from "react-icons/io";
-import { MdFlightClass, MdFlightLand } from "react-icons/md";
+import { MdFlightClass, MdAirplaneTicket } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getTravelPackageByIdAPI } from "../../service/package-api";
@@ -463,7 +463,7 @@ const UpdateTravelPackageForm = ({ updateTravelPackage }) => {
                         {stop.planeClass}
                       </FlightClass>
                       <p>
-                        <MdFlightLand size={24} title="Flight Time" />:{" "}
+                        <MdAirplaneTicket size={24} title="Flight Time" />:{" "}
                         {stop.time}
                       </p>
                     </FlightTypeContainer>
@@ -523,7 +523,7 @@ const UpdateTravelPackageForm = ({ updateTravelPackage }) => {
                         {stop.planeClass}
                       </FlightClass>
                       <p>
-                        <MdFlightLand size={24} title="Flight Time" />:{" "}
+                        <MdAirplaneTicket size={24} title="Flight Time" />:{" "}
                         {stop.time}
                       </p>
                     </FlightTypeContainer>

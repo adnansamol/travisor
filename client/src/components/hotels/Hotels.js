@@ -6,6 +6,7 @@ import { IoClose, IoLocationSharp } from "react-icons/io5";
 import { PackageContext } from "../../context/package-context";
 import Button from "../ui/Button";
 import HotelFilters from "./HotelFilters";
+import { priceFormatter } from "../../util/formatter";
 
 const HotelContainer = styled.div`
   background-color: white;
@@ -17,8 +18,23 @@ const HotelContainer = styled.div`
 const HotelDetails = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 const HotelName = styled.div`
+  display: inline;
+  font-size: 18px;
+  color: ${colors.black};
+  font-weight: 500;
+`;
+const HotelPriceContainer = styled.div`
+  flex: 5%;
+  border-left: 1px solid ${colors.lightgray};
+  height: 100px;
+  text-align: center;
+  padding-top: 30px;
+`;
+const HotelPrice = styled.div`
+  display: inline;
   font-size: 20px;
   color: ${colors.black};
   font-weight: 500;
@@ -30,6 +46,7 @@ const HotelAddress = styled.div`
 const HotelImage = styled.img`
   width: 280px;
   height: 180px;
+  flex: 20%;
 `;
 const CloseButton = styled.div`
   cursor: pointer;
@@ -146,7 +163,7 @@ const Hotel = ({ hotel, close, setHotelCost }) => {
   return (
     <HotelContainer>
       <HotelDetails>
-        <div>
+        <div style={{ flex: "35%" }}>
           {travelPackage.p_hotel.name === hotel.name && (
             <SelectedLabel>SELECTED</SelectedLabel>
           )}
@@ -155,7 +172,7 @@ const Hotel = ({ hotel, close, setHotelCost }) => {
             <IoLocationSharp />
             {hotel.address}
           </HotelAddress>
-          <br />
+
           <div>Rating: {hotel.rating}/5</div>
           <div>
             Room Type:{" "}
@@ -174,12 +191,18 @@ const Hotel = ({ hotel, close, setHotelCost }) => {
               defaultChecked={travelPackage.p_hotel.dineIncluded}
             />
           </div>
-          <br />
 
+          <br />
           <SelectButton onClick={selectHotel}>Select</SelectButton>
         </div>
-
         <HotelImage src={hotel.images[0]} />
+        <HotelPriceContainer>
+          <HotelPrice>
+            {priceFormatter.format(hotel.price_per_room)}
+            {"/- "}
+          </HotelPrice>
+          <sub>per room</sub>
+        </HotelPriceContainer>
       </HotelDetails>
     </HotelContainer>
   );
