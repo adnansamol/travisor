@@ -170,10 +170,10 @@ export const updateTravelPackage = async (req, res) => {
 
     const totalCost =
       Number(req.body.p_price) +
-      JSON.parse(req.body.p_hotel).price_per_room +
-      JSON.parse(req.body.p_flight).price +
-      JSON.parse(req.body.p_return_flight).price +
-      JSON.parse(req.body.p_transport).price;
+      Number(JSON.parse(req.body.p_hotel).price_per_room) +
+      Number(JSON.parse(req.body.p_flight).price) +
+      Number(JSON.parse(req.body.p_return_flight).price) +
+      Number(JSON.parse(req.body.p_transport).price);
 
     const data = {
       p_agency_id: req.body.p_agency_id,

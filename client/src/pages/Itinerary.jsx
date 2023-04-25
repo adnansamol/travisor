@@ -219,6 +219,14 @@ const Itinerary = () => {
           flightCost +
           returnFlightCost +
           transportCost,
+        discount:
+          ((travelPackage.p_price.base_price +
+            hotelCost +
+            flightCost +
+            returnFlightCost +
+            transportCost) *
+            travelPackage.p_price.percentage) /
+          100,
       },
     });
   }, [hotelCost, transportCost, flightCost, returnFlightCost]);
