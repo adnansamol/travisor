@@ -27,16 +27,13 @@ export const getBookingByUserIdAPI = async (id) => {
     console.log(error);
   }
 };
-export const cancelBookingAPI = async (id, status) => {
+export const cancelBookingAPI = async (id) => {
   try {
     if (getUserProfileAPI(localStorage.getItem("token"))) {
-      const response = await axios.put(base_url + "/cancelBooking", {
-        packageId: id,
-        status: status,
-      });
+      const response = await axios.put(base_url + "/cancelBooking/" + id);
       return response.data;
     } else {
-      alert("login first");
+      alert("Please login to continue");
     }
   } catch (error) {
     console.log("error");

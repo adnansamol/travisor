@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getBookedPackageByIdAPI } from "../../service/booking-api";
+import {
+  getBookedPackageByIdAPI,
+  getCustomerAPI,
+} from "../../service/booking-api";
 import Loading from "../loading/Loading";
 
 const CancelledBookingRow = ({ cancelledBooking, index }) => {
@@ -16,6 +19,12 @@ const CancelledBookingRow = ({ cancelledBooking, index }) => {
       cancelledBooking.b_travel_package_id
     );
     setBookedPackage(bookedPackage);
+    fetchCustomer();
+  };
+  const fetchCustomer = async () => {
+    const customer = await getCustomerAPI(cancelledBooking.b_booked_user_id);
+    console.log(customer);
+    setCustomer(customer);
     setLoading(false);
   };
   return loading ? (
@@ -29,10 +38,10 @@ const CancelledBookingRow = ({ cancelledBooking, index }) => {
       <td>{index + 1}</td>
       <td>{bookedPackage.p_name}</td>
       <td>{bookedPackage.p_destination}</td>
-      <td>{cancelledBooking.p_days}</td>
-      <td>{bookedPackage.p_start_date}</td>
+      <td>{bookedPackage.p_days}</td>
+      <td>{new Date(bookedPackage.p_start_date).toLocaleString()}</td>
       <td>{customer.u_name}</td>
-      <td>{cancelledBooking.b_booking_date}</td>
+      <td>{new Date(cancelledBooking.updatedAt).toDateString()}</td>
       <td>{cancelledBooking.b_booking_cost}</td>
       <td>
         <Link

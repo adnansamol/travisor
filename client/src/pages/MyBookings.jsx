@@ -15,6 +15,7 @@ import { getShortDate, priceFormatter } from "../util/formatter";
 import Modal from "react-modal";
 import BookedPackageDetails from "../components/travel_package/BookedPackageDetails";
 import { useRef } from "react";
+import Link from "../components/ui/Link";
 
 const Container = styled.div`
   width: 40%;
@@ -76,11 +77,15 @@ const TotalCost = styled.div`
   font-weight: 600;
   color: ${colors.black};
 `;
-const ManageButton = styled(Button)`
+const ManageLink = styled(Link)`
   font-size: 16px;
   padding: 8px 15px;
   background-color: ${colors.dodgerblue};
   color: white;
+  border-radius: 5px;
+  &:hover {
+    color: white;
+  }
 `;
 
 const customModalStyles = {
@@ -104,7 +109,6 @@ const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
-  const packageId = useRef();
   useEffect(() => {
     fetchBookings();
   }, []);
@@ -117,11 +121,12 @@ const MyBookings = () => {
         const bookedPackage = await getBookedPackageByIdAPI(
           booking.b_travel_package_id
         );
-        console.log(bookedPackage, booking);
+
         bookedPackage &&
           setBookings((old) => [
             ...old,
             {
+              packageId: bookedPackage._id,
               packageName: bookedPackage.p_name,
               packageDate: bookedPackage.p_start_date,
               packageDays: bookedPackage.p_days,
@@ -143,14 +148,6 @@ const MyBookings = () => {
   };
   return (
     <Container>
-      <Modal
-        isOpen={isOpen}
-        onRequestClose={closeModal}
-        shouldCloseOnOverlayClick={true}
-        style={customModalStyles}
-      >
-        <BookedPackageDetails id={packageId.current} />
-      </Modal>
       <Title>Bookings</Title>
       <hr />
       {loading ? (
@@ -181,11 +178,9 @@ const MyBookings = () => {
                   </BookingDate>
                 </div>
                 <div>
-                  <ManageButton
-                    onClick={() => openModal(booking.b_travel_package_id)}
-                  >
+                  <ManageLink to={"/booking/" + booking.packageId}>
                     Manage
-                  </ManageButton>
+                  </ManageLink>
                 </div>
               </SingleBooking>
             ))

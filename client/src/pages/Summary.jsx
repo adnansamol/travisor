@@ -137,6 +137,12 @@ const HotelImage = styled.img`
   width: 200px;
   height: 180px;
 `;
+const ActivityContainer = styled.div`
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  padding: 10px 15px;
+`;
 const Itinerary = () => {
   const { travelPackage } = useContext(PackageContext);
 

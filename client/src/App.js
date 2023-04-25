@@ -16,6 +16,7 @@ import TravelHistory from "./pages/TravelHistory";
 import ProfileCard from "./components/card/ProfileCard";
 import About from "./pages/About";
 import Destination from "./pages/Destination";
+import BookingDetailView from "./pages/BookingDetailView";
 function App() {
   window.addEventListener("pa", () => {
     if (
@@ -48,7 +49,15 @@ function App() {
           <Route path="myBookings" element={<MyBookings />} />
           <Route path="travelHistory" element={<TravelHistory />} />
         </Route>
-
+        <Route
+          exact
+          path="booking/:id"
+          element={
+            <ProtectedRoute>
+              <BookingDetailView />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/package/:id" element={<PackageDetailView />}>
           <Route path="itinerary" element={<Itinerary />} />
           <Route path="policies" element={<Policies />} />

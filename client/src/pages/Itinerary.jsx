@@ -6,7 +6,7 @@ import { MdFlightClass, MdAirplaneTicket } from "react-icons/md";
 import { IoIosAirplane } from "react-icons/io";
 import { travel_package } from "../constant/package";
 import { getShortDate, getShortTime, priceFormatter } from "../util/formatter";
-import { IoLocationSharp } from "react-icons/io5";
+import { IoClose, IoLocationSharp } from "react-icons/io5";
 import { PackageContext } from "../context/package-context";
 import Modal from "react-modal";
 import Button from "../components/ui/Button";
@@ -143,6 +143,56 @@ const HotelDine = styled.li`
 const HotelImage = styled.img`
   width: 200px;
   height: 180px;
+`;
+const ActivityContainer = styled.div`
+  width: 100%;
+  border-radius: 5px;
+  overflow: clip;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: white;
+`;
+const ActivityTopContainer = styled.div`
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
+const DayContainer = styled.div`
+  display: flex;
+  width: 100%;
+  background-image: linear-gradient(
+    to right,
+    ${colors.teal500} 20%,
+    transparent 70%
+  );
+  color: white;
+  padding: 5px 15px;
+  font-weight: 600;
+  font-size: 18px;
+`;
+const ActivityTitleContainer = styled.div`
+  padding: 5px 10px;
+`;
+const ActivityTitle = styled.div`
+  font-weight: 500;
+  font-size: 18px;
+  color: ${colors.black};
+`;
+const ActivitySite = styled.div`
+  font-weight: 500;
+  font-size: 14px;
+  color: ${colors.gray};
+`;
+const ActivityDescription = styled.div`
+  background-color: ${colors.orange100};
+  border: 1px solid ${colors.orange400};
+  word-break: break-all;
+  font-size: 14px;
+  padding: 5px 10px;
+  margin-top: 5px;
+`;
+const ActivityImage = styled.img`
+  width: 150px;
 `;
 const RemoveButton = styled(Button)`
   border: 1px solid ${colors.crimson};
@@ -449,6 +499,43 @@ const Itinerary = () => {
             </>
           )}
         </HotelContainer>
+        <ActivityContainer style={{ padding: 10 }}>
+          Days Activity Plan
+        </ActivityContainer>
+        {travelPackage.p_days_plan.length > 0 &&
+          travelPackage.p_days_plan.map((activity, index) => (
+            <ActivityContainer key={index}>
+              <ActivityTopContainer>
+                <div style={{ width: "60%", wordBreak: "break-all" }}>
+                  <DayContainer>Day-{activity.day}</DayContainer>
+                  <ActivityTitleContainer>
+                    <ActivityTitle>{activity.title}</ActivityTitle>
+
+                    <ActivitySite>
+                      <IoLocationSharp />
+                      {activity.site}
+                    </ActivitySite>
+                    <ActivityTitle>
+                      {priceFormatter.format(activity.price)}/-
+                    </ActivityTitle>
+                  </ActivityTitleContainer>
+                </div>
+                <IoClose
+                  size={30}
+                  fill={"white"}
+                  style={{
+                    position: "absolute",
+                    right: 0,
+                    backgroundColor: "black",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {}}
+                />
+                <ActivityImage src="https://res.cloudinary.com/debfaf0xn/image/upload/v1682359422/zouprrahkg8rkbrc9ja5.jpg" />
+              </ActivityTopContainer>
+              <ActivityDescription>{activity.description}</ActivityDescription>
+            </ActivityContainer>
+          ))}
         <FlightContainer>
           <TitleContainer>
             <Title>Return Flight</Title>
@@ -508,7 +595,9 @@ const Itinerary = () => {
                     </FlightClass>
                     <p>
                       <MdAirplaneTicket size={24} title="Ticket Price" />:{" "}
-                      {priceFormatter.format(travelPackage.p_flight.price)}
+                      {priceFormatter.format(
+                        travelPackage.p_return_flight.price
+                      )}
                     </p>
                   </FlightTypeContainer>
                 </>

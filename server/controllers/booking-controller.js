@@ -82,10 +82,10 @@ export const confirmBooking = async (req, res) => {
 export const cancelBooking = async (req, res) => {
   try {
     const booking = await bookingModel.findOneAndUpdate(
-      { b_travel_package_id: req.body.packageId },
-      { b_booking_status: req.body.status }
+      { b_travel_package_id: req.params.id },
+      { b_booking_status: "cancelled" }
     );
-    res.status(200).send(booking);
+    res.status(200).send("Your booking has been cancelled!");
   } catch (error) {
     res.status(500).send(error);
   }

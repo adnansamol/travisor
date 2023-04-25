@@ -30,12 +30,18 @@ export const createTravelPackage = async (req, res) => {
         });
     }
 
+    const activitiesCost =
+      JSON.parse(req.body.p_days_plan).length > 0 &&
+      JSON.parse(req.body.p_days_plan).reduce(
+        (value1, value2) => value1 + value2
+      );
     const totalCost =
       Number(req.body.p_price) +
       JSON.parse(req.body.p_hotel).price_per_room +
       JSON.parse(req.body.p_flight).price +
       JSON.parse(req.body.p_return_flight).price +
-      JSON.parse(req.body.p_transport).price;
+      JSON.parse(req.body.p_transport).price +
+      activitiesCost;
 
     const data = {
       p_agency_id: req.body.p_agency_id,
@@ -54,7 +60,7 @@ export const createTravelPackage = async (req, res) => {
       p_imagePreview: imagePreview,
       p_images: images,
 
-      p_days_plan: [],
+      p_days_plan: JSON.parse(req.body.p_days_plan),
       p_policies: {
         cancellation: {
           from: req.body.p_start_date,
@@ -168,12 +174,18 @@ export const updateTravelPackage = async (req, res) => {
       }
     }
 
+    const activitiesCost =
+      JSON.parse(req.body.p_days_plan).length > 0 &&
+      JSON.parse(req.body.p_days_plan).reduce(
+        (value1, value2) => value1 + value2
+      );
     const totalCost =
       Number(req.body.p_price) +
-      Number(JSON.parse(req.body.p_hotel).price_per_room) +
-      Number(JSON.parse(req.body.p_flight).price) +
-      Number(JSON.parse(req.body.p_return_flight).price) +
-      Number(JSON.parse(req.body.p_transport).price);
+      JSON.parse(req.body.p_hotel).price_per_room +
+      JSON.parse(req.body.p_flight).price +
+      JSON.parse(req.body.p_return_flight).price +
+      JSON.parse(req.body.p_transport).price +
+      activitiesCost;
 
     const data = {
       p_agency_id: req.body.p_agency_id,
@@ -194,7 +206,7 @@ export const updateTravelPackage = async (req, res) => {
       p_images:
         images.length == 0 ? req.body.p_defaultImages.split(",") : images,
 
-      p_days_plan: [],
+      p_days_plan: JSON.parse(req.body.p_days_plan),
       p_policies: {
         cancellation: {
           from: req.body.p_start_date,

@@ -1,7 +1,11 @@
 import React, { useRef, useState } from "react";
 import { destinations } from "../../constant/destinations";
 import { getAgencyProfileAPI } from "../../service/agency-api";
-import { getHtmlDateFormat, getShortDate } from "../../util/formatter";
+import {
+  getHtmlDateFormat,
+  getShortDate,
+  priceFormatter,
+} from "../../util/formatter";
 import { addDays } from "../../util/date-functions";
 import Transports from "../transport/Transports";
 import Flights from "../flights/Flights";
@@ -10,10 +14,12 @@ import Hotels from "../hotels/Hotels";
 import Modal from "react-modal";
 import styled from "styled-components";
 import { colors } from "../../constant/colors";
-import { IoLocationSharp } from "react-icons/io5";
+import { IoLocationSharp, IoClose } from "react-icons/io5";
 import { FaCar } from "react-icons/fa";
 import { IoIosAirplane } from "react-icons/io";
 import { MdFlightClass, MdAirplaneTicket } from "react-icons/md";
+import ActivityForm from "./ActivityForm";
+import { useEffect } from "react";
 const FlightContainer = styled.div`
   background-color: white;
   width: 100%;
@@ -117,7 +123,56 @@ const HotelImage = styled.img`
   width: 280px;
   height: 180px;
 `;
-
+const ActivityContainer = styled.div`
+  width: 100%;
+  border-radius: 10px;
+  overflow: clip;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 10px 0;
+`;
+const ActivityTopContainer = styled.div`
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
+const DayContainer = styled.div`
+  display: flex;
+  width: 100%;
+  background-image: linear-gradient(
+    to right,
+    ${colors.dodgerblue} 20%,
+    transparent 70%
+  );
+  color: white;
+  padding: 5px 15px;
+  font-weight: 600;
+  font-size: 18px;
+`;
+const TitleContainer = styled.div`
+  padding: 5px 10px;
+`;
+const ActivityTitle = styled.div`
+  font-weight: 500;
+  font-size: 18px;
+  color: ${colors.black};
+`;
+const ActivitySite = styled.div`
+  font-weight: 500;
+  font-size: 14px;
+  color: ${colors.gray};
+`;
+const ActivityDescription = styled.div`
+  background-color: ${colors.orange100};
+  border: 1px solid ${colors.orange400};
+  word-break: break-all;
+  font-size: 14px;
+  padding: 5px 10px;
+  margin-top: 5px;
+`;
+const ActivityImage = styled.img`
+  width: 150px;
+`;
 const customModalStyles = {
   overlay: {
     position: "fixed",
@@ -141,14 +196,23 @@ const AddTravelPackageForm = ({ createTravelPackage }) => {
   const [transport, setTransport] = useState();
   const [hotel, setHotel] = useState();
 
+  const [days, setDays] = useState(3);
+
   const [isOpenFlight, setIsOpenFlight] = useState(false);
   const [isOpenReturnFlight, setIsOpenReturnFlight] = useState(false);
   const [isOpenTransport, setIsOpenTransport] = useState(false);
   const [isOpenHotel, setIsOpenHotel] = useState(false);
 
+  const [activities, setActivities] = useState([]);
+
   const destinationRef = useRef();
   const startDateRef = useRef();
   const daysRef = useRef();
+
+  const updateDays = () => {
+    setDays(daysRef.current.value);
+  };
+
   const createTravelPackageHandler = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -161,30 +225,17 @@ const AddTravelPackageForm = ({ createTravelPackage }) => {
       isValid(transport, "Transport") &&
       isValid(hotel, "Hotel")
     ) {
-      const data = {
-        p_agency_id: _id,
-        p_name: form.p_name.value,
-        p_description: form.p_description.value,
-        p_start_date: new Date(startDateRef.current.value),
-        p_end_date: new Date(addDays(startDateRef.current.value, form.p_days)),
-        p_destination: form.p_destination.value,
-        p_days: form.p_days.value,
-        p_price: form.p_price.value,
-        p_refund_date: form.p_refund_date.value,
-        p_refund_desc: form.p_refund_desc.value,
-        p_image: form.p_imagePreview.files,
-        p_hotel: hotel,
-        p_transport: transport,
-        p_flight: flight,
-        p_return_flight: returnFlight,
-        p_keywords: form.p_keywords.value,
-      };
+      if (form.p_images.files.length < 3) {
+        return alert("Please select atleast 3 images!");
+      }
       const formData = new FormData(form);
       formData.append("p_agency_id", _id);
       formData.append("p_flight", JSON.stringify(flight));
       formData.append("p_return_flight", JSON.stringify(returnFlight));
       formData.append("p_transport", JSON.stringify(transport));
       formData.append("p_hotel", JSON.stringify(hotel));
+      activities.length > 0 &&
+        formData.append("p_days_plan", JSON.stringify(activities));
       createTravelPackage(formData);
     }
   };
@@ -233,6 +284,10 @@ const AddTravelPackageForm = ({ createTravelPackage }) => {
       return false;
     }
     return true;
+  };
+
+  const removeActivity = (id) => {
+    setActivities(activities.filter((activity) => activity.id != id));
   };
   return (
     <>
@@ -321,10 +376,12 @@ const AddTravelPackageForm = ({ createTravelPackage }) => {
             <label className="form-label">Package Days</label>
             <input
               ref={daysRef}
+              onChange={updateDays}
+              defaultValue={3}
               name="p_days"
               className="form-control"
               type="number"
-              min={1}
+              min={3}
               required
             />
           </div>
@@ -570,6 +627,49 @@ const AddTravelPackageForm = ({ createTravelPackage }) => {
           value="Create Package"
         />
       </form>
+      <hr />
+      {days && (
+        <ActivityForm
+          days={days}
+          activites={activities}
+          setActivities={setActivities}
+        />
+      )}
+      <hr />
+      {activities.length > 0 &&
+        activities.map((activity, index) => (
+          <ActivityContainer key={index}>
+            <ActivityTopContainer>
+              <div style={{ width: "60%", wordBreak: "break-all" }}>
+                <DayContainer>Day-{activity.day}</DayContainer>
+                <TitleContainer>
+                  <ActivityTitle>{activity.title}</ActivityTitle>
+
+                  <ActivitySite>
+                    <IoLocationSharp />
+                    {activity.site}
+                  </ActivitySite>
+                  <ActivityTitle>
+                    {priceFormatter.format(activity.price)}/-
+                  </ActivityTitle>
+                </TitleContainer>
+              </div>
+              <IoClose
+                size={30}
+                fill={"white"}
+                style={{
+                  position: "absolute",
+                  right: 0,
+                  backgroundColor: "black",
+                  cursor: "pointer",
+                }}
+                onClick={() => removeActivity(activity.id)}
+              />
+              <ActivityImage src="https://res.cloudinary.com/debfaf0xn/image/upload/v1682359422/zouprrahkg8rkbrc9ja5.jpg" />
+            </ActivityTopContainer>
+            <ActivityDescription>{activity.description}</ActivityDescription>
+          </ActivityContainer>
+        ))}
     </>
   );
 };

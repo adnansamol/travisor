@@ -40,7 +40,7 @@ packageRouter.post("/confirmBooking/:id", confirmBooking);
 
 packageRouter.post("/createBookedPackage", createBookingPackage);
 
-packageRouter.put("/cancelBooking", cancelBooking);
+packageRouter.put("/cancelBooking/:id", cancelBooking);
 packageRouter.put(
   "/updateTravelPackage/:id",
   upload.any(),

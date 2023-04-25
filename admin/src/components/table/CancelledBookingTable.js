@@ -1,5 +1,6 @@
 import React from "react";
 import BookingRow from "./BookingRow";
+import CancelledBookingRow from "./CancelledBookingRow";
 
 const CancelledBookingTable = ({ cancelledBookings }) => {
   return (
@@ -20,7 +21,7 @@ const CancelledBookingTable = ({ cancelledBookings }) => {
       <tbody>
         {cancelledBookings &&
           cancelledBookings.map((cancelledBooking, index) => (
-            <BookingRow
+            <CancelledBookingRow
               key={index}
               cancelledBooking={cancelledBooking}
               index={index}
