@@ -399,14 +399,12 @@ const UpdateTravelPackageForm = ({ updateTravelPackage }) => {
             <div className="form-group col">
               <label className="form-label">Start Date</label>
               <input
-                defaultValue={getHtmlDateFormat(
-                  new Date(travelPackage.p_start_date)
-                )}
+                defaultValue={getHtmlDateFormat(travelPackage.p_start_date)}
                 ref={startDateRef}
                 name="p_start_date"
                 className="form-control"
                 type="date"
-                min={getHtmlDateFormat(addDays(new Date(), 5))}
+                min={getHtmlDateFormat(new Date())}
                 required
               />
             </div>
@@ -434,7 +432,7 @@ const UpdateTravelPackageForm = ({ updateTravelPackage }) => {
             >
               Select Flight
             </button>
-            {flight && startDateRef.current && (
+            {flight && (
               <FlightContainer>
                 {flight.stops.map((stop) => (
                   <>
@@ -443,7 +441,7 @@ const UpdateTravelPackageForm = ({ updateTravelPackage }) => {
                       <FlightDeparture>
                         <FlightTime>{stop.departure_time}</FlightTime>
                         <FlightDate>
-                          {getShortDate(startDateRef.current.value)}
+                          {getShortDate(travelPackage.p_start_date)}
                         </FlightDate>
                         <FlightPlace>{stop.from}</FlightPlace>
                       </FlightDeparture>
@@ -454,7 +452,7 @@ const UpdateTravelPackageForm = ({ updateTravelPackage }) => {
                       <FlightArrival>
                         <FlightTime>{stop.arrival_time}</FlightTime>
                         <FlightDate>
-                          {getShortDate(startDateRef.current.value)}
+                          {getShortDate(travelPackage.p_start_date)}
                         </FlightDate>
                         <FlightPlace>{stop.to}</FlightPlace>
                       </FlightArrival>
@@ -484,7 +482,7 @@ const UpdateTravelPackageForm = ({ updateTravelPackage }) => {
             >
               Select Flight
             </button>
-            {returnFlight && startDateRef.current && (
+            {returnFlight && (
               <FlightContainer>
                 {returnFlight.stops.map((stop) => (
                   <>
@@ -495,8 +493,8 @@ const UpdateTravelPackageForm = ({ updateTravelPackage }) => {
                         <FlightDate>
                           {getShortDate(
                             addDays(
-                              startDateRef.current.value,
-                              daysRef.current.value
+                              travelPackage.p_start_date,
+                              travelPackage.p_days
                             )
                           )}
                         </FlightDate>
@@ -511,8 +509,8 @@ const UpdateTravelPackageForm = ({ updateTravelPackage }) => {
                         <FlightDate>
                           {getShortDate(
                             addDays(
-                              startDateRef.current.value,
-                              daysRef.current.value
+                              travelPackage.p_start_date,
+                              travelPackage.p_days
                             )
                           )}
                         </FlightDate>

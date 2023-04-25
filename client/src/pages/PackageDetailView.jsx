@@ -194,11 +194,13 @@ const PackageDetailView = () => {
   const [openBookingModal, setOpenBookingModal] = useState(false);
   const [openRequestModal, setOpenRequestModal] = useState(false);
   const [imageGallery, setImageGallery] = useState([]);
+
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
 
   const galleryWrapperRef = useRef();
   const galleryRef = useRef();
   const params = useParams();
+
   useEffect(() => {
     fetchTravelPackage();
   }, []);
@@ -211,6 +213,7 @@ const PackageDetailView = () => {
     const cacheData = JSON.parse(localStorage.getItem("package-cache"));
     if (cacheData != null && cacheData._id === params.id) {
       setTravelPackage(cacheData);
+
       cacheData.p_images.map((image) =>
         setImageGallery((old) => [
           ...old,
@@ -220,6 +223,7 @@ const PackageDetailView = () => {
     } else {
       const data = await getTravelPackageByIdAPI(params.id);
       setTravelPackage(data);
+
       data.p_images.map((image) =>
         setImageGallery((old) => [
           ...old,
@@ -384,7 +388,7 @@ const PackageDetailView = () => {
               <RightContainer>
                 <Price>
                   {priceFormatter.format(
-                    travelPackage.p_price.base_price -
+                    travelPackage.p_price.total_cost -
                       travelPackage.p_price.discount
                   )}
                 </Price>
@@ -397,14 +401,10 @@ const PackageDetailView = () => {
                   <strong
                     style={{ color: "orange", margin: "0 8px", fontSize: 14 }}
                   >
-                    {(
-                      (travelPackage.p_price.discount * 100) /
-                      travelPackage.p_price.base_price
-                    ).toFixed(0)}
-                    % OFF
+                    {travelPackage.p_price.percentage}% OFF
                   </strong>
                   <strike style={{ fontSize: 18, color: colors.gray }}>
-                    {priceFormatter.format(travelPackage.p_price.base_price)}
+                    {priceFormatter.format(travelPackage.p_price.total_cost)}
                   </strike>
                 </Discount>
                 <hr />

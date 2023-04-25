@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { getBookedPackageByIdAPI } from "../service/booking-api";
 import { addDays } from "../util/date-functions";
 import { MdLocalAirport } from "react-icons/md";
+import { getShortDate } from "../util/formatter";
 
 const Container = styled.div``;
 const DetailsContainer = styled.div`
@@ -127,7 +128,7 @@ const BookingDetailView = () => {
           <TransportContainer>
             <h3>Return Flight Details</h3>
             <h6>
-              <MdLocalAirport size={20} /> {booking.p_flight.airport}
+              <MdLocalAirport size={20} /> {booking.p_return_flight.airport}
             </h6>
             {booking.p_return_flight.stops.map((stop) => (
               <table className="table table-bordered">
@@ -215,6 +216,24 @@ const BookingDetailView = () => {
             </table>
           </HotelContainer>
         )}
+
+        <HotelContainer>
+          <h3>Refund Policy</h3>
+          <table className="table table-bordered">
+            <thead className="thead-dark">
+              <tr>
+                <th>Refund Until</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{booking.p_policies.cancellation.to} Days</td>
+                <td>{booking.p_policies.cancellation.description}</td>
+              </tr>
+            </tbody>
+          </table>
+        </HotelContainer>
       </Container>
     )
   );

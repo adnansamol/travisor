@@ -189,61 +189,7 @@ const customModalStyles = {
 };
 const Itinerary = () => {
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
-  const [isOpen, setIsOpen] = useState(false);
-  const [openFlightModal, setOpenFlightModal] = useState(false);
-  const [openReturnFlightModal, setOpenReturnFlightModal] = useState(false);
-  const [openTransportModal, setOpenTransportModal] = useState(false);
-  const [openHotelModal, setOpenHotelModal] = useState(false);
 
-  const removeFlight = () => {
-    const flightprice = travelPackage.p_flight.price;
-    const newPrice = {
-      ...travelPackage.p_price,
-      base_price: travelPackage.p_price.base_price - flightprice,
-    };
-    setTravelPackage({
-      ...travelPackage,
-      p_price: newPrice,
-      p_flight: undefined,
-    });
-  };
-  const removeReturnFlight = () => {
-    const flightprice = travelPackage.p_return_flight.price;
-    const newPrice = {
-      ...travelPackage.p_price,
-      base_price: travelPackage.p_price.base_price - flightprice,
-    };
-    setTravelPackage({
-      ...travelPackage,
-      p_price: newPrice,
-      p_return_flight: undefined,
-    });
-  };
-
-  const removeTransport = () => {
-    const transportPrice = travelPackage.p_transport.price;
-    const newPrice = {
-      ...travelPackage.p_price,
-      base_price: travelPackage.p_price.base_price - transportPrice,
-    };
-    setTravelPackage({
-      ...travelPackage,
-      p_transport: undefined,
-      p_price: newPrice,
-    });
-  };
-  const closeHotelModal = () => {
-    setOpenHotelModal(false);
-  };
-  const closeFlightModal = () => {
-    setOpenFlightModal(false);
-  };
-  const closeReturnFlightModal = () => {
-    setOpenReturnFlightModal(false);
-  };
-  const closeTransportModal = () => {
-    setOpenTransportModal(false);
-  };
   return (
     travelPackage && (
       <Container>

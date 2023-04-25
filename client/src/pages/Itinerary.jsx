@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../constant/colors";
 import { FaCar } from "react-icons/fa";
@@ -189,47 +189,60 @@ const customModalStyles = {
 };
 const Itinerary = () => {
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
-  const [isOpen, setIsOpen] = useState(false);
   const [openFlightModal, setOpenFlightModal] = useState(false);
   const [openReturnFlightModal, setOpenReturnFlightModal] = useState(false);
   const [openTransportModal, setOpenTransportModal] = useState(false);
   const [openHotelModal, setOpenHotelModal] = useState(false);
 
-  const removeFlight = () => {
-    const flightprice = travelPackage.p_flight.price;
-    const newPrice = {
-      ...travelPackage.p_price,
-      base_price: travelPackage.p_price.base_price - flightprice,
-    };
+  const [flightCost, setFlightCost] = useState(
+    travelPackage.p_flight ? travelPackage.p_flight.price : 0
+  );
+  const [returnFlightCost, setReturnFlightCost] = useState(
+    travelPackage.p_return_flight ? travelPackage.p_return_flight.price : 0
+  );
+  const [hotelCost, setHotelCost] = useState(
+    travelPackage.p_hotel.price_per_room
+  );
+  const [transportCost, setTransportCost] = useState(
+    travelPackage.p_transport ? travelPackage.p_transport.price : 0
+  );
+
+  useEffect(() => {
+    console.log(hotelCost, flightCost);
     setTravelPackage({
       ...travelPackage,
-      p_price: newPrice,
+      p_price: {
+        ...travelPackage.p_price,
+        total_cost:
+          travelPackage.p_price.base_price +
+          hotelCost +
+          flightCost +
+          returnFlightCost +
+          transportCost,
+      },
+    });
+  }, [hotelCost, transportCost, flightCost, returnFlightCost]);
+
+  const removeFlight = () => {
+    setFlightCost(0);
+    setTravelPackage({
+      ...travelPackage,
       p_flight: undefined,
     });
   };
   const removeReturnFlight = () => {
-    const flightprice = travelPackage.p_return_flight.price;
-    const newPrice = {
-      ...travelPackage.p_price,
-      base_price: travelPackage.p_price.base_price - flightprice,
-    };
+    setReturnFlightCost(0);
     setTravelPackage({
       ...travelPackage,
-      p_price: newPrice,
       p_return_flight: undefined,
     });
   };
 
   const removeTransport = () => {
-    const transportPrice = travelPackage.p_transport.price;
-    const newPrice = {
-      ...travelPackage.p_price,
-      base_price: travelPackage.p_price.base_price - transportPrice,
-    };
+    setTransportCost(0);
     setTravelPackage({
       ...travelPackage,
       p_transport: undefined,
-      p_price: newPrice,
     });
   };
   const closeHotelModal = () => {
@@ -256,6 +269,7 @@ const Itinerary = () => {
           <Hotels
             setIsOpen={setOpenHotelModal}
             destination={travelPackage.p_destination}
+            setHotelCost={setHotelCost}
           />
         </Modal>
         <Modal
@@ -264,7 +278,10 @@ const Itinerary = () => {
           onRequestClose={closeFlightModal}
           shouldCloseOnOverlayClick={true}
         >
-          <Flights setIsOpen={setOpenFlightModal} />
+          <Flights
+            setIsOpen={setOpenFlightModal}
+            setFlightCost={setFlightCost}
+          />
         </Modal>
         <Modal
           isOpen={openReturnFlightModal}
@@ -277,6 +294,7 @@ const Itinerary = () => {
             destination={travelPackage.p_destination}
             startDate={travelPackage.p_start_date}
             days={travelPackage.p_days}
+            setReturnFlightCost={setReturnFlightCost}
           />
         </Modal>
         <Modal
@@ -285,7 +303,10 @@ const Itinerary = () => {
           onRequestClose={closeTransportModal}
           shouldCloseOnOverlayClick={true}
         >
-          <Transports setIsOpen={setOpenTransportModal} />
+          <Transports
+            setIsOpen={setOpenTransportModal}
+            setTransportCost={setTransportCost}
+          />
         </Modal>
         <FlightContainer>
           <TitleContainer>

@@ -49,7 +49,7 @@ const SelectedLabel = styled.div`
 
   border-radius: 50px;
 `;
-const Hotels = ({ setIsOpen, destination }) => {
+const Hotels = ({ setIsOpen, destination, setHotelCost }) => {
   const [appliedFilters, setAppliedFilters] = useState();
   const [filteredHotels, setFilteredHotels] = useState([]);
 
@@ -115,13 +115,13 @@ const Hotels = ({ setIsOpen, destination }) => {
       />
       {filteredHotels &&
         filteredHotels.map((hotel) => (
-          <Hotel hotel={hotel} close={setIsOpen} />
+          <Hotel hotel={hotel} close={setIsOpen} setHotelCost={setHotelCost} />
         ))}
     </>
   );
 };
 
-const Hotel = ({ hotel, close }) => {
+const Hotel = ({ hotel, close, setHotelCost }) => {
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
   const roomRef = useRef();
   const dineRef = useRef();
@@ -139,6 +139,7 @@ const Hotel = ({ hotel, close }) => {
       ...travelPackage,
       p_hotel: newHotel,
     });
+    setHotelCost(hotel.price_per_room);
     close(false);
   };
 

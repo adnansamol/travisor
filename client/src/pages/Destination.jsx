@@ -113,7 +113,7 @@ const Destination = () => {
             dateFilter={dateFilter}
           />
         ) : (
-          <h1 style={{ textAlign: "center", margin: 90 }}>
+          <h1 style={{ textAlign: "center", margin: 70 }}>
             No packages found...
           </h1>
         )}

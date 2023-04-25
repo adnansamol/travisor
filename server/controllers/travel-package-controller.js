@@ -29,6 +29,14 @@ export const createTravelPackage = async (req, res) => {
           images.push(result.url);
         });
     }
+
+    const totalCost =
+      Number(req.body.p_price) +
+      JSON.parse(req.body.p_hotel).price_per_room +
+      JSON.parse(req.body.p_flight).price +
+      JSON.parse(req.body.p_return_flight).price +
+      JSON.parse(req.body.p_transport).price;
+
     const data = {
       p_agency_id: req.body.p_agency_id,
       p_name: req.body.p_name,
@@ -38,8 +46,9 @@ export const createTravelPackage = async (req, res) => {
       p_description: req.body.p_description,
       p_price: {
         base_price: Number(req.body.p_price),
-        discount: (req.body.p_price * req.body.p_discount) / 100,
+        discount: Number((req.body.p_price * req.body.p_discount) / 100),
         percentage: Number(req.body.p_discount),
+        total_cost: totalCost,
       },
       p_start_date: req.body.p_start_date,
       p_imagePreview: imagePreview,
@@ -158,6 +167,14 @@ export const updateTravelPackage = async (req, res) => {
           });
       }
     }
+
+    const totalCost =
+      Number(req.body.p_price) +
+      JSON.parse(req.body.p_hotel).price_per_room +
+      JSON.parse(req.body.p_flight).price +
+      JSON.parse(req.body.p_return_flight).price +
+      JSON.parse(req.body.p_transport).price;
+
     const data = {
       p_agency_id: req.body.p_agency_id,
       p_name: req.body.p_name,
@@ -167,8 +184,9 @@ export const updateTravelPackage = async (req, res) => {
       p_description: req.body.p_description,
       p_price: {
         base_price: Number(req.body.p_price),
-        discount: (req.body.p_price * req.body.p_discount) / 100,
+        discount: Number((totalCost * req.body.p_discount) / 100),
         percentage: Number(req.body.p_discount),
+        total_cost: Number(totalCost),
       },
       p_start_date: req.body.p_start_date,
       p_imagePreview:

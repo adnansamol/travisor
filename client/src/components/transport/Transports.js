@@ -36,14 +36,18 @@ const SelectButton = styled(Button)`
   color: white;
   padding: 5px 20px;
 `;
-const Transports = ({ setIsOpen }) => {
+const Transports = ({ setIsOpen, setTransportCost }) => {
   return (
     <>
       <CloseButton onClick={() => setIsOpen(false)}>
         <IoClose size={24} />
       </CloseButton>
       {transports.map((transport) => (
-        <Transport transport={transport} close={setIsOpen} />
+        <Transport
+          transport={transport}
+          close={setIsOpen}
+          setTransportCost={setTransportCost}
+        />
       ))}
     </>
   );
@@ -51,7 +55,7 @@ const Transports = ({ setIsOpen }) => {
 
 export default Transports;
 
-const Transport = ({ transport, close }) => {
+const Transport = ({ transport, close, setTransportCost }) => {
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
   const selectTransport = () => {
     const newTransport = {
@@ -64,6 +68,7 @@ const Transport = ({ transport, close }) => {
     };
 
     setTravelPackage({ ...travelPackage, p_transport: newTransport });
+    setTransportCost(transport.price);
     close(false);
   };
   return (

@@ -79,7 +79,13 @@ const SelectButton = styled.button`
   padding: 5px 20px;
 `;
 
-const ReturnFlights = ({ startDate, days, destination, setIsOpen }) => {
+const ReturnFlights = ({
+  startDate,
+  days,
+  destination,
+  setIsOpen,
+  setReturnFlightCost,
+}) => {
   useEffect(() => {
     // fetchFlights();
   }, []);
@@ -101,6 +107,7 @@ const ReturnFlights = ({ startDate, days, destination, setIsOpen }) => {
           destination={destination}
           startDate={startDate}
           days={days}
+          setReturnFlightCost={setReturnFlightCost}
         />
       ))}
     </div>
@@ -109,7 +116,14 @@ const ReturnFlights = ({ startDate, days, destination, setIsOpen }) => {
 
 export default ReturnFlights;
 
-const Flight = ({ startDate, days, destination, flight, close }) => {
+const Flight = ({
+  startDate,
+  days,
+  destination,
+  flight,
+  close,
+  setReturnFlightCost,
+}) => {
   const planeClassRef = useRef();
   const nonStop = flight && flight.stops.length > 1 ? false : true;
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
@@ -134,6 +148,7 @@ const Flight = ({ startDate, days, destination, flight, close }) => {
       price: flight.price,
     };
     setTravelPackage({ ...travelPackage, p_return_flight: newFlight });
+    setReturnFlightCost(flight.price);
     close(false);
   };
   return (

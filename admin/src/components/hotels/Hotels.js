@@ -131,6 +131,7 @@ const Hotel = ({ setHotel, hotel, close }) => {
       images: hotel.images,
       dineIncluded: dineRef.current.checked,
       type: roomRef.current.value,
+      price_per_room: hotel.price_per_room,
     };
 
     setHotel(newHotel);

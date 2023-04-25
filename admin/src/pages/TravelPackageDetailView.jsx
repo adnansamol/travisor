@@ -209,20 +209,18 @@ const TravelPackageDetailView = () => {
             </table>
           </HotelContainer>
         )}
-        {travelPackage.p_hotel && (
+        {travelPackage.p_policies && (
           <HotelContainer>
             <h3>Refund Policies</h3>
             <table className="table table-bordered">
               <thead className="thead-dark">
                 <tr>
-                  <th>Refund From</th>
-                  <th>Refund To</th>
+                  <th>Refund Until</th>
                   <th>Refund Description</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>{travelPackage.p_policies.cancellation.from}</td>
                   <td>{travelPackage.p_policies.cancellation.to}</td>
                   <td>{travelPackage.p_policies.cancellation.description}</td>
                 </tr>

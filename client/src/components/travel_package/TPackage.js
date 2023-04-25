@@ -58,7 +58,7 @@ const Price = styled.div`
   color: ${colors.black};
   font-weight: 600;
 `;
-
+const Discount = styled.div``;
 const TPackage = ({ travelPackage }) => {
   return (
     travelPackage && (
@@ -79,8 +79,21 @@ const TPackage = ({ travelPackage }) => {
             <PriceContainer>
               package starts at:
               <Price>
-                {priceFormatter.format(travelPackage.p_price.base_price)}
+                {priceFormatter.format(
+                  travelPackage.p_price.total_cost -
+                    travelPackage.p_price.discount
+                )}
               </Price>
+              <Discount>
+                <strong
+                  style={{ color: "orange", margin: "0 8px", fontSize: 12 }}
+                >
+                  {travelPackage.p_price.percentage}% OFF
+                </strong>
+                <strike style={{ fontSize: 16, color: colors.gray }}>
+                  {priceFormatter.format(travelPackage.p_price.total_cost)}
+                </strike>
+              </Discount>
             </PriceContainer>
           </Details>
         </SubContainer>

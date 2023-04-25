@@ -79,7 +79,7 @@ const SelectButton = styled(Button)`
   padding: 5px 20px;
 `;
 
-const Flights = ({ setIsOpen }) => {
+const Flights = ({ setIsOpen, setFlightCost }) => {
   useEffect(() => {
     const fetchFlights = async () => {
       const response = await getFlightsAPI("Ahmedabad", "Mauritius");
@@ -93,7 +93,11 @@ const Flights = ({ setIsOpen }) => {
         <IoClose size={24} />
       </CloseButton>
       {flights.map((flight) => (
-        <Flight flight={flight} close={setIsOpen} />
+        <Flight
+          flight={flight}
+          close={setIsOpen}
+          setFlightCost={setFlightCost}
+        />
       ))}
     </div>
   );
@@ -101,7 +105,7 @@ const Flights = ({ setIsOpen }) => {
 
 export default Flights;
 
-const Flight = ({ flight, close }) => {
+const Flight = ({ flight, close, setFlightCost }) => {
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
   const planeClassRef = useRef();
   const nonStop = flight && flight.stops.length > 1 ? false : true;
@@ -126,8 +130,8 @@ const Flight = ({ flight, close }) => {
       stops: stops,
       price: flight.price,
     };
-    console.log(newFlight);
     setTravelPackage({ ...travelPackage, p_flight: newFlight });
+    setFlightCost(flight.price);
     close(false);
   };
   return (
