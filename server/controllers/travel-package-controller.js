@@ -33,7 +33,7 @@ export const createTravelPackage = async (req, res) => {
     const activitiesCost =
       JSON.parse(req.body.p_days_plan).length > 0 &&
       JSON.parse(req.body.p_days_plan).reduce(
-        (value1, value2) => value1 + value2
+        (value1, value2) => Number(value1.price) + value2.price
       );
     const totalCost =
       Number(req.body.p_price) +

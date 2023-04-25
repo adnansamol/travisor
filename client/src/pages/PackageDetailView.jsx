@@ -370,7 +370,12 @@ const PackageDetailView = () => {
               {travelPackage.p_images.map(
                 (image, index) =>
                   index < 3 && (
-                    <img src={image} alt="img" width={400} height={200} />
+                    <img
+                      src={image}
+                      alt="img"
+                      style={{ flex: "50%" }}
+                      height={200}
+                    />
                   )
               )}
             </ImagesContainer>

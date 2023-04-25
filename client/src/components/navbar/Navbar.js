@@ -19,7 +19,7 @@ const DestinationDropdown = styled.div`
   flex-direction: column;
   padding: 10px;
   flex-wrap: wrap;
-  height: 300px;
+  height: 200px;
   gap: 5px;
   column-gap: 20px;
   opacity: 0;

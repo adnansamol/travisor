@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import RegisterForm from "../components/form/RegisterForm";
@@ -6,6 +6,7 @@ import Link from "../components/ui/Link";
 import { colors } from "../constant/colors";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { registerUserAPI } from "../service/user-api";
+import { authorizeUser } from "../auth/Authorization";
 
 const Component = styled.div`
   display: flex;
@@ -67,7 +68,11 @@ const Register = () => {
     alert("Account created successfully");
     navigate("/login");
   };
-
+  useEffect(() => {
+    if (authorizeUser()) {
+      navigate("/");
+    }
+  }, []);
   return (
     <Component>
       <RightContainer></RightContainer>

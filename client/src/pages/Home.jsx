@@ -32,6 +32,7 @@ const Home = () => {
     const response = await getRecentlyAddedTravelPackagesAPI(
       addDays(new Date(), 30)
     );
+    console.log(response);
     setTravelPackages(response);
   };
 

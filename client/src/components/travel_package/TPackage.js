@@ -11,7 +11,7 @@ const Container = styled(Card)`
   width: 240px;
   border-radius: 5px;
   overflow: hidden;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s linear;
   color: ${colors.black};
   &:hover {

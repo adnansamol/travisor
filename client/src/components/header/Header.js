@@ -103,8 +103,8 @@ const DestinationDropdown = styled.div`
   flex-direction: column;
   padding: 10px;
   flex-wrap: wrap;
-  height: 300px;
-  gap: 5px;
+  height: 200px;
+  row-gap: 5px;
   column-gap: 20px;
   opacity: 0;
   position: absolute;
@@ -232,7 +232,7 @@ const Header = ({ isStatic }) => {
           <SiYourtraveldottv /> Packages
         </InlineNavLink>
         <DestinationWrapper>
-          <InlineNavLink to={"/destinations"}>
+          <InlineNavLink>
             <MdLocationCity />
             Destinations
           </InlineNavLink>
