@@ -177,8 +177,10 @@ export const updateTravelPackage = async (req, res) => {
     const activitiesCost =
       JSON.parse(req.body.p_days_plan).length > 0 &&
       JSON.parse(req.body.p_days_plan).reduce(
-        (value1, value2) => value1 + value2
+        (value1, value2) => Number(value1.price) + Number(value2.price)
       );
+    console.log(activitiesCost);
+
     const totalCost =
       Number(req.body.p_price) +
       JSON.parse(req.body.p_hotel).price_per_room +
@@ -220,7 +222,6 @@ export const updateTravelPackage = async (req, res) => {
       p_hotel: JSON.parse(req.body.p_hotel),
       p_keywords: req.body.p_keywords.split(","),
     };
-    console.log(data);
     await travelPackageModel.findByIdAndUpdate(req.params.id, data);
     res.status(200).send("Package updated successfully");
   } catch (error) {

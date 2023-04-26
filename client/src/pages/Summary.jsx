@@ -24,7 +24,7 @@ const Title = styled.div`
   font-size: 24px;
 `;
 
-const FlightContainer = styled.div`
+const SummaryContainer = styled.div`
   background-color: white;
   width: 100%;
   border-radius: 5px;
@@ -32,11 +32,23 @@ const FlightContainer = styled.div`
   padding: 10px 15px;
   margin: auto;
 `;
-
-const Plane = styled.div`
+const DayContainer = styled.div`
+  background-color: ${colors.orange100};
+  padding: 10px;
+  margin: 5px 0;
+`;
+const DayNumber = styled.div`
   font-weight: 600;
+  font-size: 18px;
   margin: 3px 2px;
-  color: ${colors.gray};
+  color: ${colors.black};
+`;
+const Text = styled.div`
+  color: ${colors.black};
+`;
+const BoldText = styled.span`
+  font-weight: 500;
+  color: ${colors.black};
 `;
 const FlightTimeContainer = styled.div`
   display: flex;
@@ -143,177 +155,122 @@ const ActivityContainer = styled.div`
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   padding: 10px 15px;
 `;
-const Itinerary = () => {
+const Summary = () => {
   const { travelPackage } = useContext(PackageContext);
 
   return (
     travelPackage && (
       <Container>
-        <FlightContainer>
+        <SummaryContainer>
           <TitleContainer>
-            <Title>Flight</Title>
+            <Title>Summary</Title>
           </TitleContainer>
-          {travelPackage.p_flight && (
-            <>
-              <hr />
-              {travelPackage.p_flight.stops.map((stop) => (
-                <>
-                  <Plane>
-                    {stop.airline} | {stop.plane}
-                  </Plane>
-                  <FlightTimeContainer>
-                    <FlightDeparture>
-                      <FlightTime>{stop.departure_time}</FlightTime>
-                      <FlightDate>
-                        {getShortDate(travelPackage.p_start_date)}
-                      </FlightDate>
-                      <FlightPlace>{stop.from}</FlightPlace>
-                    </FlightDeparture>
+          <hr />
 
-                    <HorizontalRule></HorizontalRule>
-                    <IoIosAirplane size={24} />
-                    <HorizontalRule></HorizontalRule>
-                    <FlightArrival>
-                      <FlightTime>{stop.arrival_time}</FlightTime>
-                      <FlightDate>
-                        {getShortDate(travelPackage.p_start_date)}
-                      </FlightDate>
-                      <FlightPlace>{stop.to}</FlightPlace>
-                    </FlightArrival>
-                  </FlightTimeContainer>
-                  <FlightTypeContainer>
-                    <FlightClass>
-                      <MdFlightClass size={24} title="planeClass" />:{" "}
-                      {stop.planeClass}
-                    </FlightClass>
-                    <p>
-                      <MdAirplaneTicket size={24} title="Ticket Price" />:{" "}
-                      {priceFormatter.format(travelPackage.p_flight.price)}
-                    </p>
-                  </FlightTypeContainer>
-                </>
-              ))}
-            </>
-          )}
-        </FlightContainer>
-        <TransportContainer>
-          <TitleContainer>
-            <Title>Transport</Title>
-          </TitleContainer>
-          {travelPackage.p_transport && (
-            <>
-              <hr />
-              <div style={{ display: "flex", gap: 50 }}>
-                <FaCar size={50} />{" "}
-                <div>
-                  <TransportVehicle>
-                    {travelPackage.p_transport.vehicle}
-                  </TransportVehicle>
-                  <TransportType>
-                    {travelPackage.p_transport.type}
-                  </TransportType>
-                </div>
-              </div>
-              Seats:{" "}
-              <VehicleSeats>{travelPackage.p_transport.seat}</VehicleSeats>
-              <p>{travelPackage.p_transport.description}</p>
-            </>
-          )}
-        </TransportContainer>
-        <HotelContainer>
-          <TitleContainer>
-            <Title>Check In & Stay</Title>
-          </TitleContainer>
-          {travelPackage.p_hotel && (
-            <>
-              <hr />
-              <HotelDetails>
-                <div>
-                  <HotelName>{travelPackage.p_hotel.name}</HotelName>
-                  <HotelAddress>
-                    <IoLocationSharp />
-                    {travelPackage.p_hotel.address}
-                  </HotelAddress>
-                  <HotelRoomType>
-                    Type: {travelPackage.p_hotel.type}
-                  </HotelRoomType>
-                  Includes:
-                  {travelPackage.p_hotel.dineIncluded == true ? (
-                    <HotelDineContainer>
-                      <HotelDine>Breakfast</HotelDine>
-                      <HotelDine>Lunch</HotelDine>
-                      <HotelDine>Dinner</HotelDine>
-                    </HotelDineContainer>
-                  ) : (
-                    <p style={{ color: "orangered" }}>Dine is not included</p>
-                  )}
-                </div>
-
-                <HotelImage src={travelPackage.p_hotel.images[0]} />
-              </HotelDetails>
-            </>
-          )}
-        </HotelContainer>
-        <FlightContainer>
-          <TitleContainer>
-            <Title>Return Flight</Title>
-          </TitleContainer>
-          {travelPackage.p_return_flight && (
-            <>
-              <hr />
-              {travelPackage.p_return_flight.stops.map((stop) => (
-                <>
-                  <Plane>{stop.plane}</Plane>
-                  <FlightTimeContainer>
-                    <FlightDeparture>
-                      <FlightTime>{stop.departure_time}</FlightTime>
-                      <FlightDate>
-                        {getShortDate(
-                          addDays(
-                            travelPackage.p_start_date,
-                            travelPackage.p_days
-                          )
-                        )}
-                      </FlightDate>
-                      <FlightPlace>{stop.from}</FlightPlace>
-                    </FlightDeparture>
-
-                    <HorizontalRule></HorizontalRule>
-                    <IoIosAirplane size={24} />
-                    <HorizontalRule></HorizontalRule>
-                    <FlightArrival>
-                      <FlightTime>{stop.arrival_time}</FlightTime>
-                      <FlightDate>
-                        {getShortDate(
-                          addDays(
-                            travelPackage.p_start_date,
-                            travelPackage.p_days
-                          )
-                        )}
-                      </FlightDate>
-                      <FlightPlace>{stop.to}</FlightPlace>
-                    </FlightArrival>
-                  </FlightTimeContainer>
-                  <FlightTypeContainer>
-                    <FlightClass>
-                      <MdFlightClass size={24} title="class" />:{" "}
-                      {stop.planeClass}
-                    </FlightClass>
-                    <p>
-                      <MdAirplaneTicket size={24} title="Ticket Price" />:{" "}
-                      {priceFormatter.format(
-                        travelPackage.p_return_flight.price
-                      )}
-                    </p>
-                  </FlightTypeContainer>
-                </>
-              ))}
-            </>
-          )}
-        </FlightContainer>
+          <DayContainer>
+            <DayNumber>Day-1</DayNumber>
+            {travelPackage.p_flight && (
+              <>
+                <h6>
+                  Departure from airport: {travelPackage.p_flight.airport}
+                </h6>
+                <Text>
+                  <i>Flight</i>:{" "}
+                  <BoldText>
+                    {travelPackage.p_flight.stops[0].airline}{" "}
+                    {travelPackage.p_flight.stops[0].plane}
+                  </BoldText>{" "}
+                  |{" "}
+                  <BoldText>
+                    {travelPackage.p_flight.stops[0].departure_time} -{" "}
+                    {travelPackage.p_flight.stops[0].arrival_time}
+                  </BoldText>{" "}
+                  |{" "}
+                  <BoldText>
+                    {travelPackage.p_start_location} -{" "}
+                    {travelPackage.p_destination}
+                  </BoldText>{" "}
+                  |{" "}
+                  <BoldText>
+                    {travelPackage.p_flight.stops.length - 1} Stops
+                  </BoldText>
+                </Text>
+                <hr />
+              </>
+            )}
+            {travelPackage.p_transport && (
+              <Text>
+                {travelPackage.p_transport.vehicle} drives to the hotel.
+              </Text>
+            )}
+            <h6>Check In</h6>
+            <Text>
+              <i>{travelPackage.p_hotel.name}</i>
+              <Text>{travelPackage.p_hotel.address}</Text>
+              <Text>
+                <i>Type</i>: {travelPackage.p_hotel.type}
+              </Text>
+            </Text>
+          </DayContainer>
+          {travelPackage.p_days_plan &&
+            travelPackage.p_days_plan.map((activity) => (
+              <DayContainer>
+                <DayNumber>Day-{activity.day}</DayNumber>
+                {travelPackage.p_transport && (
+                  <Text>
+                    <i>
+                      {" "}
+                      {travelPackage.p_transport.vehicle} drives to{" "}
+                      {activity.site}.
+                    </i>
+                  </Text>
+                )}
+                <h6>Activity</h6>
+                <Text>
+                  <BoldText>{activity.title}</BoldText>
+                  <Text>{travelPackage.p_hotel.address}</Text>
+                  <Text>
+                    <i>Type</i>: {travelPackage.p_hotel.type}
+                  </Text>
+                </Text>
+              </DayContainer>
+            ))}
+          <DayContainer>
+            <DayNumber>Day-{travelPackage.p_days}</DayNumber>
+            {travelPackage.p_return_flight && (
+              <>
+                <h6>
+                  Departure from airport:{" "}
+                  {travelPackage.p_return_flight.airport}
+                </h6>
+                <Text>
+                  <i>Flight</i>:{" "}
+                  <BoldText>
+                    {travelPackage.p_return_flight.stops[0].airline}{" "}
+                    {travelPackage.p_return_flight.stops[0].plane}
+                  </BoldText>{" "}
+                  |{" "}
+                  <BoldText>
+                    {travelPackage.p_return_flight.stops[0].departure_time} -{" "}
+                    {travelPackage.p_return_flight.stops[0].arrival_time}
+                  </BoldText>{" "}
+                  |{" "}
+                  <BoldText>
+                    {travelPackage.p_destination} -{" "}
+                    {travelPackage.p_start_location}
+                  </BoldText>{" "}
+                  |{" "}
+                  <BoldText>
+                    {travelPackage.p_return_flight.stops.length - 1} Stops
+                  </BoldText>
+                </Text>
+              </>
+            )}
+          </DayContainer>
+        </SummaryContainer>
       </Container>
     )
   );
 };
 
-export default Itinerary;
+export default Summary;

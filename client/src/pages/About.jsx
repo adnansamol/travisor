@@ -7,7 +7,7 @@ import Footer from "../components/footer/Footer";
 const Container = styled.div`
   background-color: whitesmoke;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   padding-top: 140px;
 `;
 const Title = styled.div`

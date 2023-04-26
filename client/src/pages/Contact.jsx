@@ -3,12 +3,11 @@ import styled from "styled-components";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { colors } from "../constant/colors";
-import Button from "../components/ui/Button";
 
 const Container = styled.div`
   background-color: whitesmoke;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   padding: 150px;
 `;
 const Card = styled.div`

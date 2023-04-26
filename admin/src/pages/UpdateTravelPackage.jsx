@@ -26,14 +26,15 @@ const UpdateTravelPackage = () => {
 
   return (
     <Container>
-      <FormContainer>
-        <h1>Update Package</h1>
-        {loading ? (
-          <Loading />
-        ) : (
+      {loading ? (
+        <Loading />
+      ) : (
+        <FormContainer>
+          <h1>Update Package</h1>
+
           <UpdateTravelPackageForm updateTravelPackage={updateTravelPackage} />
-        )}
-      </FormContainer>
+        </FormContainer>
+      )}
     </Container>
   );
 };
