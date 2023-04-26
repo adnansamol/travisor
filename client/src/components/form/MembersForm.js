@@ -102,7 +102,6 @@ const MembersForm = ({ setIsOpen }) => {
       else if (guest.age.value < 18) children++;
     }
     const rooms = Math.ceil(adults / 2);
-
     setTravelPackage({
       ...travelPackage,
       p_guests: guests,

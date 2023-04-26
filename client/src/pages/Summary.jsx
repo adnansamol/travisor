@@ -1,13 +1,9 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../constant/colors";
-import { FaCar } from "react-icons/fa";
-import { MdFlightClass, MdAirplaneTicket } from "react-icons/md";
-import { IoIosAirplane } from "react-icons/io";
-import { getShortDate, priceFormatter } from "../util/formatter";
+
 import { IoLocationSharp } from "react-icons/io5";
 import { PackageContext } from "../context/package-context";
-import { addDays } from "../util/date-functions";
 
 const Container = styled.div`
   display: flex;
@@ -33,7 +29,7 @@ const SummaryContainer = styled.div`
   margin: auto;
 `;
 const DayContainer = styled.div`
-  background-color: ${colors.orange100};
+  background-color: ${colors.orange50}AA;
   padding: 10px;
   margin: 5px 0;
 `;
@@ -45,6 +41,7 @@ const DayNumber = styled.div`
 `;
 const Text = styled.div`
   color: ${colors.black};
+  font-size: 14px;
 `;
 const BoldText = styled.span`
   font-weight: 500;
@@ -200,13 +197,18 @@ const Summary = () => {
             )}
             {travelPackage.p_transport && (
               <Text>
-                {travelPackage.p_transport.vehicle} drives to the hotel.
+                <i>{travelPackage.p_transport.vehicle} drives to the hotel.</i>
               </Text>
             )}
             <h6>Check In</h6>
             <Text>
-              <i>{travelPackage.p_hotel.name}</i>
-              <Text>{travelPackage.p_hotel.address}</Text>
+              <i>
+                <BoldText>{travelPackage.p_hotel.name}</BoldText>
+              </i>
+              <Text>
+                <IoLocationSharp />
+                {travelPackage.p_hotel.address}
+              </Text>
               <Text>
                 <i>Type</i>: {travelPackage.p_hotel.type}
               </Text>
@@ -227,11 +229,13 @@ const Summary = () => {
                 )}
                 <h6>Activity</h6>
                 <Text>
-                  <BoldText>{activity.title}</BoldText>
-                  <Text>{travelPackage.p_hotel.address}</Text>
+                  <BoldText style={{ fontSize: 16 }}>{activity.title}</BoldText>
                   <Text>
-                    <i>Type</i>: {travelPackage.p_hotel.type}
+                    <IoLocationSharp />
+                    {activity.site}
                   </Text>
+                  <br />
+                  <Text style={{ fontSize: 16 }}>{activity.description}</Text>
                 </Text>
               </DayContainer>
             ))}

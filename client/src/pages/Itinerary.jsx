@@ -15,6 +15,7 @@ import Flights from "../components/flights/Flights";
 import Transports from "../components/transport/Transports";
 import { addDays } from "../util/date-functions";
 import ReturnFlights from "../components/flights/ReturnFlights";
+import Activities from "../components/activities/Activities";
 
 const Container = styled.div`
   display: flex;
@@ -28,7 +29,7 @@ const TitleContainer = styled.div`
   align-items: center;
 `;
 const Title = styled.div`
-  font-size: 24px;
+  font-size: 20px;
 `;
 
 const FlightContainer = styled.div`
@@ -243,6 +244,7 @@ const Itinerary = () => {
   const [openReturnFlightModal, setOpenReturnFlightModal] = useState(false);
   const [openTransportModal, setOpenTransportModal] = useState(false);
   const [openHotelModal, setOpenHotelModal] = useState(false);
+  const [openActivitiesModal, setOpenActivitiesModal] = useState(false);
 
   const [flightCost, setFlightCost] = useState(
     travelPackage.p_flight ? travelPackage.p_flight.price : 0
@@ -253,12 +255,18 @@ const Itinerary = () => {
   const [hotelCost, setHotelCost] = useState(
     travelPackage.p_hotel.price_per_room
   );
+  const [activitiesCost, setActivitiesCost] = useState(
+    travelPackage.p_days_plan.length > 0
+      ? travelPackage.p_days_plan.reduce(
+          (value1, value2) => Number(value1.price) + Number(value2.price)
+        )
+      : 0
+  );
   const [transportCost, setTransportCost] = useState(
     travelPackage.p_transport ? travelPackage.p_transport.price : 0
   );
 
   useEffect(() => {
-    console.log(hotelCost, flightCost);
     setTravelPackage({
       ...travelPackage,
       p_price: {
@@ -268,18 +276,20 @@ const Itinerary = () => {
           hotelCost +
           flightCost +
           returnFlightCost +
-          transportCost,
+          transportCost +
+          activitiesCost,
         discount:
           ((travelPackage.p_price.base_price +
             hotelCost +
             flightCost +
             returnFlightCost +
-            transportCost) *
+            transportCost +
+            activitiesCost) *
             travelPackage.p_price.percentage) /
           100,
       },
     });
-  }, [hotelCost, transportCost, flightCost, returnFlightCost]);
+  }, [hotelCost, transportCost, flightCost, returnFlightCost, activitiesCost]);
 
   const removeFlight = () => {
     setFlightCost(0);
@@ -303,8 +313,18 @@ const Itinerary = () => {
       p_transport: undefined,
     });
   };
+  const removeActivity = (id, price) => {
+    setActivitiesCost((old) => old - price);
+    setTravelPackage({
+      ...travelPackage,
+      p_days_plan: travelPackage.p_days_plan.filter((item) => item.id != id),
+    });
+  };
   const closeHotelModal = () => {
     setOpenHotelModal(false);
+  };
+  const closeActivitesModal = () => {
+    setOpenActivitiesModal(false);
   };
   const closeFlightModal = () => {
     setOpenFlightModal(false);
@@ -328,6 +348,17 @@ const Itinerary = () => {
             setIsOpen={setOpenHotelModal}
             destination={travelPackage.p_destination}
             setHotelCost={setHotelCost}
+          />
+        </Modal>
+        <Modal
+          isOpen={openActivitiesModal}
+          style={customModalStyles}
+          onRequestClose={closeActivitesModal}
+          shouldCloseOnOverlayClick={true}
+        >
+          <Activities
+            setIsOpen={setOpenActivitiesModal}
+            setActivitiesCost={setActivitiesCost}
           />
         </Modal>
         <Modal
@@ -499,43 +530,57 @@ const Itinerary = () => {
             </>
           )}
         </HotelContainer>
-        <ActivityContainer style={{ padding: 10 }}>
-          Days Activity Plan
-        </ActivityContainer>
-        {travelPackage.p_days_plan.length > 0 &&
-          travelPackage.p_days_plan.map((activity, index) => (
-            <ActivityContainer key={index}>
-              <ActivityTopContainer>
-                <div style={{ width: "60%", wordBreak: "break-all" }}>
-                  <DayContainer>Day-{activity.day}</DayContainer>
-                  <ActivityTitleContainer>
-                    <ActivityTitle>{activity.title}</ActivityTitle>
-
-                    <ActivitySite>
-                      <IoLocationSharp />
-                      {activity.site}
-                    </ActivitySite>
-                    <ActivityTitle>
-                      {priceFormatter.format(activity.price)}/-
-                    </ActivityTitle>
-                  </ActivityTitleContainer>
-                </div>
-                <IoClose
-                  size={30}
-                  fill={"white"}
-                  style={{
-                    position: "absolute",
-                    right: 0,
-                    backgroundColor: "black",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {}}
-                />
-                <ActivityImage src="https://res.cloudinary.com/debfaf0xn/image/upload/v1682359422/zouprrahkg8rkbrc9ja5.jpg" />
-              </ActivityTopContainer>
-              <ActivityDescription>{activity.description}</ActivityDescription>
+        {travelPackage.all_activities.length > 0 && (
+          <>
+            <ActivityContainer style={{ padding: 10 }}>
+              <TitleContainer>
+                <Title>Activities</Title>
+                <AddButton onClick={() => setOpenActivitiesModal(true)}>
+                  Add
+                </AddButton>
+              </TitleContainer>
             </ActivityContainer>
-          ))}
+            {travelPackage.p_days_plan
+              .sort((item1, item2) => item1.day - item2.day)
+              .map((activity, index) => (
+                <ActivityContainer key={index}>
+                  <ActivityTopContainer>
+                    <div style={{ width: "60%", wordBreak: "break-all" }}>
+                      <DayContainer>Day-{activity.day}</DayContainer>
+                      <ActivityTitleContainer>
+                        <ActivityTitle>{activity.title}</ActivityTitle>
+
+                        <ActivitySite>
+                          <IoLocationSharp />
+                          {activity.site}
+                        </ActivitySite>
+                        <ActivityTitle>
+                          {priceFormatter.format(activity.price)}/-
+                        </ActivityTitle>
+                      </ActivityTitleContainer>
+                    </div>
+                    <IoClose
+                      size={30}
+                      fill={"white"}
+                      style={{
+                        position: "absolute",
+                        right: 0,
+                        backgroundColor: "black",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        removeActivity(activity.id, activity.price);
+                      }}
+                    />
+                    <ActivityImage src="https://res.cloudinary.com/debfaf0xn/image/upload/v1682359422/zouprrahkg8rkbrc9ja5.jpg" />
+                  </ActivityTopContainer>
+                  <ActivityDescription>
+                    {activity.description}
+                  </ActivityDescription>
+                </ActivityContainer>
+              ))}
+          </>
+        )}
         <FlightContainer>
           <TitleContainer>
             <Title>Return Flight</Title>

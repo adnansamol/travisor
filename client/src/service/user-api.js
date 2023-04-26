@@ -39,6 +39,7 @@ export const getUserProfileAPI = async (token) => {
     return response.data;
   } catch (error) {
     console.log(error);
+    return error.data;
   }
 };
 export const updateUserAPI = async (data) => {

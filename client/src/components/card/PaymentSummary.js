@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { colors } from "../../constant/colors";
 import { PackageContext } from "../../context/package-context";
@@ -45,9 +45,12 @@ const PaymentButton = styled(Button)`
 `;
 const PaymentSummary = ({ onMakePaymentHandler }) => {
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
+  useEffect(() => {
+    console.log(travelPackage);
+  }, []);
   return (
     <PaymentContainer>
-      <h3 style={{ textAlign: "center" }}>Package Summary</h3>
+      <h3 style={{ textAlign: "center" }}>Payment Details</h3>
       <PaymentDetails>
         <h6>Package Details</h6>
         <FieldContainer>
@@ -87,7 +90,9 @@ const PaymentSummary = ({ onMakePaymentHandler }) => {
               <Text>{travelPackage.p_flight.stops[0].planeClass}</Text>
             </FieldContainer>{" "}
             <FieldContainer>
-              <Label>Cost: </Label>
+              <Label>
+                <b>Cost</b>:{" "}
+              </Label>
               <Text>
                 {priceFormatter.format(
                   travelPackage.p_flight.price * travelPackage.p_guests.length
@@ -117,7 +122,9 @@ const PaymentSummary = ({ onMakePaymentHandler }) => {
               <Text>{travelPackage.p_return_flight.stops[0].planeClass}</Text>
             </FieldContainer>
             <FieldContainer>
-              <Label>Cost: </Label>
+              <Label>
+                <b>Cost</b>:{" "}
+              </Label>
               <Text>
                 {priceFormatter.format(
                   travelPackage.p_return_flight.price *
@@ -144,22 +151,40 @@ const PaymentSummary = ({ onMakePaymentHandler }) => {
               <Label>Room Type: </Label>
               <Text>{travelPackage.p_hotel.type}</Text>
             </FieldContainer>
+
             {travelPackage.p_transport && (
               <FieldContainer>
-                <Label>Transport: </Label>
-                <Text>{travelPackage.p_transport.vehicle}</Text>
-                <Label>Cost: </Label>
-                <Text>{travelPackage.p_transport.price}</Text>
+                <Label>Transport (Cost): </Label>
+                <Text>
+                  {travelPackage.p_transport.vehicle} (
+                  {priceFormatter.format(travelPackage.p_transport.price)})
+                </Text>
               </FieldContainer>
             )}
             <FieldContainer>
-              <Label>Cost: </Label>
+              <Label>
+                <b>Cost</b>:{" "}
+              </Label>
               <Text>
                 {priceFormatter.format(travelPackage.p_hotel.price_per_room)}
               </Text>
             </FieldContainer>
           </>
         )}
+        <hr />
+        {travelPackage.p_days_plan.length > 0 &&
+          travelPackage.p_days_plan.map((activity) => {
+            return (
+              <>
+                <FieldContainer>
+                  <Label>Activity (Cost): </Label>
+                  <Text>
+                    {activity.title} ({priceFormatter.format(activity.price)})
+                  </Text>
+                </FieldContainer>
+              </>
+            );
+          })}
         <hr />
         <h6>Guests details</h6>
         {travelPackage.p_guests.map((guest) => (

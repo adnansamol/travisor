@@ -5,7 +5,7 @@ import RegisterForm from "../components/form/RegisterForm";
 import Link from "../components/ui/Link";
 import { colors } from "../constant/colors";
 import { MdKeyboardBackspace } from "react-icons/md";
-import { registerUserAPI } from "../service/user-api";
+import { getUserProfileAPI, registerUserAPI } from "../service/user-api";
 import { authorizeUser } from "../auth/Authorization";
 
 const Component = styled.div`
@@ -63,16 +63,21 @@ const LoginLink = styled(Link)`
 `;
 const Register = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    authorizeUser();
+  }, []);
+
   const registerUserHandler = async (data) => {
     const response = await registerUserAPI(data);
     alert("Account created successfully");
     navigate("/login");
   };
-  useEffect(() => {
-    if (authorizeUser()) {
+  const authorizeUser = async () => {
+    if (await getUserProfileAPI(localStorage.getItem("token"))) {
       navigate("/");
     }
-  }, []);
+  };
   return (
     <Component>
       <RightContainer></RightContainer>

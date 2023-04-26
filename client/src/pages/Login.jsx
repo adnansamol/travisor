@@ -4,7 +4,7 @@ import styled from "styled-components";
 import LoginForm from "../components/form/LoginForm";
 import Link from "../components/ui/Link";
 import { colors } from "../constant/colors";
-import { loginUserAPI } from "../service/user-api";
+import { getUserProfileAPI, loginUserAPI } from "../service/user-api";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { authorizeUser } from "../auth/Authorization";
 
@@ -56,10 +56,14 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (authorizeUser()) {
+    authorizeUser();
+  }, []);
+
+  const authorizeUser = async () => {
+    if (await getUserProfileAPI(localStorage.getItem("token"))) {
       navigate("/");
     }
-  }, []);
+  };
   return (
     <Component>
       <LoginContainer>

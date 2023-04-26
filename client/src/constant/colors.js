@@ -7,6 +7,7 @@ export const colors = {
   orange400: "#ffc34d",
   orange300: "#ffcc66",
   orange100: "#ffdd99",
+  orange50: "#ffd9b3",
   black: "#2e2e2e",
   gray: "#7a7a7a",
   lightgray: "lightgray",

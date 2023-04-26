@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Link from "../ui/Link";
 import { colors } from "../../constant/colors";
 import TDestination from "./TDestination";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const Container = styled.div`
   margin: auto;
@@ -20,13 +22,29 @@ const Title = styled.div`
   padding-bottom: 15px;
   margin-bottom: 20px;
 `;
-const DestinationLink = styled(Link)``;
-
+const DestinationLink = styled(Link)`
+  display: inline-block;
+`;
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 4,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 4,
+  },
+};
 const TDestinations = ({ title, destinations }) => {
   return (
     <Container>
       <Title>{title}</Title>
-      <FlexContainer>
+      <Carousel
+        centerMode={false}
+        responsive={responsive}
+        itemClass="carousel-item-width-0-px"
+      >
         {destinations &&
           destinations.map(
             (destination, index) =>
@@ -36,7 +54,7 @@ const TDestinations = ({ title, destinations }) => {
                 </DestinationLink>
               )
           )}
-      </FlexContainer>
+      </Carousel>
     </Container>
   );
 };

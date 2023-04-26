@@ -222,6 +222,7 @@ const PackageDetailView = () => {
       );
     } else {
       const data = await getTravelPackageByIdAPI(params.id);
+      data["all_activities"] = data.p_days_plan;
       setTravelPackage(data);
 
       data.p_images.map((image) =>
@@ -330,7 +331,7 @@ const PackageDetailView = () => {
                     {travelPackage.p_destination}
                   </Destination>
                   <Days>
-                    {travelPackage.p_days}N/{travelPackage.p_days + 1}D
+                    {travelPackage.p_days - 1}N/{travelPackage.p_days}D
                   </Days>
                 </div>
               </div>
