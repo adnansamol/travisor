@@ -1,0 +1,46 @@
+Date : 2023-04-26 22:52:15
+Directory : c:\Users\ADNAN\Documents\travisor\server
+Total : 16 files,  2615 codes, 0 comments, 56 blanks, all 2671 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |          2 |      2,301 |          0 |          2 |      2,303 |
+| JavaScript |         14 |        314 |          0 |         54 |        368 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                      | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                         |         16 |      2,615 |          0 |         56 |      2,671 |
+| . (Files)                                                                 |          3 |      2,328 |          0 |          4 |      2,332 |
+| database                                                                  |          1 |         15 |          0 |          3 |         18 |
+| models                                                                    |          6 |        119 |          0 |         19 |        138 |
+| routes                                                                    |          4 |        123 |          0 |         27 |        150 |
+| util                                                                      |          2 |         30 |          0 |          3 |         33 |
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                  | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\ADNAN\Documents\travisor\server\database\mongodb.js              | JavaScript |         15 |          0 |          3 |         18 |
+| c:\Users\ADNAN\Documents\travisor\server\index.js                         | JavaScript |         27 |          0 |          2 |         29 |
+| c:\Users\ADNAN\Documents\travisor\server\models\agency.js                 | JavaScript |         17 |          0 |          3 |         20 |
+| c:\Users\ADNAN\Documents\travisor\server\models\booked-package.js         | JavaScript |         31 |          0 |          3 |         34 |
+| c:\Users\ADNAN\Documents\travisor\server\models\booking.js                | JavaScript |         14 |          0 |          4 |         18 |
+| c:\Users\ADNAN\Documents\travisor\server\models\customer-request.js       | JavaScript |         16 |          0 |          3 |         19 |
+| c:\Users\ADNAN\Documents\travisor\server\models\travel-package.js         | JavaScript |         25 |          0 |          3 |         28 |
+| c:\Users\ADNAN\Documents\travisor\server\models\user.js                   | JavaScript |         16 |          0 |          3 |         19 |
+| c:\Users\ADNAN\Documents\travisor\server\package-lock.json                | JSON       |      2,272 |          0 |          1 |      2,273 |
+| c:\Users\ADNAN\Documents\travisor\server\package.json                     | JSON       |         29 |          0 |          1 |         30 |
+| c:\Users\ADNAN\Documents\travisor\server\routes\agency-route.js           | JavaScript |         19 |          0 |          7 |         26 |
+| c:\Users\ADNAN\Documents\travisor\server\routes\customer-request-route.js | JavaScript |         14 |          0 |          3 |         17 |
+| c:\Users\ADNAN\Documents\travisor\server\routes\package-route.js          | JavaScript |         69 |          0 |         10 |         79 |
+| c:\Users\ADNAN\Documents\travisor\server\routes\user-route.js             | JavaScript |         21 |          0 |          7 |         28 |
+| c:\Users\ADNAN\Documents\travisor\server\util\authentication.js           | JavaScript |         14 |          0 |          1 |         15 |
+| c:\Users\ADNAN\Documents\travisor\server\util\validation.js               | JavaScript |         16 |          0 |          2 |         18 |
+| Total                                                                     |            |      2,615 |          0 |         56 |      2,671 |
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+

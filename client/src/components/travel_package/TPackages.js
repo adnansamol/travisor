@@ -61,11 +61,6 @@ const TPackages = ({ title, travelPackages, dateFilter }) => {
               <TPackage travelPackage={travelPackage} />
             </PackageLink>
           ))}
-        <TPackage travelPackage={travelPackages[0]} />
-        <TPackage travelPackage={travelPackages[0]} />
-        <TPackage travelPackage={travelPackages[0]} />
-        <TPackage travelPackage={travelPackages[0]} />
-        <TPackage travelPackage={travelPackages[0]} />
       </Carousel>
     </Container>
   );

@@ -1,0 +1,110 @@
+Date : 2023-04-26 22:53:06
+Directory : c:\Users\ADNAN\Documents\travisor\admin
+Total : 62 files,  18313 codes, 42 comments, 311 blanks, all 18666 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| JSON           |          3 |     12,966 |          0 |          3 |     12,969 |
+| JavaScript     |         42 |      4,391 |         19 |        213 |      4,623 |
+| JavaScript JSX |         12 |        846 |          0 |         53 |        899 |
+| CSS            |          2 |         45 |          0 |          8 |         53 |
+| Markdown       |          1 |         38 |          0 |         33 |         71 |
+| HTML           |          1 |         26 |         23 |          1 |         50 |
+| XML            |          1 |          1 |          0 |          0 |          1 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                   | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                      |         62 |     18,313 |         42 |        311 |     18,666 |
+| . (Files)                                                                              |          3 |     12,979 |          0 |         35 |     13,014 |
+| public                                                                                 |          2 |         51 |         23 |          2 |         76 |
+| src                                                                                    |         57 |      5,283 |         19 |        274 |      5,576 |
+| src (Files)                                                                            |          7 |        186 |          3 |         21 |        210 |
+| src\auth                                                                               |          1 |          7 |          0 |          2 |          9 |
+| src\components                                                                         |         22 |      2,914 |         13 |        158 |      3,085 |
+| src\components (Files)                                                                 |          1 |         55 |          0 |          5 |         60 |
+| src\components\card                                                                    |          1 |        100 |          0 |          6 |        106 |
+| src\components\flights                                                                 |          2 |        350 |         12 |         26 |        388 |
+| src\components\form                                                                    |          6 |      1,656 |          0 |         62 |      1,718 |
+| src\components\hotels                                                                  |          2 |        324 |          1 |         22 |        347 |
+| src\components\loading                                                                 |          1 |         43 |          0 |          4 |         47 |
+| src\components\table                                                                   |          8 |        305 |          0 |         27 |        332 |
+| src\components\transport                                                               |          1 |         81 |          0 |          6 |         87 |
+| src\constant                                                                           |          8 |      1,137 |          0 |         16 |      1,153 |
+| src\pages                                                                              |         12 |        846 |          0 |         53 |        899 |
+| src\service                                                                            |          4 |        147 |          0 |         12 |        159 |
+| src\util                                                                               |          3 |         46 |          3 |         12 |         61 |
++----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                               | language       | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| c:\Users\ADNAN\Documents\travisor\admin\README.md                                      | Markdown       |         38 |          0 |         33 |         71 |
+| c:\Users\ADNAN\Documents\travisor\admin\package-lock.json                              | JSON           |     12,897 |          0 |          1 |     12,898 |
+| c:\Users\ADNAN\Documents\travisor\admin\package.json                                   | JSON           |         44 |          0 |          1 |         45 |
+| c:\Users\ADNAN\Documents\travisor\admin\public\index.html                              | HTML           |         26 |         23 |          1 |         50 |
+| c:\Users\ADNAN\Documents\travisor\admin\public\manifest.json                           | JSON           |         25 |          0 |          1 |         26 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\App.css                                    | CSS            |         33 |          0 |          6 |         39 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\App.js                                     | JavaScript     |        108 |          0 |          4 |        112 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\App.test.js                                | JavaScript     |          7 |          0 |          2 |          9 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\ProtectedRoute.js                          | JavaScript     |         14 |          0 |          4 |         18 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\auth\authorization.js                      | JavaScript     |          7 |          0 |          2 |          9 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\Header.js                       | JavaScript     |         55 |          0 |          5 |         60 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\card\ProfileCard.js             | JavaScript     |        100 |          0 |          6 |        106 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\flights\Flights.js              | JavaScript     |        170 |          6 |         13 |        189 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\flights\ReturnFlights.js        | JavaScript     |        180 |          6 |         13 |        199 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\form\ActivityForm.js            | JavaScript     |         74 |          0 |          6 |         80 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\form\AddTravelPackageForm.js    | JavaScript     |        657 |          0 |         22 |        679 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\form\LoginForm.js               | JavaScript     |         26 |          0 |          3 |         29 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\form\ProfileForm.js             | JavaScript     |        118 |          0 |          4 |        122 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\form\RegisterForm.js            | JavaScript     |         72 |          0 |          5 |         77 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\form\UpdateTravelPackageForm.js | JavaScript     |        709 |          0 |         22 |        731 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\hotels\HotelFilters.js          | JavaScript     |        163 |          1 |          8 |        172 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\hotels\Hotels.js                | JavaScript     |        161 |          0 |         14 |        175 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\loading\Loading.js              | JavaScript     |         43 |          0 |          4 |         47 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\table\BookingRow.js             | JavaScript     |         52 |          0 |          4 |         56 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\table\BookingTable.js           | JavaScript     |         28 |          0 |          3 |         31 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\table\CancelledBookingRow.js    | JavaScript     |         56 |          0 |          4 |         60 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\table\CancelledBookingTable.js  | JavaScript     |         33 |          0 |          3 |         36 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\table\CustomerRequestRow.js     | JavaScript     |         29 |          0 |          3 |         32 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\table\CustomerRequestTable.js   | JavaScript     |         38 |          0 |          3 |         41 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\table\TravelPackageRow.js       | JavaScript     |         33 |          0 |          4 |         37 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\table\TravelPackagesTable.js    | JavaScript     |         36 |          0 |          3 |         39 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\transport\Transports.js         | JavaScript     |         81 |          0 |          6 |         87 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\constant\codes.js                          | JavaScript     |          5 |          0 |          1 |          6 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\constant\colors.js                         | JavaScript     |         16 |          0 |          1 |         17 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\constant\countries.js                      | JavaScript     |        207 |          0 |          1 |        208 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\constant\destinations.js                   | JavaScript     |         18 |          0 |          1 |         19 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\constant\flights.js                        | JavaScript     |        108 |          0 |          6 |        114 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\constant\hotels.js                         | JavaScript     |        421 |          0 |          2 |        423 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\constant\package.js                        | JavaScript     |        306 |          0 |          3 |        309 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\constant\transports.js                     | JavaScript     |         56 |          0 |          1 |         57 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\index.css                                  | CSS            |         12 |          0 |          2 |         14 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\index.js                                   | JavaScript     |         11 |          3 |          3 |         17 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\logo.svg                                   | XML            |          1 |          0 |          0 |          1 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\AddTravelPackage.jsx                 | JavaScript JSX |         36 |          0 |          5 |         41 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\BookingDetailView.jsx                | JavaScript JSX |        234 |          0 |          9 |        243 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\Bookings.jsx                         | JavaScript JSX |         43 |          0 |          3 |         46 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\CancelledBookings.jsx                | JavaScript JSX |         43 |          0 |          3 |         46 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\CustomerRequests.jsx                 | JavaScript JSX |         44 |          0 |          4 |         48 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\Home.jsx                             | JavaScript JSX |         79 |          0 |          3 |         82 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\Login.jsx                            | JavaScript JSX |         27 |          0 |          4 |         31 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\Profile.jsx                          | JavaScript JSX |         10 |          0 |          3 |         13 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\Register.jsx                         | JavaScript JSX |         25 |          0 |          2 |         27 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\TravelPackageDetailView.jsx          | JavaScript JSX |        230 |          0 |          7 |        237 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\TravelPackages.jsx                   | JavaScript JSX |         39 |          0 |          3 |         42 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\UpdateTravelPackage.jsx              | JavaScript JSX |         36 |          0 |          7 |         43 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\service\agency-api.js                      | JavaScript     |         42 |          0 |          4 |         46 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\service\booking-api.js                     | JavaScript     |         38 |          0 |          3 |         41 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\service\customer-request-api.js            | JavaScript     |         20 |          0 |          1 |         21 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\service\package-api.js                     | JavaScript     |         47 |          0 |          4 |         51 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\util\date-functions.js                     | JavaScript     |          5 |          0 |          1 |          6 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\util\formatter.js                          | JavaScript     |         41 |          3 |         10 |         54 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\util\validation.js                         | JavaScript     |          0 |          0 |          1 |          1 |
+| Total                                                                                  |                |     18,313 |         42 |        311 |     18,666 |
++----------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+

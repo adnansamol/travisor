@@ -8,7 +8,7 @@ import Card from "../card/Card";
 const Container = styled(Card)`
   position: relative;
   background-color: white;
-  width: 230px;
+  width: 210px;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -19,7 +19,7 @@ const Preview = styled.div`
 `;
 const Image = styled.img`
   width: inherit;
-  height: 340px;
+  height: 300px;
 `;
 const SubContainer = styled.div`
   position: absolute;

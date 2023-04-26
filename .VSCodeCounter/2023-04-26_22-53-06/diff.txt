@@ -1,0 +1,209 @@
+Date : 2023-04-26 22:53:06
+Directory : c:\Users\ADNAN\Documents\travisor\admin
+Total : 134 files,  -6748 codes, -15 comments, -75 blanks, all -6838 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| JavaScript     |         90 |         39 |          1 |        -12 |         28 |
+| CSS            |          4 |         23 |          0 |          5 |         28 |
+| XML            |          1 |          1 |          0 |          0 |          1 |
+| Markdown       |          2 |          0 |          0 |          0 |          0 |
+| HTML           |          2 |         -4 |          0 |          0 |         -4 |
+| JavaScript JSX |         29 |     -1,587 |        -16 |        -68 |     -1,671 |
+| JSON           |          6 |     -5,220 |          0 |          0 |     -5,220 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                           | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                              |        134 |     -6,748 |        -15 |        -75 |     -6,838 |
+| . (Files)                                                                                      |          3 |     12,979 |          0 |         35 |     13,014 |
+| ..                                                                                             |         72 |    -25,061 |        -57 |       -386 |    -25,504 |
+| ..\client                                                                                      |         72 |    -25,061 |        -57 |       -386 |    -25,504 |
+| ..\client (Files)                                                                              |          3 |    -18,199 |          0 |        -35 |    -18,234 |
+| ..\client\public                                                                               |          2 |        -55 |        -23 |         -2 |        -80 |
+| ..\client\src                                                                                  |         67 |     -6,807 |        -34 |       -349 |     -7,190 |
+| ..\client\src (Files)                                                                          |          4 |       -116 |         -3 |        -13 |       -132 |
+| ..\client\src\auth                                                                             |          1 |         -7 |          0 |         -2 |         -9 |
+| ..\client\src\components                                                                       |         30 |     -2,700 |        -13 |       -174 |     -2,887 |
+| ..\client\src\components\activities                                                            |          1 |       -147 |          0 |         -8 |       -155 |
+| ..\client\src\components\card                                                                  |          3 |       -318 |          0 |        -14 |       -332 |
+| ..\client\src\components\flights                                                               |          2 |       -395 |         -7 |        -22 |       -424 |
+| ..\client\src\components\footer                                                                |          1 |        -80 |          0 |         -4 |        -84 |
+| ..\client\src\components\form                                                                  |          5 |       -498 |          0 |        -30 |       -528 |
+| ..\client\src\components\header                                                                |          1 |       -246 |          0 |        -15 |       -261 |
+| ..\client\src\components\hotels                                                                |          2 |       -362 |         -1 |        -20 |       -383 |
+| ..\client\src\components\jumbotron                                                             |          1 |        -19 |          0 |         -6 |        -25 |
+| ..\client\src\components\main                                                                  |          1 |         -5 |          0 |         -3 |         -8 |
+| ..\client\src\components\navbar                                                                |          1 |       -115 |          0 |        -11 |       -126 |
+| ..\client\src\components\sidebar                                                               |          1 |        -46 |          0 |         -4 |        -50 |
+| ..\client\src\components\transport                                                             |          1 |        -97 |          0 |         -4 |       -101 |
+| ..\client\src\components\travel_package                                                        |          7 |       -295 |         -5 |        -22 |       -322 |
+| ..\client\src\components\ui                                                                    |          3 |        -77 |          0 |        -11 |        -88 |
+| ..\client\src\constant                                                                         |          8 |     -1,321 |          0 |        -17 |     -1,338 |
+| ..\client\src\context                                                                          |          1 |        -16 |          0 |         -4 |        -20 |
+| ..\client\src\pages                                                                            |         16 |     -2,427 |        -15 |       -118 |     -2,560 |
+| ..\client\src\service                                                                          |          5 |       -172 |          0 |        -11 |       -183 |
+| ..\client\src\util                                                                             |          2 |        -48 |         -3 |        -10 |        -61 |
+| public                                                                                         |          2 |         51 |         23 |          2 |         76 |
+| src                                                                                            |         57 |      5,283 |         19 |        274 |      5,576 |
+| src (Files)                                                                                    |          7 |        186 |          3 |         21 |        210 |
+| src\auth                                                                                       |          1 |          7 |          0 |          2 |          9 |
+| src\components                                                                                 |         22 |      2,914 |         13 |        158 |      3,085 |
+| src\components (Files)                                                                         |          1 |         55 |          0 |          5 |         60 |
+| src\components\card                                                                            |          1 |        100 |          0 |          6 |        106 |
+| src\components\flights                                                                         |          2 |        350 |         12 |         26 |        388 |
+| src\components\form                                                                            |          6 |      1,656 |          0 |         62 |      1,718 |
+| src\components\hotels                                                                          |          2 |        324 |          1 |         22 |        347 |
+| src\components\loading                                                                         |          1 |         43 |          0 |          4 |         47 |
+| src\components\table                                                                           |          8 |        305 |          0 |         27 |        332 |
+| src\components\transport                                                                       |          1 |         81 |          0 |          6 |         87 |
+| src\constant                                                                                   |          8 |      1,137 |          0 |         16 |      1,153 |
+| src\pages                                                                                      |         12 |        846 |          0 |         53 |        899 |
+| src\service                                                                                    |          4 |        147 |          0 |         12 |        159 |
+| src\util                                                                                       |          3 |         46 |          3 |         12 |         61 |
++------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                       | language       | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| c:\Users\ADNAN\Documents\travisor\admin\README.md                                              | Markdown       |         38 |          0 |         33 |         71 |
+| c:\Users\ADNAN\Documents\travisor\admin\package-lock.json                                      | JSON           |     12,897 |          0 |          1 |     12,898 |
+| c:\Users\ADNAN\Documents\travisor\admin\package.json                                           | JSON           |         44 |          0 |          1 |         45 |
+| c:\Users\ADNAN\Documents\travisor\admin\public\index.html                                      | HTML           |         26 |         23 |          1 |         50 |
+| c:\Users\ADNAN\Documents\travisor\admin\public\manifest.json                                   | JSON           |         25 |          0 |          1 |         26 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\App.css                                            | CSS            |         33 |          0 |          6 |         39 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\App.js                                             | JavaScript     |        108 |          0 |          4 |        112 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\App.test.js                                        | JavaScript     |          7 |          0 |          2 |          9 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\ProtectedRoute.js                                  | JavaScript     |         14 |          0 |          4 |         18 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\auth\authorization.js                              | JavaScript     |          7 |          0 |          2 |          9 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\Header.js                               | JavaScript     |         55 |          0 |          5 |         60 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\card\ProfileCard.js                     | JavaScript     |        100 |          0 |          6 |        106 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\flights\Flights.js                      | JavaScript     |        170 |          6 |         13 |        189 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\flights\ReturnFlights.js                | JavaScript     |        180 |          6 |         13 |        199 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\form\ActivityForm.js                    | JavaScript     |         74 |          0 |          6 |         80 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\form\AddTravelPackageForm.js            | JavaScript     |        657 |          0 |         22 |        679 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\form\LoginForm.js                       | JavaScript     |         26 |          0 |          3 |         29 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\form\ProfileForm.js                     | JavaScript     |        118 |          0 |          4 |        122 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\form\RegisterForm.js                    | JavaScript     |         72 |          0 |          5 |         77 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\form\UpdateTravelPackageForm.js         | JavaScript     |        709 |          0 |         22 |        731 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\hotels\HotelFilters.js                  | JavaScript     |        163 |          1 |          8 |        172 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\hotels\Hotels.js                        | JavaScript     |        161 |          0 |         14 |        175 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\loading\Loading.js                      | JavaScript     |         43 |          0 |          4 |         47 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\table\BookingRow.js                     | JavaScript     |         52 |          0 |          4 |         56 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\table\BookingTable.js                   | JavaScript     |         28 |          0 |          3 |         31 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\table\CancelledBookingRow.js            | JavaScript     |         56 |          0 |          4 |         60 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\table\CancelledBookingTable.js          | JavaScript     |         33 |          0 |          3 |         36 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\table\CustomerRequestRow.js             | JavaScript     |         29 |          0 |          3 |         32 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\table\CustomerRequestTable.js           | JavaScript     |         38 |          0 |          3 |         41 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\table\TravelPackageRow.js               | JavaScript     |         33 |          0 |          4 |         37 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\table\TravelPackagesTable.js            | JavaScript     |         36 |          0 |          3 |         39 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\components\transport\Transports.js                 | JavaScript     |         81 |          0 |          6 |         87 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\constant\codes.js                                  | JavaScript     |          5 |          0 |          1 |          6 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\constant\colors.js                                 | JavaScript     |         16 |          0 |          1 |         17 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\constant\countries.js                              | JavaScript     |        207 |          0 |          1 |        208 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\constant\destinations.js                           | JavaScript     |         18 |          0 |          1 |         19 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\constant\flights.js                                | JavaScript     |        108 |          0 |          6 |        114 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\constant\hotels.js                                 | JavaScript     |        421 |          0 |          2 |        423 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\constant\package.js                                | JavaScript     |        306 |          0 |          3 |        309 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\constant\transports.js                             | JavaScript     |         56 |          0 |          1 |         57 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\index.css                                          | CSS            |         12 |          0 |          2 |         14 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\index.js                                           | JavaScript     |         11 |          3 |          3 |         17 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\logo.svg                                           | XML            |          1 |          0 |          0 |          1 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\AddTravelPackage.jsx                         | JavaScript JSX |         36 |          0 |          5 |         41 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\BookingDetailView.jsx                        | JavaScript JSX |        234 |          0 |          9 |        243 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\Bookings.jsx                                 | JavaScript JSX |         43 |          0 |          3 |         46 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\CancelledBookings.jsx                        | JavaScript JSX |         43 |          0 |          3 |         46 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\CustomerRequests.jsx                         | JavaScript JSX |         44 |          0 |          4 |         48 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\Home.jsx                                     | JavaScript JSX |         79 |          0 |          3 |         82 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\Login.jsx                                    | JavaScript JSX |         27 |          0 |          4 |         31 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\Profile.jsx                                  | JavaScript JSX |         10 |          0 |          3 |         13 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\Register.jsx                                 | JavaScript JSX |         25 |          0 |          2 |         27 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\TravelPackageDetailView.jsx                  | JavaScript JSX |        230 |          0 |          7 |        237 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\TravelPackages.jsx                           | JavaScript JSX |         39 |          0 |          3 |         42 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\pages\UpdateTravelPackage.jsx                      | JavaScript JSX |         36 |          0 |          7 |         43 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\service\agency-api.js                              | JavaScript     |         42 |          0 |          4 |         46 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\service\booking-api.js                             | JavaScript     |         38 |          0 |          3 |         41 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\service\customer-request-api.js                    | JavaScript     |         20 |          0 |          1 |         21 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\service\package-api.js                             | JavaScript     |         47 |          0 |          4 |         51 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\util\date-functions.js                             | JavaScript     |          5 |          0 |          1 |          6 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\util\formatter.js                                  | JavaScript     |         41 |          3 |         10 |         54 |
+| c:\Users\ADNAN\Documents\travisor\admin\src\util\validation.js                                 | JavaScript     |          0 |          0 |          1 |          1 |
+| c:\Users\ADNAN\Documents\travisor\client\README.md                                             | Markdown       |        -38 |          0 |        -33 |        -71 |
+| c:\Users\ADNAN\Documents\travisor\client\package-lock.json                                     | JSON           |    -18,104 |          0 |         -1 |    -18,105 |
+| c:\Users\ADNAN\Documents\travisor\client\package.json                                          | JSON           |        -57 |          0 |         -1 |        -58 |
+| c:\Users\ADNAN\Documents\travisor\client\public\index.html                                     | HTML           |        -30 |        -23 |         -1 |        -54 |
+| c:\Users\ADNAN\Documents\travisor\client\public\manifest.json                                  | JSON           |        -25 |          0 |         -1 |        -26 |
+| c:\Users\ADNAN\Documents\travisor\client\src\App.js                                            | JavaScript     |        -72 |          0 |         -4 |        -76 |
+| c:\Users\ADNAN\Documents\travisor\client\src\auth\Authorization.js                             | JavaScript     |         -7 |          0 |         -2 |         -9 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\activities\Activities.js               | JavaScript     |       -147 |          0 |         -8 |       -155 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\card\Card.js                           | JavaScript     |         -6 |          0 |         -3 |         -9 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\card\PaymentSummary.js                 | JavaScript     |       -206 |          0 |         -5 |       -211 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\card\ProfileCard.js                    | JavaScript     |       -106 |          0 |         -6 |       -112 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\flights\Flights.js                     | JavaScript     |       -197 |         -1 |        -11 |       -209 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\flights\ReturnFlights.js               | JavaScript     |       -198 |         -6 |        -11 |       -215 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\footer\Footer.js                       | JavaScript     |        -80 |          0 |         -4 |        -84 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\form\CustomerRequestForm.js            | JavaScript     |        -65 |          0 |         -3 |        -68 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\form\LoginForm.js                      | JavaScript     |        -50 |          0 |         -5 |        -55 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\form\MembersForm.js                    | JavaScript     |       -167 |          0 |        -10 |       -177 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\form\ProfileForm.js                    | JavaScript     |       -113 |          0 |         -5 |       -118 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\form\RegisterForm.js                   | JavaScript     |       -103 |          0 |         -7 |       -110 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\header\Header.js                       | JavaScript     |       -246 |          0 |        -15 |       -261 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\hotels\HotelFilters.js                 | JavaScript     |       -164 |         -1 |         -7 |       -172 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\hotels\Hotels.js                       | JavaScript     |       -198 |          0 |        -13 |       -211 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\jumbotron\Jumbotron.js                 | JavaScript     |        -19 |          0 |         -6 |        -25 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\main\Body.js                           | JavaScript     |         -5 |          0 |         -3 |         -8 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\navbar\Navbar.js                       | JavaScript     |       -115 |          0 |        -11 |       -126 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\sidebar\Sidebar.js                     | JavaScript     |        -46 |          0 |         -4 |        -50 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\transport\Transports.js                | JavaScript     |        -97 |          0 |         -4 |       -101 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\travel_package\BookedPackageDetails.js | JavaScript     |         -5 |          0 |         -3 |         -8 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\travel_package\CustomLeftArrow.jsx     | JavaScript JSX |         -6 |         -1 |         -3 |        -10 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\travel_package\TDestination.js         | JavaScript     |        -49 |         -1 |         -4 |        -54 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\travel_package\TDestinations.js        | JavaScript     |        -59 |         -1 |         -3 |        -63 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\travel_package\TPackage.js             | JavaScript     |       -106 |         -1 |         -3 |       -110 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\travel_package\TPackages.js            | JavaScript     |        -64 |         -1 |         -5 |        -70 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\travel_package\react-carousel.css      | CSS            |         -6 |          0 |         -1 |         -7 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\ui\Button.js                           | JavaScript     |        -20 |          0 |         -4 |        -24 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\ui\Link.js                             | JavaScript     |        -13 |          0 |         -3 |        -16 |
+| c:\Users\ADNAN\Documents\travisor\client\src\components\ui\Loading.js                          | JavaScript     |        -44 |          0 |         -4 |        -48 |
+| c:\Users\ADNAN\Documents\travisor\client\src\constant\codes.js                                 | JavaScript     |         -6 |          0 |         -1 |         -7 |
+| c:\Users\ADNAN\Documents\travisor\client\src\constant\colors.js                                | JavaScript     |        -18 |          0 |         -1 |        -19 |
+| c:\Users\ADNAN\Documents\travisor\client\src\constant\countries.js                             | JavaScript     |       -207 |          0 |         -1 |       -208 |
+| c:\Users\ADNAN\Documents\travisor\client\src\constant\destinations.js                          | JavaScript     |        -53 |          0 |         -2 |        -55 |
+| c:\Users\ADNAN\Documents\travisor\client\src\constant\flights.js                               | JavaScript     |       -108 |          0 |         -6 |       -114 |
+| c:\Users\ADNAN\Documents\travisor\client\src\constant\hotels.js                                | JavaScript     |       -567 |          0 |         -2 |       -569 |
+| c:\Users\ADNAN\Documents\travisor\client\src\constant\package.js                               | JavaScript     |       -306 |          0 |         -3 |       -309 |
+| c:\Users\ADNAN\Documents\travisor\client\src\constant\transports.js                            | JavaScript     |        -56 |          0 |         -1 |        -57 |
+| c:\Users\ADNAN\Documents\travisor\client\src\context\package-context.js                        | JavaScript     |        -16 |          0 |         -4 |        -20 |
+| c:\Users\ADNAN\Documents\travisor\client\src\index.css                                         | CSS            |        -16 |          0 |         -2 |        -18 |
+| c:\Users\ADNAN\Documents\travisor\client\src\index.js                                          | JavaScript     |        -14 |         -3 |         -3 |        -20 |
+| c:\Users\ADNAN\Documents\travisor\client\src\pages\About.jsx                                   | JavaScript JSX |        -63 |          0 |         -3 |        -66 |
+| c:\Users\ADNAN\Documents\travisor\client\src\pages\BookingDetailView.jsx                       | JavaScript JSX |        -31 |         -6 |         -4 |        -41 |
+| c:\Users\ADNAN\Documents\travisor\client\src\pages\Cancel.jsx                                  | JavaScript JSX |         -5 |          0 |         -3 |         -8 |
+| c:\Users\ADNAN\Documents\travisor\client\src\pages\Contact.jsx                                 | JavaScript JSX |       -144 |          0 |         -6 |       -150 |
+| c:\Users\ADNAN\Documents\travisor\client\src\pages\Destination.jsx                             | JavaScript JSX |       -120 |          0 |         -7 |       -127 |
+| c:\Users\ADNAN\Documents\travisor\client\src\pages\Home.jsx                                    | JavaScript JSX |        -68 |          0 |         -8 |        -76 |
+| c:\Users\ADNAN\Documents\travisor\client\src\pages\Itinerary.jsx                               | JavaScript JSX |       -642 |          0 |        -17 |       -659 |
+| c:\Users\ADNAN\Documents\travisor\client\src\pages\Login.jsx                                   | JavaScript JSX |        -76 |          0 |         -9 |        -85 |
+| c:\Users\ADNAN\Documents\travisor\client\src\pages\MyBookings.jsx                              | JavaScript JSX |       -189 |          0 |         -8 |       -197 |
+| c:\Users\ADNAN\Documents\travisor\client\src\pages\PackageDetailView.jsx                       | JavaScript JSX |       -415 |          0 |        -16 |       -431 |
+| c:\Users\ADNAN\Documents\travisor\client\src\pages\Policies.jsx                                | JavaScript JSX |        -36 |          0 |         -3 |        -39 |
+| c:\Users\ADNAN\Documents\travisor\client\src\pages\Profile.jsx                                 | JavaScript JSX |        -73 |         -9 |         -8 |        -90 |
+| c:\Users\ADNAN\Documents\travisor\client\src\pages\Register.jsx                                | JavaScript JSX |        -91 |          0 |         -9 |       -100 |
+| c:\Users\ADNAN\Documents\travisor\client\src\pages\Success.jsx                                 | JavaScript JSX |        -41 |          0 |         -2 |        -43 |
+| c:\Users\ADNAN\Documents\travisor\client\src\pages\Summary.jsx                                 | JavaScript JSX |       -271 |          0 |        -10 |       -281 |
+| c:\Users\ADNAN\Documents\travisor\client\src\pages\TravelHistory.jsx                           | JavaScript JSX |       -162 |          0 |         -5 |       -167 |
+| c:\Users\ADNAN\Documents\travisor\client\src\protected-routes.js                               | JavaScript     |        -14 |          0 |         -4 |        -18 |
+| c:\Users\ADNAN\Documents\travisor\client\src\service\booking-api.js                            | JavaScript     |        -57 |          0 |         -2 |        -59 |
+| c:\Users\ADNAN\Documents\travisor\client\src\service\customer-request-api.js                   | JavaScript     |        -13 |          0 |         -2 |        -15 |
+| c:\Users\ADNAN\Documents\travisor\client\src\service\flight-api.js                             | JavaScript     |        -10 |          0 |         -2 |        -12 |
+| c:\Users\ADNAN\Documents\travisor\client\src\service\travel-package-api.js                     | JavaScript     |        -41 |          0 |         -2 |        -43 |
+| c:\Users\ADNAN\Documents\travisor\client\src\service\user-api.js                               | JavaScript     |        -51 |          0 |         -3 |        -54 |
+| c:\Users\ADNAN\Documents\travisor\client\src\util\date-functions.js                            | JavaScript     |         -5 |          0 |         -1 |         -6 |
+| c:\Users\ADNAN\Documents\travisor\client\src\util\formatter.js                                 | JavaScript     |        -43 |         -3 |         -9 |        -55 |
+| Total                                                                                          |                |     -6,748 |        -15 |        -75 |     -6,838 |
++------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+

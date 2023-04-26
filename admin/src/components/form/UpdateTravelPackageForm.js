@@ -206,7 +206,7 @@ const UpdateTravelPackageForm = ({ updateTravelPackage }) => {
   const [isOpenHotel, setIsOpenHotel] = useState(false);
 
   const [activities, setActivities] = useState([]);
-  const [days, setDays] = useState(3);
+  const [days, setDays] = useState(0);
 
   const destinationRef = useRef();
   const startDateRef = useRef();
@@ -219,6 +219,7 @@ const UpdateTravelPackageForm = ({ updateTravelPackage }) => {
     const fetchTravelPackage = async () => {
       const data = await getTravelPackageByIdAPI(params.id);
       setTravelPackage(data);
+      setDays(data.p_days);
       console.log(data);
       if (data.p_hotel) {
         setHotel(data.p_hotel);

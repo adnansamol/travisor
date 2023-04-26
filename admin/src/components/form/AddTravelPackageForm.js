@@ -236,6 +236,7 @@ const AddTravelPackageForm = ({ createTravelPackage }) => {
       formData.append("p_hotel", JSON.stringify(hotel));
       activities.length > 0 &&
         formData.append("p_days_plan", JSON.stringify(activities));
+
       createTravelPackage(formData);
     }
   };
