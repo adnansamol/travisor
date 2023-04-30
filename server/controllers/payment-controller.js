@@ -24,7 +24,8 @@ export const stripePaymentGateway = async (product) => {
           product_data: {
             name: product.p_name,
           },
-          unit_amount: product.p_price.base_price * 100,
+          unit_amount:
+            (product.p_price.total_cost - product.p_price.discount) * 100,
         },
         quantity: product.p_guests.length,
       },

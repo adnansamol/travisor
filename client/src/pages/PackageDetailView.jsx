@@ -144,17 +144,23 @@ const customMembersModalStyles = {
 const CustomerRequestButton = styled.div`
   position: fixed;
   top: 60%;
-  left: calc(100% - 80px);
+  left: calc(100% - 90px);
   background-color: orangered;
   color: white;
   padding: 8px;
-  max-width: 100px;
+  width: 100px;
   font-size: 13px;
   font-weight: 600;
   border-radius: 10px 0 0 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   text-align: center;
   cursor: pointer;
+  transition: width 0.2s linear, left 0.2s linear;
+
+  &:hover {
+    left: calc(100% - 100px);
+    width: 105px;
+  }
 `;
 const requestModalCustomStyle = {
   overlay: {
