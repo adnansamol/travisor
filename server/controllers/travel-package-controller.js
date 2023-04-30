@@ -29,7 +29,7 @@ export const createTravelPackage = async (req, res) => {
           images.push(result.url);
         });
     }
-    if()
+    
     const activitiesCost =
       JSON.parse(req.body.p_days_plan).length > 0 &&
       JSON.parse(req.body.p_days_plan).reduce(

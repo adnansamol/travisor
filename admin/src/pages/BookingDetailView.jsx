@@ -216,6 +216,30 @@ const BookingDetailView = () => {
             </table>
           </HotelContainer>
         )}
+        <HotelContainer>
+          <h3>Activities Detail</h3>
+          {booking.p_days_plan.length > 0 &&
+            booking.p_days_plan.map((activity) => (
+              <table className="table table-bordered">
+                <thead className="thead-dark">
+                  <tr>
+                    <th>Activity Name</th>
+                    <th>Site</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{activity.title}</td>
+                    <td>{activity.site}</td>
+                    <td>{activity.description}</td>
+                    <td>{activity.price}</td>
+                  </tr>
+                </tbody>
+              </table>
+            ))}
+        </HotelContainer>
 
         <HotelContainer>
           <h3>Refund Policy</h3>

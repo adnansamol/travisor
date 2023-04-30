@@ -17,6 +17,7 @@ const Success = () => {
           { userId: user._id, bookedPackage: travelPackage }
         );
         setLoading(false);
+        localStorage.removeItem("id");
       } catch (error) {
         console.log(error);
       }
@@ -27,14 +28,14 @@ const Success = () => {
     <>
       <Loading />
       <br />
-      <h6>We are processing your booking. Do not close the tab.</h6>
+      <h6 style={{ textAlign: "center", marginTop: 20 }}>We are processing your booking. Do not close the tab.</h6>
     </>
   ) : (
     <>
       <h1 style={{ textAlign: "center", marginTop: 50 }}>
         Package Booked Successfully
       </h1>
-      <h6>You may close the tab now.</h6>
+      <h6 style={{ textAlign: "center", marginTop: 20 }}>You may close the tab now.</h6>
     </>
   );
 };

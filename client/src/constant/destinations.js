@@ -16,14 +16,8 @@ export const destinations = [
       "https://img.emg-services.net/htmlpages/htmlpage13911/1200-headerswiss.jpg",
     image:
       "https://images.pexels.com/photos/1586298/pexels-photo-1586298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  },
-  {
-    name: "Udaipur",
-    banner:
-      "https://images.unsplash.com/photo-1589901164570-f9de6556e1c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80",
-    image:
-      "https://images.pexels.com/photos/8898720/pexels-photo-8898720.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  },
+  },{ name: "Maldives", banner: "", image: "" },
+ 
   {
     name: "Manali",
     banner:
@@ -46,9 +40,15 @@ export const destinations = [
       "https://images.pexels.com/photos/1534411/pexels-photo-1534411.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
 
-  { name: "Singapore", banner: "", image: "" },
-  { name: "Maldives", banner: "", image: "" },
-  { name: "Jordan", banner: "", image: "" },
-  { name: "USA", banner: "", image: "" },
-  { name: "Greece", banner: "", image: "" },
+  // { name: "Singapore", banner: "", image: "" },
+  
+  // { name: "Jordan", banner: "", image: "" },
+  // { name: "USA", banner: "", image: "" },
+  // { name: "Greece", banner: "", image: "" }, {
+  //   name: "Udaipur",
+  //   banner:
+  //     "https://images.unsplash.com/photo-1589901164570-f9de6556e1c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80",
+  //   image:
+  //     "https://images.pexels.com/photos/8898720/pexels-photo-8898720.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  // },
 ];
