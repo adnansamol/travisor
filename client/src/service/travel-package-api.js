@@ -12,6 +12,16 @@ export const getRecentlyAddedTravelPackagesAPI = async (date) => {
     console.log(error);
   }
 };
+export const getPackageRecommendationsAPI = async (id) => {
+  try {
+    const response = await axios.get(
+      `${base_url}/getPackageRecommendations/${id}`
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const getSpecialOfferPackagesAPI = async (discount) => {
   try {
     const response = await axios.get(

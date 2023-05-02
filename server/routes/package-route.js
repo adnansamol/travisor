@@ -15,6 +15,7 @@ import {
   createTravelPackage,
   deleteTravelPackageById,
   getAllTravelPackages,
+  getPackageRecommendation,
   getRecentlyAddedTravelPackages,
   getSpecialOfferPackages,
   getTravelPackageById,
@@ -68,6 +69,7 @@ packageRouter.get(
   "/getSpecialOfferPackages/:discount",
   getSpecialOfferPackages
 );
+packageRouter.get("/getPackageRecommendations/:id", getPackageRecommendation);
 packageRouter.get("/getTravelHistory/:id", getTravelHistoryByUserId);
 
 packageRouter.get("/getAllPackages/:agencyId", getAllTravelPackages);

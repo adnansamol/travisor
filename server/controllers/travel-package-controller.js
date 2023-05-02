@@ -1,8 +1,9 @@
 import travelPackageModel from "../models/travel-package.js";
 import cloudinary from "cloudinary";
-import jwt from "jsonwebtoken";
+import axios from "axios";
 import fs from "fs";
 import { config } from "dotenv";
+import { recommendationModel } from "../algorithm/recommendation.js";
 config();
 
 cloudinary.v2.config({
@@ -29,7 +30,7 @@ export const createTravelPackage = async (req, res) => {
           images.push(result.url);
         });
     }
-    
+
     const activitiesCost =
       JSON.parse(req.body.p_days_plan).length > 0 &&
       JSON.parse(req.body.p_days_plan).reduce(
@@ -123,6 +124,7 @@ export const getRecentlyAddedTravelPackages = async (req, res) => {
     res.status(500).send(error);
   }
 };
+
 export const getTravelPackagesByDestination = async (req, res) => {
   try {
     const travelPackagesByDestination = await travelPackageModel.find({
@@ -133,6 +135,7 @@ export const getTravelPackagesByDestination = async (req, res) => {
     res.status(500).send(error);
   }
 };
+
 export const getSpecialOfferPackages = async (req, res) => {
   try {
     const specialOfferPackages = await travelPackageModel
@@ -148,6 +151,38 @@ export const getSpecialOfferPackages = async (req, res) => {
     res.status(500).send(error);
   }
 };
+export const getPackageRecommendation = async (req, res) => {
+  try {
+    const userHistoryResponse = await axios.get(
+      `http://localhost:8000/travelPackage/getTravelHistory/${req.params.id}`
+    );
+    if (userHistoryResponse.data.length > 0) {
+      const userHistoryPackages = [];
+
+      for (let item of userHistoryResponse.data) {
+        const completedTripPackage = await axios.get(
+          "http://localhost:8000/travelPackage/getBookedPackage/" +
+            item.b_travel_package_id
+        );
+        userHistoryPackages.push(completedTripPackage.data);
+      }
+      const allPackages = await travelPackageModel.find();
+      const recommendedPackages = recommendationModel(
+        allPackages,
+        userHistoryPackages
+      );
+      console.log(recommendedPackages);
+      if (recommendedPackages.length >= 2) {
+        res.status(200).send(recommendedPackages);
+      }
+    } else {
+      res.status(200).send([]);
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 export const updateTravelPackage = async (req, res) => {
   try {
     let imagePreview = "";

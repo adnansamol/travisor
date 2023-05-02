@@ -97,6 +97,9 @@ const DropdownLinkWrapper = styled.div`
 `;
 const InlineNavLink = styled(Link)`
   color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 2px;
 `;
 const InlineNavAnchor = styled.a`
   color: rgba(0, 0, 0, 0.7);

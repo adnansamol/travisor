@@ -16,8 +16,14 @@ export const destinations = [
       "https://img.emg-services.net/htmlpages/htmlpage13911/1200-headerswiss.jpg",
     image:
       "https://images.pexels.com/photos/1586298/pexels-photo-1586298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  },{ name: "Maldives", banner: "", image: "" },
- 
+  },
+  {
+    name: "Maldives",
+    banner: "https://cdn.wallpapersafari.com/36/74/qVWT2J.jpg",
+    image:
+      "https://wallpapercrafter.com/th800/401262-Man-Made-Resort-Phone-Wallpaper.jpg",
+  },
+
   {
     name: "Manali",
     banner:
@@ -41,7 +47,7 @@ export const destinations = [
   },
 
   // { name: "Singapore", banner: "", image: "" },
-  
+
   // { name: "Jordan", banner: "", image: "" },
   // { name: "USA", banner: "", image: "" },
   // { name: "Greece", banner: "", image: "" }, {
