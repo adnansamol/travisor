@@ -17,6 +17,7 @@ import ProfileCard from "./components/card/ProfileCard";
 import About from "./pages/About";
 import Destination from "./pages/Destination";
 import BookingDetailView from "./pages/BookingDetailView";
+import RulesAndGuidelines from "./pages/RulesAndGuidelines";
 function App() {
   window.addEventListener("pa", () => {
     if (
@@ -35,6 +36,11 @@ function App() {
         <Route exact path="/destination/:name" element={<Destination />} />
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/about" element={<About />} />
+        <Route
+          exact
+          path="/rules-and-guidelines"
+          element={<RulesAndGuidelines />}
+        />
 
         <Route
           exact

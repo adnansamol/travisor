@@ -141,6 +141,7 @@ const customMembersModalStyles = {
     height: "32rem",
   },
 };
+
 const CustomerRequestButton = styled.div`
   position: fixed;
   top: 60%;
@@ -162,6 +163,7 @@ const CustomerRequestButton = styled.div`
     width: 105px;
   }
 `;
+
 const requestModalCustomStyle = {
   overlay: {
     position: "fixed",
@@ -179,6 +181,7 @@ const requestModalCustomStyle = {
     backgroundColor: "orangered",
   },
 };
+
 const ImageGalleryWrapper = styled.div`
   display: none;
   position: fixed;
@@ -188,6 +191,7 @@ const ImageGalleryWrapper = styled.div`
   background-color: rgba(0, 0, 0, 0.95);
   overflow-x: hidden;
 `;
+
 const GalleryCloseButton = styled.div`
   cursor: pointer;
   z-index: 30;
@@ -196,6 +200,7 @@ const GalleryCloseButton = styled.div`
   top: 10px;
   left: 95%;
 `;
+
 const PackageDetailView = () => {
   const [openBookingModal, setOpenBookingModal] = useState(false);
   const [openRequestModal, setOpenRequestModal] = useState(false);

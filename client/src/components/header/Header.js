@@ -6,6 +6,7 @@ import { colors } from "../../constant/colors";
 import { ImEarth } from "react-icons/im";
 import { SiYourtraveldottv } from "react-icons/si";
 import { MdLocationCity, MdOutlineContactSupport } from "react-icons/md";
+import { AiFillSafetyCertificate } from "react-icons/ai";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
 import { getUserProfileAPI, logoutUserAPI } from "../../service/user-api";
@@ -96,6 +97,10 @@ const DropdownLinkWrapper = styled.div`
 `;
 const InlineNavLink = styled(Link)`
   color: rgba(0, 0, 0, 0.7);
+`;
+const InlineNavAnchor = styled.a`
+  color: rgba(0, 0, 0, 0.7);
+  text-decoration: none;
 `;
 const DestinationDropdown = styled.div`
   visibility: hidden;
@@ -228,9 +233,9 @@ const Header = ({ isStatic }) => {
         )}
       </HeaderContainer>
       <InlineNavbar>
-        <InlineNavLink to={"/packages"}>
+        <InlineNavAnchor href="#packages">
           <SiYourtraveldottv /> Packages
-        </InlineNavLink>
+        </InlineNavAnchor>
         <DestinationWrapper>
           <InlineNavLink>
             <MdLocationCity />
@@ -251,6 +256,10 @@ const Header = ({ isStatic }) => {
         <InlineNavLink to={"/about"}>
           <BsFillInfoCircleFill />
           About
+        </InlineNavLink>
+        <InlineNavLink to={"/rules-and-guidelines"}>
+          <AiFillSafetyCertificate />
+          COVID-19 Safety
         </InlineNavLink>
       </InlineNavbar>
     </Container>

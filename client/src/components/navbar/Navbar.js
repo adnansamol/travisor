@@ -6,6 +6,7 @@ import { SiYourtraveldottv } from "react-icons/si";
 import { MdLocationCity, MdOutlineContactSupport } from "react-icons/md";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import { destinations } from "../../constant/destinations";
+import { AiFillSafetyCertificate } from "react-icons/ai";
 
 const NavContainer = styled.div`
   text-align: center;
@@ -47,6 +48,10 @@ const NavLink = styled(Link)`
     opacity: 100%;
   }
 `;
+const NavAnchor = styled.a`
+  color: ${colors.black};
+  text-decoration: none;
+`;
 
 const Navbar = () => {
   const [navDisplay, setNavDisplay] = useState("flex");
@@ -87,12 +92,12 @@ const Navbar = () => {
 
   return (
     <Container>
-      <NavLink to={`/packages`}>
+      <NavAnchor href="#packages">
         <NavContainer>
           <SiYourtraveldottv size={iconSize} />
           <NavText>Packages</NavText>
         </NavContainer>
-      </NavLink>
+      </NavAnchor>
       <NavLink>
         <NavContainer>
           <SiYourtraveldottv size={iconSize} />
@@ -116,6 +121,12 @@ const Navbar = () => {
         <NavContainer>
           <BsFillInfoCircleFill size={iconSize} />
           <NavText>About</NavText>
+        </NavContainer>
+      </NavLink>
+      <NavLink to={`/rules-and-guidelines`}>
+        <NavContainer>
+          <AiFillSafetyCertificate size={iconSize} />
+          <NavText>COVID-19 Safety</NavText>
         </NavContainer>
       </NavLink>
     </Container>

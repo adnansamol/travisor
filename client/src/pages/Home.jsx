@@ -53,19 +53,21 @@ const Home = () => {
       <Body>
         <Navbar />
         <Jumbotron></Jumbotron>
-        <TPackages
-          title={"Special Offers"}
-          travelPackages={specialOfferPackages}
-        />
-        <TPackages
-          title={"New Travel Packages"}
-          travelPackages={travelPackages}
-        />
+        <div id="packages">
+          <TPackages
+            title={"Special Offers"}
+            travelPackages={specialOfferPackages}
+          />
+          <TPackages
+            title={"New Travel Packages"}
+            travelPackages={travelPackages}
+          />
 
-        <TDestinations
-          title={"Popular Destinations"}
-          destinations={destinations}
-        />
+          <TDestinations
+            title={"Popular Destinations"}
+            destinations={destinations}
+          />
+        </div>
       </Body>
       <Footer />
     </>
