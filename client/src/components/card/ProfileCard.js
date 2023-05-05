@@ -69,8 +69,7 @@ const ProfileCard = () => {
         style={{
           textAlign: "right",
           display: "inline-block",
-
-          marginLeft: "245px",
+          marginLeft: "320px",
         }}
       >
         <UpdateButton onClick={() => setIsOpen(true)}>Update</UpdateButton>
@@ -87,9 +86,9 @@ const ProfileCard = () => {
             <Text>
               <Label>Email:</Label> {user.u_email}
             </Text>
-            <Text>
+            {/* <Text>
               <Label>Gender:</Label> {user.u_gender}
-            </Text>
+            </Text> */}
             <Text>
               <Label>Phone:</Label> {user.u_phone}
             </Text>

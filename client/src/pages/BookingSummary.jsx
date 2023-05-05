@@ -1,15 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../constant/colors";
 import { FaCar } from "react-icons/fa";
 import { MdFlightClass, MdAirplaneTicket } from "react-icons/md";
 import { IoIosAirplane } from "react-icons/io";
-import { travel_package } from "../constant/package";
-import { getShortDate, getShortTime, priceFormatter } from "../util/formatter";
-import { IoClose, IoLocationSharp } from "react-icons/io5";
-import { PackageContext } from "../context/package-context";
-
-import Button from "../components/ui/Button";
+import { getShortDate, priceFormatter } from "../util/formatter";
+import { IoLocationSharp } from "react-icons/io5";
 
 import { addDays } from "../util/date-functions";
 

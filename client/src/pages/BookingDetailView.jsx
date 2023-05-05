@@ -15,7 +15,7 @@ import { colors } from "../constant/colors";
 import Modal from "react-modal";
 import Button from "../components/ui/Button";
 import Sidebar from "../components/sidebar/Sidebar";
-import { Outlet, useParams } from "react-router";
+import { Outlet, useNavigate, useParams } from "react-router";
 import { PackageContext } from "../context/package-context";
 import MembersForm from "../components/form/MembersForm";
 import { addDays } from "../util/date-functions";
@@ -26,7 +26,6 @@ import Footer from "../components/footer/Footer";
 import {
   cancelBookingAPI,
   getBookedPackageByIdAPI,
-  getBookingByPackageIdAPI,
 } from "../service/booking-api";
 import BookingSummary from "./BookingSummary";
 const Page = styled.div`
@@ -73,14 +72,7 @@ const StartDateInput = styled.input`
   font-size: 18px;
   font-weight: 500;
 `;
-const StartLocationInput = styled.select`
-  padding: 5px;
-  border: 3px solid ${colors.teal500};
-  border-radius: 10px;
-  color: ${colors.gray};
-  font-size: 18px;
-  font-weight: 500;
-`;
+
 const ImageGalleryButton = styled(Button)`
   position: absolute;
   background-color: rgba(0, 0, 0, 0.9);
@@ -154,7 +146,7 @@ const BookingDetailView = () => {
   const [imageGallery, setImageGallery] = useState([]);
 
   const { travelPackage, setTravelPackage } = useContext(PackageContext);
-
+  const navigate = useNavigate();
   const galleryWrapperRef = useRef();
   const galleryRef = useRef();
   const params = useParams();
@@ -175,6 +167,7 @@ const BookingDetailView = () => {
     if (window.confirm("Are you sure you want to cancel the package?")) {
       await cancelBookingAPI(params.id);
       alert("Booking Cancelled successfully");
+      navigate("/profile/myBookings");
     }
   };
   return (
@@ -218,13 +211,13 @@ const BookingDetailView = () => {
                 </div>
               </div>
               <div style={{ display: "flex", gap: 10 }}>
-                <div>
+                <div style={{ color: "white", fontWeight: 600 }}>
                   <p style={{ margin: 2, color: "white" }}>Start Location:</p>
                   {travelPackage.p_start_location}
                 </div>
-                <div>
+                <div style={{ color: "white", fontWeight: 600 }}>
                   <p style={{ margin: 2, color: "white" }}>Start Date:</p>
-                  {travelPackage.p_start_date}
+                  {getShortDate(travelPackage.p_start_date)}
                 </div>
               </div>
             </NameContainer>

@@ -87,15 +87,19 @@ const TravelHistory = () => {
     fetchBookings();
   }, []);
 
+  useEffect(() => {
+    bookings.length > 0 &&
+      setTotalCost(
+        bookings.reduce(
+          (v1, v2) => Number(v1.b_booking_cost) + Number(v2.b_booking_cost)
+        )
+      );
+  }, [bookings]);
   const fetchBookings = async () => {
     const { _id } = await getUserProfileAPI(localStorage.getItem("token"));
     const bookings = await getBookingByUserIdAPI(_id);
     bookings.forEach(async (booking) => {
-      if (
-        booking.b_travel_package_id &&
-        booking.b_booking_date &&
-        booking.b_booking_status == "completed"
-      ) {
+      if (booking.b_booking_status == "completed") {
         const bookedPackage = await getBookedPackageByIdAPI(
           booking.b_travel_package_id
         );
@@ -113,21 +117,14 @@ const TravelHistory = () => {
           ]);
       }
     });
-    setTotalCost(
-      bookings.reduce(
-        (v1, v2) => Number(v1.b_booking_cost) + Number(v2.b_booking_cost)
-      )
-    );
-    const total = bookings.reduce((value1, value2) => {
-      return value1.b_booking_cost + Number(value2.b_booking_cost);
-    });
-    console.log(total);
+
     setLoading(false);
   };
+
   return (
     <Container>
       <Title>Travel History</Title>
-      <Title>Total Spent: {totalCost}</Title>
+      {/* <Title>Total Spent: {totalCost}</Title> */}
       <hr />
       {loading ? (
         <Loading />
