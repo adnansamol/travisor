@@ -20,8 +20,15 @@ export const makePaymentAPI = async (data) => {
 };
 export const getBookingByUserIdAPI = async (id) => {
   try {
-    console.log("in service api", id);
     const response = await axios.get(base_url + "/getBookingByUser/" + id);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getBookingByPackageIdAPI = async (id) => {
+  try {
+    const response = await axios.get(base_url + "/getBookingByPkg/" + id);
     return response.data;
   } catch (error) {
     console.log(error);

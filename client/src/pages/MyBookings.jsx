@@ -88,23 +88,6 @@ const ManageLink = styled(Link)`
   }
 `;
 
-const customModalStyles = {
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.75)",
-  },
-  content: {
-    top: "8rem",
-    width: "60%",
-    left: "20%",
-    height: "29rem",
-  },
-};
-const DetailsContainer = styled.div``;
 const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -123,6 +106,7 @@ const MyBookings = () => {
         );
 
         bookedPackage &&
+          booking.b_booking_status == "booked" &&
           setBookings((old) => [
             ...old,
             {
@@ -140,12 +124,6 @@ const MyBookings = () => {
     setLoading(false);
   };
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-  const openModal = (id) => {
-    setIsOpen(true);
-  };
   return (
     <Container>
       <Title>Bookings</Title>

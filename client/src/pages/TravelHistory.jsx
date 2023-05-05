@@ -81,6 +81,7 @@ const ManageButton = styled(Button)`
 `;
 const TravelHistory = () => {
   const [bookings, setBookings] = useState([]);
+  const [totalCost, setTotalCost] = useState(0);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetchBookings();
@@ -98,7 +99,6 @@ const TravelHistory = () => {
         const bookedPackage = await getBookedPackageByIdAPI(
           booking.b_travel_package_id
         );
-        console.log(bookedPackage, booking);
         bookedPackage &&
           setBookings((old) => [
             ...old,
@@ -113,11 +113,21 @@ const TravelHistory = () => {
           ]);
       }
     });
+    setTotalCost(
+      bookings.reduce(
+        (v1, v2) => Number(v1.b_booking_cost) + Number(v2.b_booking_cost)
+      )
+    );
+    const total = bookings.reduce((value1, value2) => {
+      return value1.b_booking_cost + Number(value2.b_booking_cost);
+    });
+    console.log(total);
     setLoading(false);
   };
   return (
     <Container>
       <Title>Travel History</Title>
+      <Title>Total Spent: {totalCost}</Title>
       <hr />
       {loading ? (
         <Loading />
@@ -149,9 +159,7 @@ const TravelHistory = () => {
                     )}
                   </BookingDate>
                 </div>
-                <div>
-                  <ManageButton>Manage</ManageButton>
-                </div>
+                <div>{/* <ManageButton>Manage</ManageButton> */}</div>
               </SingleBooking>
             ))
           ) : (

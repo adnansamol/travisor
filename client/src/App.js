@@ -18,6 +18,7 @@ import About from "./pages/About";
 import Destination from "./pages/Destination";
 import BookingDetailView from "./pages/BookingDetailView";
 import RulesAndGuidelines from "./pages/RulesAndGuidelines";
+import BookingSummary from "./pages/BookingSummary";
 function App() {
   window.addEventListener("pa", () => {
     if (
@@ -57,13 +58,14 @@ function App() {
         </Route>
         <Route
           exact
-          path="booking/:id"
+          path="/booking/:id"
           element={
             <ProtectedRoute>
               <BookingDetailView />
             </ProtectedRoute>
           }
         />
+
         <Route path="/package/:id" element={<PackageDetailView />}>
           <Route path="itinerary" element={<Itinerary />} />
           <Route path="policies" element={<Policies />} />

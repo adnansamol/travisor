@@ -49,9 +49,11 @@ const Home = () => {
   };
   const fetchRecommendation = async () => {
     const { _id } = await getUserProfileAPI(localStorage.getItem("token"));
-    const response = await getPackageRecommendationsAPI(_id);
+    if (_id) {
+      const response = await getPackageRecommendationsAPI(_id);
+      setRecommendationPackages(response);
+    }
 
-    setRecommendationPackages(response);
     setRecommendationPackagesLoading(false);
   };
 
