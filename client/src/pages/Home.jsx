@@ -23,6 +23,7 @@ const Home = () => {
   const [specialOfferPackages, setSpecialOfferPackages] = useState([]);
   const [recommendationPackages, setRecommendationPackages] = useState([]);
   const [travelPackagesLoading, setTravelPackagesLoading] = useState(true);
+
   const [specialOfferPackagesLoading, setSpecialOfferPackagesLoading] =
     useState(true);
   const [recommendationPackagesLoading, setRecommendationPackagesLoading] =
@@ -47,13 +48,14 @@ const Home = () => {
     setSpecialOfferPackages(response);
     setSpecialOfferPackagesLoading(false);
   };
+
   const fetchRecommendation = async () => {
     const { _id } = await getUserProfileAPI(localStorage.getItem("token"));
     if (_id) {
       const response = await getPackageRecommendationsAPI(_id);
+      console.log(response);
       setRecommendationPackages(response);
     }
-
     setRecommendationPackagesLoading(false);
   };
 

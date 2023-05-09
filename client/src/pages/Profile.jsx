@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import Link from "../components/ui/Link";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
@@ -36,20 +35,6 @@ const ActiveLink = styled(Link)`
 `;
 const Profile = () => {
   const { pathname } = useLocation();
-  const [bookings, setBookings] = useState();
-  const [selected, setSelected] = useState();
-  const navigate = useNavigate();
-
-  // const getUserBookings = async () => {
-  //   const user = await fetchUser();
-  //   const response = await getBookingByUserIdAPI(user._id);
-  //   setBookings(response);
-  // };
-
-  // const onCancelBooking = async (id) => {
-  //   const response = await cancelBookingAPI(id, "cancelled");
-  //   getUserBookings();
-  // };
 
   return (
     <>

@@ -12,7 +12,7 @@ export const recommendationModel = (allPackages, userHistory) => {
   const recommendedPackages = allPackages.filter((value, index) => {
     return value.p_keywords.some(
       (k) =>
-        count[k] > Math.min(...Object.values(count)) + 1 &&
+        count[k] >= Math.min(...Object.values(count)) + 1 &&
         count[k] <= Math.max(...Object.values(count))
     );
   });
