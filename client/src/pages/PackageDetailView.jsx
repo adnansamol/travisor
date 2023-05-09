@@ -222,7 +222,11 @@ const PackageDetailView = () => {
 
   const fetchTravelPackage = async () => {
     const cacheData = JSON.parse(localStorage.getItem("package-cache"));
-    if (cacheData != null && cacheData._id === params.id) {
+    if (
+      cacheData != "undefined" &&
+      cacheData != null &&
+      cacheData._id === params.id
+    ) {
       setTravelPackage(cacheData);
 
       cacheData.p_images.map((image) =>

@@ -247,23 +247,26 @@ const Itinerary = () => {
   const [openActivitiesModal, setOpenActivitiesModal] = useState(false);
 
   const [flightCost, setFlightCost] = useState(
-    travelPackage.p_flight ? travelPackage.p_flight.price : 0
+    travelPackage.p_flight ? Number(travelPackage.p_flight.price) : 0
   );
   const [returnFlightCost, setReturnFlightCost] = useState(
-    travelPackage.p_return_flight ? travelPackage.p_return_flight.price : 0
+    travelPackage.p_return_flight
+      ? Number(travelPackage.p_return_flight.price)
+      : 0
   );
   const [hotelCost, setHotelCost] = useState(
-    travelPackage.p_hotel.price_per_room
+    Number(travelPackage.p_hotel.price_per_room)
   );
   const [activitiesCost, setActivitiesCost] = useState(
     travelPackage.p_days_plan.length > 0
       ? travelPackage.p_days_plan.reduce(
-          (value1, value2) => Number(value1.price) + Number(value2.price)
+          (sum, value) => sum + Number(value.price),
+          0
         )
       : 0
   );
   const [transportCost, setTransportCost] = useState(
-    travelPackage.p_transport ? travelPackage.p_transport.price : 0
+    travelPackage.p_transport ? Number(travelPackage.p_transport.price) : 0
   );
 
   useEffect(() => {
@@ -572,7 +575,7 @@ const Itinerary = () => {
                         removeActivity(activity.id, activity.price);
                       }}
                     />
-                    <ActivityImage src="https://res.cloudinary.com/debfaf0xn/image/upload/v1682359422/zouprrahkg8rkbrc9ja5.jpg" />
+                    <ActivityImage src={activity.image} />
                   </ActivityTopContainer>
                   <ActivityDescription>
                     {activity.description}

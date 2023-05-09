@@ -239,9 +239,10 @@ const Summary = () => {
                 </Text>
               </DayContainer>
             ))}
-          <DayContainer>
-            <DayNumber>Day-{travelPackage.p_days}</DayNumber>
-            {travelPackage.p_return_flight && (
+          {travelPackage.p_return_flight && (
+            <DayContainer>
+              <DayNumber>Day-{travelPackage.p_days}</DayNumber>
+
               <>
                 <h6>
                   Departure from airport:{" "}
@@ -269,8 +270,8 @@ const Summary = () => {
                   </BoldText>
                 </Text>
               </>
-            )}
-          </DayContainer>
+            </DayContainer>
+          )}
         </SummaryContainer>
       </Container>
     )

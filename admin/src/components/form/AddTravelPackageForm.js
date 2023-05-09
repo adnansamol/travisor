@@ -623,7 +623,7 @@ const AddTravelPackageForm = ({ createTravelPackage }) => {
           />
         </div>
         <input
-          className="btn btn-primary"
+          className="btn btn-success"
           type="submit"
           value="Create Package"
         />
@@ -666,7 +666,7 @@ const AddTravelPackageForm = ({ createTravelPackage }) => {
                 }}
                 onClick={() => removeActivity(activity.id)}
               />
-              <ActivityImage src="https://res.cloudinary.com/debfaf0xn/image/upload/v1682359422/zouprrahkg8rkbrc9ja5.jpg" />
+              <ActivityImage src={activity.image} />
             </ActivityTopContainer>
             <ActivityDescription>{activity.description}</ActivityDescription>
           </ActivityContainer>

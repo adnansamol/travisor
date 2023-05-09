@@ -11,6 +11,7 @@ cloudinary.v2.config({
   api_key: process.env.CLOUDINARY_KEY,
   api_secret: process.env.CLOUDINARY_SECRET_KEY,
 });
+
 export const createTravelPackage = async (req, res) => {
   try {
     const localPath = "./uploads/";
@@ -26,24 +27,25 @@ export const createTravelPackage = async (req, res) => {
       await cloudinary.v2.uploader
         .upload(localPath + req.files[i].filename)
         .then((result) => {
-          fs.unlinkSync("uploads/" + req.files[i].filename);
           images.push(result.url);
+          fs.unlinkSync("uploads/" + req.files[i].filename);
         });
     }
 
-    const activitiesCost =
-      JSON.parse(req.body.p_days_plan).length > 0 &&
-      JSON.parse(req.body.p_days_plan).reduce(
-        (value1, value2) => Number(value1.price) + value2.price
-      );
+    const activitiesCost = req.body.p_days_plan
+      ? JSON.parse(req.body.p_days_plan).reduce(
+          (sum, value) => sum + Number(value.price),
+          0
+        )
+      : 0;
+
     const totalCost =
       Number(req.body.p_price) +
-      JSON.parse(req.body.p_hotel).price_per_room +
-      JSON.parse(req.body.p_flight).price +
-      JSON.parse(req.body.p_return_flight).price +
-      JSON.parse(req.body.p_transport).price +
+      Number(JSON.parse(req.body.p_hotel).price_per_room) +
+      Number(JSON.parse(req.body.p_flight).price) +
+      Number(JSON.parse(req.body.p_return_flight).price) +
+      Number(JSON.parse(req.body.p_transport).price) +
       activitiesCost;
-
     const data = {
       p_agency_id: req.body.p_agency_id,
       p_name: req.body.p_name,
@@ -53,7 +55,8 @@ export const createTravelPackage = async (req, res) => {
       p_description: req.body.p_description,
       p_price: {
         base_price: Number(req.body.p_price),
-        discount: Number((req.body.p_price * req.body.p_discount) / 100),
+        discount:
+          (Number(req.body.p_price) * Number(req.body.p_discount)) / 100,
         percentage: Number(req.body.p_discount),
         total_cost: totalCost,
       },
@@ -61,7 +64,7 @@ export const createTravelPackage = async (req, res) => {
       p_imagePreview: imagePreview,
       p_images: images,
 
-      p_days_plan: JSON.parse(req.body.p_days_plan),
+      p_days_plan: req.body.p_days_plan ? JSON.parse(req.body.p_days_plan) : [],
       p_policies: {
         cancellation: {
           from: req.body.p_start_date,
@@ -77,10 +80,11 @@ export const createTravelPackage = async (req, res) => {
     };
 
     const travelPackage = await new travelPackageModel(data);
+
     await travelPackage.save();
     res.status(200).send("Package created successfully");
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send(error.message);
   }
 };
 
@@ -171,7 +175,7 @@ export const getPackageRecommendation = async (req, res) => {
         allPackages,
         userHistoryPackages
       );
-      console.log(recommendedPackages);
+
       if (recommendedPackages.length >= 2) {
         res.status(200).send(recommendedPackages);
       }
@@ -186,7 +190,6 @@ export const getPackageRecommendation = async (req, res) => {
 export const updateTravelPackage = async (req, res) => {
   try {
     let imagePreview = "";
-    console.log(req.files);
     if (req.files.length > 0 && req.files[0].fieldname == "p_imagePreview") {
       const localPath = "./uploads/";
       imagePreview = await cloudinary.v2.uploader
@@ -209,19 +212,19 @@ export const updateTravelPackage = async (req, res) => {
       }
     }
 
-    const activitiesCost =
-      JSON.parse(req.body.p_days_plan).length > 0 &&
-      JSON.parse(req.body.p_days_plan).reduce(
-        (value1, value2) => Number(value1.price) + Number(value2.price)
-      );
-    console.log(activitiesCost);
+    const activitiesCost = req.body.p_days_plan
+      ? JSON.parse(req.body.p_days_plan).reduce(
+          (sum, value) => sum + Number(value.price),
+          0
+        )
+      : 0;
 
     const totalCost =
       Number(req.body.p_price) +
-      JSON.parse(req.body.p_hotel).price_per_room +
-      JSON.parse(req.body.p_flight).price +
-      JSON.parse(req.body.p_return_flight).price +
-      JSON.parse(req.body.p_transport).price +
+      Number(JSON.parse(req.body.p_hotel).price_per_room) +
+      Number(JSON.parse(req.body.p_flight).price) +
+      Number(JSON.parse(req.body.p_return_flight).price) +
+      Number(JSON.parse(req.body.p_transport).price) +
       activitiesCost;
 
     const data = {
@@ -233,9 +236,10 @@ export const updateTravelPackage = async (req, res) => {
       p_description: req.body.p_description,
       p_price: {
         base_price: Number(req.body.p_price),
-        discount: Number((totalCost * req.body.p_discount) / 100),
+        discount:
+          (Number(req.body.p_price) * Number(req.body.p_discount)) / 100,
         percentage: Number(req.body.p_discount),
-        total_cost: Number(totalCost),
+        total_cost: totalCost,
       },
       p_start_date: req.body.p_start_date,
       p_imagePreview:

@@ -88,11 +88,10 @@ const TravelHistory = () => {
   }, []);
 
   useEffect(() => {
+    console.log(bookings);
     bookings.length > 0 &&
       setTotalCost(
-        bookings.reduce(
-          (v1, v2) => Number(v1.b_booking_cost) + Number(v2.b_booking_cost)
-        )
+        bookings.reduce((sum, value) => sum + Number(value.totalCost), 0)
       );
   }, [bookings]);
   const fetchBookings = async () => {
@@ -124,7 +123,7 @@ const TravelHistory = () => {
   return (
     <Container>
       <Title>Travel History</Title>
-      {/* <Title>Total Spent: {totalCost}</Title> */}
+
       <hr />
       {loading ? (
         <Loading />
@@ -164,6 +163,10 @@ const TravelHistory = () => {
           )}
         </BookingsContainer>
       )}
+      <br />
+      <Title style={{ textAlign: "right", fontSize: 20 }}>
+        Total Expenses: {priceFormatter.format(totalCost)}
+      </Title>
     </Container>
   );
 };

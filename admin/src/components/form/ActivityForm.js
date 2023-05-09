@@ -18,7 +18,8 @@ const ActivityForm = ({ activites, setActivities, days }) => {
           title: form.title.value,
           description: form.description.value,
           price: form.price.value,
-          image: form.activity_image.files,
+          image:
+            "https://img.freepik.com/free-vector/people-having-picnic-public-park-flat-vector-illustration-happy-men-women-family-children-sitting-blanket-eating-talking-landscape-leisure-outdoor-activity-concept_74855-24948.jpg?w=2000",
         },
       ]);
     } else {
@@ -67,10 +68,7 @@ const ActivityForm = ({ activites, setActivities, days }) => {
         <label className="form-label">Description</label>
         <textarea className="form-control" name="description" required />
       </div>
-      <div className="form-input-group">
-        <label className="form-label">Image</label>
-        <input className="form-control" type="file" name="activity_image" />
-      </div>
+
       <input className="btn btn-primary" type="submit" value="Add" />
     </form>
   );

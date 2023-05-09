@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { PackageContext } from "../context/package-context";
 
 const Container = styled.div`
   display: flex;
@@ -19,6 +20,7 @@ const Title = styled.div`
 `;
 const RefundPolicyDescription = styled.div``;
 const Policies = () => {
+  const { travelPackage } = useContext(PackageContext);
   return (
     <Container>
       <PoliciesContainer>
@@ -29,6 +31,15 @@ const Policies = () => {
           The refund policy for every package may differ. Refund policy refers
           to the valid date on or after the package becomes ineligible for a
           refund.
+          <br />
+          {travelPackage && (
+            <div>
+              <b>Note: </b>
+              {travelPackage.p_policies.cancellation.description}
+              The package booking will be not eligible after{" "}
+              <b>{travelPackage.p_policies.cancellation.to} days</b> of booking
+            </div>
+          )}
         </RefundPolicyDescription>
       </PoliciesContainer>
       <PoliciesContainer>

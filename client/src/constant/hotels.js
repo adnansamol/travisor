@@ -415,62 +415,9 @@ const travel_hotels = [
     dineIncluded: true,
     location: "Switzerland",
   },
-];
-const kashmir_hotels = [
   {
-    name: "The Lalit Grand Palace Srinagar",
-    address: "Gupkar Road, Srinagar 190001 India",
-    rating: 4,
-    facilities: [
-      "Free parking",
-      "Free High Speed Internet (WiFi)",
-      "Pool",
-      "Fitness Centre with Gym / Workout Room",
-      "Free breakfast",
-      "Beach",
-      "Bar / lounge",
-      "Bowling",
-      "Game room",
-      "Kids stay free",
-    ],
-    images: [
-      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/e7/9b/d0/photo0jpg.jpg?w=1000&h=-1&s=1",
-    ],
-    room_types: ["Bridal Suites", "Suites", "Family Rooms"],
-    price_per_room: 3000,
-    dineIncluded: true,
-    location: "Kashmir",
-  },
-];
-const rajasthan_hotels = [{}];
-const goa_hotels = [
-  {
-    name: "JW Marriott Goa",
-    address: "Vagator Beach Road, Bardez 403509 India",
-    rating: 4,
-    facilities: [
-      "Free parking",
-      "Free High Speed Internet (WiFi)",
-      "Pool",
-      "Fitness Centre with Gym / Workout Room",
-      "Free breakfast",
-      "Beach",
-      "Bar / lounge",
-      "Bowling",
-      "Game room",
-      "Kids stay free",
-    ],
-    images: [
-      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/60/38/00/jw-marriott-goa-vagator.jpg?w=1200&h=-1&s=1",
-    ],
-    room_types: ["Ocean view", "Suites"],
-    price_per_room: 3000,
-    dineIncluded: true,
-    location: "Goa",
-  },
-  {
-    name: "Taj Resort & Convention Centre",
-    address: "Vainguinim Beach, Dona Paula, Panjim 403004 India",
+    name: "Sun Siyam Iru Fushi Maldives",
+    address: "02036 Maldives",
     rating: 5,
     facilities: [
       "Free parking",
@@ -485,17 +432,16 @@ const goa_hotels = [
       "Kids stay free",
     ],
     images: [
-      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/1d/96/92/taj-hotel-convention.jpg?w=1200&h=-1&s=1",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/f4/5f/d4/sun-siyam-iru-fushi-maldives.jpg?w=1200&h=-1&s=1",
     ],
-    room_types: ["Ocean view", "Suites", "City view"],
-    price_per_room: 3400,
+    room_types: ["Bridal Suites", "Ocean View", "Suites", "Family Rooms"],
+    price_per_room: 12000,
     dineIncluded: true,
-    location: "Goa",
+    location: "Maldives",
   },
   {
-    name: "Zone Connect, Goa, Calangute",
-    address:
-      "H No 2/16A, Naika Vaddo (near St. Alex Church), Calangute 403516 India",
+    name: "Villa Nautica",
+    address: "Paradise Island Resort & Spa, 08420",
     rating: 4,
     facilities: [
       "Free parking",
@@ -510,37 +456,40 @@ const goa_hotels = [
       "Kids stay free",
     ],
     images: [
-      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/94/22/66/zone-connect-goa-calangute.jpg?w=1200&h=-1&s=1",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/b5/b2/c8/wavy-navy-kids-club.jpg?w=1200&h=-1&s=1",
     ],
-    room_types: ["Ocean view", "Suites", "Mountain view"],
-    price_per_room: 2400,
+    room_types: ["Ocean View", "Suites", "Family Rooms"],
+    price_per_room: 10200,
     dineIncluded: true,
-    location: "Goa",
+    location: "Maldives",
   },
   {
-    name: "La Grace Resort",
-    address: "Vaswaddo Vaddy Beach, Benaulim 403716 India",
+    name: "Meeru Island Resort & Spa",
+    address: "20187 Maldives",
     rating: 3,
     facilities: [
       "Free parking",
       "Free High Speed Internet (WiFi)",
       "Pool",
+      "Fitness Centre with Gym / Workout Room",
       "Free breakfast",
       "Beach",
+      "Bar / lounge",
+      "Bowling",
+      "Game room",
       "Kids stay free",
     ],
     images: [
-      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/08/4f/d5/la-grace-resort.jpg?w=600&h=-1&s=1",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/10/0a/5f/jacuzzi-water-villas.jpg?w=1200&h=-1&s=1",
     ],
-    room_types: ["Family Rooms"],
-    price_per_room: 2600,
+    room_types: ["Ocean View", "Suites", "Family Rooms"],
+    price_per_room: 8500,
     dineIncluded: true,
-    location: "Goa",
+    location: "Maldives",
   },
   {
-    name: "Bloom Hotel - Calangute",
-    address:
-      "197/37, Calangute - Baga Road Umta Vaddo, Behind McDonalds Restaurant, Calangute 403516 India",
+    name: "Hurawalhi Island Resort",
+    address: "20187 Maldives",
     rating: 5,
     facilities: [
       "Free parking",
@@ -549,20 +498,19 @@ const goa_hotels = [
       "Fitness Centre with Gym / Workout Room",
       "Free breakfast",
       "Beach",
-      "24-hour security",
+      "Bar / lounge",
+      "Bowling",
       "Game room",
       "Kids stay free",
     ],
     images: [
-      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/e9/2f/b9/bloom-hotel-calangute.jpg?w=1000&h=-1&s=1",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/91/a8/cc/hurawalhi-58-undersea.jpg?w=1200&h=-1&s=1",
     ],
-    room_types: ["Family Rooms", "Suites"],
-    price_per_room: 3000,
+    room_types: ["Ocean View", "Suites"],
+    price_per_room: 14000,
     dineIncluded: true,
-    location: "Goa",
+    location: "Maldives",
   },
 ];
-const maldives_hotels = [{}];
-const bali_hotels = [{}];
 
 export const hotelsAPI = [...travel_hotels];
