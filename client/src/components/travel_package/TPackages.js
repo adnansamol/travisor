@@ -5,11 +5,6 @@ import "react-multi-carousel/lib/styles.css";
 import Link from "../ui/Link";
 import TPackage from "./TPackage";
 import "./react-carousel.css";
-import {
-  IoCaretBackCircleSharp,
-  IoCaretForwardCircleSharp,
-} from "react-icons/io5";
-import { getRecentlyAddedTravelPackagesAPI } from "../../service/travel-package-api";
 import { colors } from "../../constant/colors";
 import CustomLeftArrow from "./CustomLeftArrow";
 
@@ -18,10 +13,7 @@ const Container = styled.div`
   width: 80%;
   margin-bottom: 40px;
 `;
-const FlexContainer = styled.div`
-  display: flex;
-  gap: 40px;
-`;
+
 const Title = styled.div`
   font-size: 25px;
   font-weight: 600;

@@ -4,3 +4,11 @@
 .carouselContainerClass {
   background-color: whitesmoke;
 }
+.carouselAdContainerClass {
+  background-color: whitesmoke;
+}
+.carouselAdItemClass {
+  
+  width: 265px !important;
+
+}

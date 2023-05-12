@@ -116,7 +116,7 @@ const DestinationDropdown = styled.div`
   column-gap: 20px;
   opacity: 0;
   position: absolute;
-  width: 15%;
+  width: 200px;
   border-radius: 5px;
   background-color: white;
   margin-right: 20px;

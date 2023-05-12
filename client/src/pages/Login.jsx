@@ -6,7 +6,7 @@ import Link from "../components/ui/Link";
 import { colors } from "../constant/colors";
 import { getUserProfileAPI, loginUserAPI } from "../service/user-api";
 import { MdKeyboardBackspace } from "react-icons/md";
-import { authorizeUser } from "../auth/Authorization";
+import { ImEarth } from "react-icons/im";
 
 const Component = styled.div`
   width: 100%;
@@ -16,9 +16,18 @@ const Component = styled.div`
   height: 100vh;
   display: flex;
 `;
-
+const Logo = styled(Link)`
+  display: block;
+  position: relative;
+  margin: auto;
+  width: fit-content;
+  color: ${colors.black};
+  font-size: 30px;
+  font-weight: 600;
+  font-family: "Alatsi", sans-serif;
+`;
 const LoginContainer = styled.div`
-  padding: 10px 30px 30px;
+  padding: 10px 30px;
   background-color: white;
   width: fit-content;
   border-radius: 5px;
@@ -36,7 +45,7 @@ const LoginTitle = styled.div`
 
 const SignupPrompt = styled.div`
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   margin-top: 10px;
 `;
 
@@ -76,6 +85,14 @@ const Login = () => {
           Don't have an account?{" "}
           <SignupLink to={"/register"}>Sign up</SignupLink> here.
         </SignupPrompt>
+        <hr />
+        <Logo>
+          travis
+          <ImEarth size={20} />r
+        </Logo>
+        <p style={{ textAlign: "center", margin: 0 }}>
+          all rights reserved © 2023
+        </p>
       </LoginContainer>
     </Component>
   );

@@ -5,6 +5,7 @@ import { colors } from "../../constant/colors";
 import TDestination from "./TDestination";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { popularDestinations } from "../../constant/destinations";
 
 const Container = styled.div`
   margin: auto;
@@ -45,15 +46,12 @@ const TDestinations = ({ title, destinations }) => {
         responsive={responsive}
         itemClass="carousel-item-width-0-px"
       >
-        {destinations &&
-          destinations.map(
-            (destination, index) =>
-              index < 7 && (
-                <DestinationLink to={`/destination/${destination.name}`}>
-                  <TDestination destination={destination} />
-                </DestinationLink>
-              )
-          )}
+        {popularDestinations &&
+          popularDestinations.map((destination, index) => (
+            <DestinationLink to={`/destination/${destination.name}`}>
+              <TDestination destination={destination} />
+            </DestinationLink>
+          ))}
       </Carousel>
     </Container>
   );
