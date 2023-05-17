@@ -55,8 +55,7 @@ export const createTravelPackage = async (req, res) => {
       p_description: req.body.p_description,
       p_price: {
         base_price: Number(req.body.p_price),
-        discount:
-          (Number(req.body.p_price) * Number(req.body.p_discount)) / 100,
+        discount: (Number(totalCost) * Number(req.body.p_discount)) / 100,
         percentage: Number(req.body.p_discount),
         total_cost: totalCost,
       },
@@ -236,8 +235,7 @@ export const updateTravelPackage = async (req, res) => {
       p_description: req.body.p_description,
       p_price: {
         base_price: Number(req.body.p_price),
-        discount:
-          (Number(req.body.p_price) * Number(req.body.p_discount)) / 100,
+        discount: (Number(totalCost) * Number(req.body.p_discount)) / 100,
         percentage: Number(req.body.p_discount),
         total_cost: totalCost,
       },

@@ -45,7 +45,6 @@ const TPackages = ({ title, travelPackages, dateFilter }) => {
         responsive={responsive}
         itemClass="carouselItemClass"
         containerClass="carouselContainerClass"
-        customLeftArrow={<CustomLeftArrow />}
       >
         {travelPackages &&
           travelPackages.map((travelPackage) => (

@@ -167,11 +167,9 @@ const Home = () => {
               <TPackages
                 title={
                   "Special Offers (Upto " +
-                  specialOfferPackages.reduce((value1, value2) =>
-                    Math.max(
-                      value1.p_price.percentage,
-                      value2.p_price.percentage
-                    )
+                  specialOfferPackages.reduce(
+                    (prev, value2) => Math.max(prev, value2.p_price.percentage),
+                    0
                   ) +
                   "% OFF)"
                 }

@@ -3,6 +3,7 @@ import {
   getAgency,
   getAgencyProfile,
   getAllAgencies,
+  getPhoneNumberById,
   loginAgency,
   logoutAgency,
   registerAgency,
@@ -21,5 +22,6 @@ agencyRouter.put("/logout", logoutAgency);
 
 agencyRouter.get("/getAgency/:id", getAgency);
 agencyRouter.get("/getAllAgencies", getAllAgencies);
+agencyRouter.get("/getPhoneNumber/:id", getPhoneNumberById);
 
 export default agencyRouter;

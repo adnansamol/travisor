@@ -1,6 +1,23 @@
 import userModel from "../models/user.js";
 import { alreadyRegistered } from "../util/validation.js";
 import { generateJWTToken, verifyJWTToken } from "../util/authentication.js";
+import nodemailer from "nodemailer";
+
+// Generate test SMTP service account from ethereal.email
+// Only needed if you don't have a real mail account for testing
+let testAccount = await nodemailer.createTestAccount();
+
+// create reusable transporter object using the default SMTP transport
+let transporter = nodemailer.createTransport({
+  host: "smtp.ethereal.email",
+  port: 587,
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: testAccount.user, // generated ethereal user
+    pass: testAccount.pass, // generated ethereal password
+  },
+});
+
 export const registerUser = async (req, res) => {
   try {
     const user = req.body;
@@ -104,5 +121,13 @@ export const getCustomer = async (req, res) => {
     res.status(200).send({ u_email, u_phone, u_name });
   } catch (error) {
     res.status(500).send(error);
+  }
+};
+
+export const sendOtpVerificationEmail = async (req, res) => {
+  try {
+    const otp = `${Math.floor(1000 + Math.random() * 9000)}`;
+  } catch (error) {
+    res.status(500).send(error.message);
   }
 };

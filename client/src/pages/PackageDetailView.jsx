@@ -177,7 +177,7 @@ const requestModalCustomStyle = {
     top: "8rem",
     width: "40%",
     left: "30%",
-    height: "35rem",
+    height: "40rem",
     backgroundColor: "orangered",
   },
 };

@@ -93,3 +93,12 @@ export const getAllAgencies = async (req, res) => {
     res.status(500).send(error);
   }
 };
+
+export const getPhoneNumberById = async (req, res) => {
+  try {
+    const { a_phone } = await agencyModel.findById(req.params.id);
+    res.status(200).send({ phone: a_phone });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};

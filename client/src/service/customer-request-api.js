@@ -12,3 +12,13 @@ export const createCustomerRequestAPI = async (data) => {
     console.log(error);
   }
 };
+export const getPhoneNumberByIdAPI = async (id) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:8000/agency/getPhoneNumber/${id}`
+    );
+    return response.data.phone;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
