@@ -44,12 +44,12 @@ const CancelledBookingRow = ({ cancelledBooking, index }) => {
       <td>{new Date(cancelledBooking.updatedAt).toDateString()}</td>
       <td>{cancelledBooking.b_booking_cost}</td>
       <td>
-        <Link
+        {/* <Link
           className="btn btn-warning"
           to={"/cancelledBooking/" + cancelledBooking._id}
         >
           View
-        </Link>
+        </Link> */}
         <button className="btn btn-danger mx-2">Delete</button>
       </td>
     </tr>

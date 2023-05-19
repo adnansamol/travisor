@@ -209,7 +209,7 @@ const BookingSummary = ({ travelPackage }) => {
                       <FlightDate>
                         {getShortDate(travelPackage.p_start_date)}
                       </FlightDate>
-                      <FlightPlace>{stop.from}</FlightPlace>
+                      <FlightPlace>{stop.to}</FlightPlace>
                     </FlightDeparture>
 
                     <HorizontalRule></HorizontalRule>
@@ -220,7 +220,7 @@ const BookingSummary = ({ travelPackage }) => {
                       <FlightDate>
                         {getShortDate(travelPackage.p_start_date)}
                       </FlightDate>
-                      <FlightPlace>{stop.to}</FlightPlace>
+                      <FlightPlace>{stop.from}</FlightPlace>
                     </FlightArrival>
                   </FlightTimeContainer>
                   <FlightTypeContainer>

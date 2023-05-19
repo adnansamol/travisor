@@ -57,7 +57,10 @@ const BookingDetailView = () => {
                 <td>{booking.p_name}</td>
                 <td>{booking.p_destination}</td>
                 <td>{booking.p_days}</td>
-                <td>{booking.p_price.base_price}</td>
+                <td>
+                  {(booking.p_price.total_cost - booking.p_price.discount) *
+                    booking.p_guests.length}
+                </td>
                 <td>{booking.p_price.discount}</td>
               </tr>
             </tbody>
@@ -99,6 +102,7 @@ const BookingDetailView = () => {
                     <th>To</th>
                     <th>Departure</th>
                     <th>Arrival</th>
+                    <th>Ticket Price</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -106,8 +110,8 @@ const BookingDetailView = () => {
                     <td>{stop.airline}</td>
                     <td>{stop.plane}</td>
                     <td>{stop.planeClass}</td>
-                    <td>{stop.from}</td>
                     <td>{stop.to}</td>
+                    <td>{stop.from}</td>
                     <td>
                       <b>{stop.departure_time}</b>
                       <br />
@@ -118,6 +122,7 @@ const BookingDetailView = () => {
                       <br />
                       {new Date(booking.p_start_date).toLocaleDateString()}
                     </td>
+                    <td>{booking.p_flight.price}</td>
                   </tr>
                 </tbody>
               </table>
@@ -141,6 +146,7 @@ const BookingDetailView = () => {
                     <th>To</th>
                     <th>Departure</th>
                     <th>Arrival</th>
+                    <th>Ticket Price</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -164,6 +170,7 @@ const BookingDetailView = () => {
                         addDays(booking.p_start_date, booking.p_days)
                       ).toLocaleDateString()}
                     </td>
+                    <td>{booking.p_return_flight.price}</td>
                   </tr>
                 </tbody>
               </table>
@@ -203,6 +210,7 @@ const BookingDetailView = () => {
                   <th>Room Type</th>
                   <th>Address</th>
                   <th>Dine Included</th>
+                  <th>Price</th>
                 </tr>
               </thead>
               <tbody>
@@ -211,6 +219,7 @@ const BookingDetailView = () => {
                   <td>{booking.p_hotel.type}</td>
                   <td>{booking.p_hotel.address}</td>
                   <td>{booking.p_hotel.dineIncluded ? "yes" : "no"}</td>
+                  <td>{booking.p_hotel.price_per_room}</td>
                 </tr>
               </tbody>
             </table>
